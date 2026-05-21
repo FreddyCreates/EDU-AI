@@ -82,7 +82,7 @@ const PORTAL_CARDS = [
     color: "oklch(0.72 0.17 155)",
     glassClass: "glass-portal-it",
     badge: "Desktop + Mobile",
-    to: "/it-security",
+    to: "/it/portal",
   },
 ];
 

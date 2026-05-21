@@ -1793,7 +1793,7 @@ export default function ITSecurityPanel() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.25 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
           data-ocid="it.quick_links"
         >
           <Link to="/it/network" data-ocid="it.network_link">
@@ -1835,6 +1835,50 @@ export default function ITSecurityPanel() {
                 </p>
                 <p className="text-[10px] text-muted-foreground">
                   Append-only event record · PHI-cycle events
+                </p>
+              </div>
+              <ExternalLink className="h-3.5 w-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </div>
+          </Link>
+          <Link to="/it/engines" data-ocid="it.engines_link">
+            <div className="glass-portal-it rounded-2xl px-5 py-4 flex items-center gap-3 hover:brightness-110 transition-smooth cursor-pointer group">
+              <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                style={{ background: "rgba(0,220,130,0.10)" }}
+              >
+                <Activity
+                  className="h-5 w-5"
+                  style={{ color: "oklch(0.72 0.17 155)" }}
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-display font-semibold text-sm text-foreground">
+                  Engine Monitor
+                </p>
+                <p className="text-[10px] text-muted-foreground">
+                  4 substrates · PHI-scored · LEX_SOVEREIGNUS
+                </p>
+              </div>
+              <ExternalLink className="h-3.5 w-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </div>
+          </Link>
+          <Link to="/it/apix" data-ocid="it.apix_link">
+            <div className="glass-portal-it rounded-2xl px-5 py-4 flex items-center gap-3 hover:brightness-110 transition-smooth cursor-pointer group">
+              <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                style={{ background: "rgba(0,220,130,0.10)" }}
+              >
+                <Zap
+                  className="h-5 w-5"
+                  style={{ color: "oklch(0.72 0.17 155)" }}
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-display font-semibold text-sm text-foreground">
+                  APIX Gateway
+                </p>
+                <p className="text-[10px] text-muted-foreground">
+                  Versioned · Identity-gated · GATE-enforced
                 </p>
               </div>
               <ExternalLink className="h-3.5 w-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />

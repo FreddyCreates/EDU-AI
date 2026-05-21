@@ -1,0 +1,902 @@
+import { r as reactExports, j as jsxRuntimeExports } from "./vendor-1quNMNNh.js";
+import { i as createLucideIcon, d as useInternetIdentity, f as useActor, k as Shield, B as BookOpen, m as BrainCircuit, S as Skeleton, H as Heart, b as Star, G as GraduationCap, o as Layers, a as Award, h as createActor } from "./index-BivnQ6bB.js";
+import { B as Badge } from "./badge-17ClpTIq.js";
+import { B as Button } from "./button-CWs7EcLL.js";
+import { u as useVisionWithFunding } from "./use-principal-intelligence-C9oOVM5O.js";
+import { a as useQuery } from "./query-8urnerR0.js";
+import { L as Link } from "./router-D6GUppNf.js";
+import { S as Sparkles } from "./sparkles-C3IEEH24.js";
+import { T as TrendingUp } from "./trending-up-CpgQ7qb4.js";
+import { C as ChevronLeft } from "./chevron-left-pbzTE56t.js";
+import { R as RefreshCw } from "./refresh-cw-yaYaSXit.js";
+import { m as motion } from "./motion-BK2wxCtX.js";
+import "./index-Ctl2T3XX.js";
+import "./index-C9l95vBR.js";
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode = [
+  [
+    "path",
+    {
+      d: "M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1",
+      key: "18etb6"
+    }
+  ],
+  ["path", { d: "M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4", key: "xoc0q4" }]
+];
+const Wallet = createLucideIcon("wallet", __iconNode);
+function useVisionDocument() {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["vision-document"],
+    queryFn: async () => {
+      if (!actor)
+        return {
+          foundingStory: "",
+          platformVision: "",
+          technicalSovereignty: "",
+          impactCase: "",
+          fundingStrategy: "",
+          liveStats: {
+            totalStudentsFlagged: 0n,
+            achievementsSealed: 0n,
+            nominationsSent: 0n
+          }
+        };
+      return actor.generateVisionDocument();
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 21e3
+  });
+}
+function useVisionStats() {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["vision-stats"],
+    queryFn: async () => {
+      if (!actor)
+        return {
+          totalStudentsFlagged: 0n,
+          achievementsSealed: 0n,
+          nominationsSent: 0n
+        };
+      return actor.getVisionStats();
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: 21e3
+  });
+}
+function FundingStatusBadge({ status }) {
+  const map = {
+    Identifying: {
+      bg: "rgba(100,100,255,0.12)",
+      color: "oklch(0.72 0.17 270)",
+      text: "IDENTIFYING"
+    },
+    "In Progress": {
+      bg: "rgba(255,185,0,0.12)",
+      color: "oklch(0.75 0.16 70)",
+      text: "IN PROGRESS"
+    },
+    Submitted: {
+      bg: "rgba(0,210,255,0.12)",
+      color: "oklch(0.78 0.22 200)",
+      text: "SUBMITTED"
+    },
+    Funded: {
+      bg: "rgba(0,220,130,0.15)",
+      color: "oklch(0.72 0.17 155)",
+      text: "FUNDED ✓"
+    }
+  };
+  const style = map[status] ?? map.Identifying;
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "span",
+    {
+      className: "inline-flex items-center rounded-lg px-2 py-0.5 font-mono text-[9px] font-bold",
+      style: {
+        background: style.bg,
+        color: style.color,
+        border: `1px solid ${style.color}40`
+      },
+      children: style.text
+    }
+  );
+}
+function FundingTracker({
+  targets,
+  isLoading
+}) {
+  const AMBER = "oklch(0.75 0.16 70)";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.section,
+    {
+      id: "funding-tracker",
+      "data-ocid": "vision.funding_tracker_section",
+      initial: { opacity: 0, y: 24 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5 },
+      className: "glass rounded-2xl p-6 md:p-8 scroll-mt-20",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "h-10 w-10 rounded-xl flex items-center justify-center",
+              style: {
+                background: "rgba(255,185,0,0.12)",
+                border: "1px solid rgba(255,185,0,0.30)"
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Wallet, { className: "h-5 w-5", style: { color: AMBER } })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-black text-xl text-foreground", children: "Funding Tracker" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: "Live status of funding initiatives — generated by COGT+META+AUTN" })
+          ] })
+        ] }),
+        isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: [1, 2, 3].map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-16 rounded-xl" }, k)) }) : targets.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "text-center py-8 text-sm text-muted-foreground",
+            "data-ocid": "vision.funding_tracker.empty_state",
+            children: "No funding targets defined yet."
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: targets.map((target, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          motion.div,
+          {
+            "data-ocid": `vision.funding_target.${i + 1}`,
+            initial: { opacity: 0, x: -8 },
+            whileInView: { opacity: 1, x: 0 },
+            viewport: { once: true },
+            transition: { duration: 0.35, delay: i * 0.07 },
+            className: "rounded-xl px-5 py-4 flex items-center justify-between gap-4",
+            style: {
+              background: "rgba(255,185,0,0.04)",
+              border: "1px solid rgba(255,185,0,0.12)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 min-w-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "h-8 w-8 rounded-lg flex items-center justify-center shrink-0 font-mono font-bold text-xs",
+                    style: {
+                      background: "rgba(255,185,0,0.10)",
+                      border: "1px solid rgba(255,185,0,0.22)",
+                      color: AMBER
+                    },
+                    children: i + 1
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-foreground truncate", children: target.name }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-[10px] font-mono mt-0.5",
+                      style: { color: "rgba(255,185,0,0.65)" },
+                      children: target.amount
+                    }
+                  )
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FundingStatusBadge, { status: target.status })
+            ]
+          },
+          `${target.name}-${i}`
+        )) })
+      ]
+    }
+  );
+}
+function FounderStorySection({
+  founderStory,
+  isLoading
+}) {
+  const AMBER = "oklch(0.75 0.16 70)";
+  const storyText = founderStory.trim().length > 10 ? founderStory : "Alfredo Medina Hernandez grew up in the public schools of Ferris, Texas — a small district that, by state metrics, sits in the bottom half for math performance. But inside that school, a geometry teacher noticed something: one student was consistently scoring 100 in geometry.\n\nThat teacher didn't wait for an announcement. They submitted Alfredo's name to a national recognition program. A packet arrived. The trip was fully paid. Alfredo flew to Orlando with thousands of students from across the United States — a professional convention, a yearbook, recognition from a program that saw what the school's own infrastructure had no way to surface automatically.\n\nThe recognition happened. But it happened by accident. One teacher. One act. No system to guarantee it for the next student.\n\nEduAI is built to close that gap. Not by replacing teachers — but by making sure the teacher never has to be the only one watching. The system watches too. RCGN flags excellence. NOMS surfaces nominations. ACHV seals every achievement permanently in the student's passport. The next Alfredo doesn't need to wait for one teacher to happen to notice. The intelligence already knows. The pathway is already open.";
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    motion.section,
+    {
+      id: "founding",
+      "data-ocid": "vision.founding_section",
+      initial: { opacity: 0, y: 24 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5 },
+      className: "scroll-mt-20",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "rounded-2xl p-6 md:p-8 relative overflow-hidden",
+          style: {
+            background: "linear-gradient(135deg, rgba(255,185,0,0.06) 0%, rgba(255,185,0,0.02) 50%, transparent 100%)",
+            border: "1px solid rgba(255,185,0,0.20)",
+            boxShadow: "0 0 40px rgba(255,185,0,0.06)"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full",
+                style: {
+                  background: "radial-gradient(circle, rgba(255,185,0,0.15) 0%, transparent 70%)"
+                }
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "h-10 w-10 rounded-xl flex items-center justify-center",
+                  style: {
+                    background: "rgba(255,185,0,0.15)",
+                    border: "1px solid rgba(255,185,0,0.35)",
+                    boxShadow: "0 0 14px rgba(255,185,0,0.20)"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "h-5 w-5", style: { color: AMBER } })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-black text-xl text-foreground", children: "Why This Platform Exists" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs font-mono mt-0.5",
+                    style: { color: "rgba(255,185,0,0.65)" },
+                    children: "Alfredo Medina Hernandez · Ferris High School, Texas"
+                  }
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                className: "rounded-xl px-4 py-3 mb-6 flex items-start gap-3",
+                style: {
+                  background: "rgba(255,185,0,0.08)",
+                  border: "1px solid rgba(255,185,0,0.22)"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "h-4 w-4 mt-0.5 shrink-0", style: { color: AMBER } }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs leading-relaxed", style: { color: AMBER }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold", children: "National Society of High School Scholars (NSHSS)" }),
+                    " ",
+                    "— Selected twice for national recognition in mathematics and science. Fully sponsored trip to Orlando, Florida. Professional national yearbook. Students from all 50 states. Nominated by a geometry teacher at Ferris High School after a student scored 100 in geometry."
+                  ] })
+                ]
+              }
+            ),
+            isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-full" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-5/6" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-4/6" })
+            ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4 text-sm text-muted-foreground leading-relaxed", children: storyText.split("\n").filter((p) => p.trim()).map((para, _i) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: para }, para.slice(0, 20))) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                className: "mt-6 pt-4 flex items-center gap-2",
+                style: { borderTop: "1px solid rgba(255,185,0,0.12)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "h-3.5 w-3.5", style: { color: AMBER } }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-[10px] font-mono",
+                      style: { color: "rgba(255,185,0,0.60)" },
+                      children: "Architecture council attribution: COGT + META + AUTN — this story is the founding data point for the RCGN recognition pipeline."
+                    }
+                  )
+                ]
+              }
+            )
+          ]
+        }
+      )
+    }
+  );
+}
+function SectionBlock({
+  id,
+  icon: Icon,
+  title,
+  content,
+  accentColor,
+  isLoading
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.section,
+    {
+      id,
+      "data-ocid": `vision.${id}_section`,
+      initial: { opacity: 0, y: 24 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5 },
+      className: "glass rounded-2xl p-6 md:p-8 scroll-mt-20",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "h-10 w-10 rounded-xl flex items-center justify-center",
+              style: {
+                background: `color-mix(in oklch, ${accentColor} 12%, transparent)`,
+                border: `1px solid color-mix(in oklch, ${accentColor} 30%, transparent)`
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { className: "h-5 w-5", style: { color: accentColor } })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-black text-xl text-foreground", children: title })
+        ] }),
+        isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-full" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-5/6" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-4/6" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-full" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-3/4" })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4 text-sm text-muted-foreground leading-relaxed", children: content.split("\n").filter((p) => p.trim()).map((para, _i) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: para }, `${id}-${para.slice(0, 10)}`)) })
+      ]
+    }
+  );
+}
+function Vision() {
+  const { login, isAuthenticated } = useInternetIdentity();
+  const { data: doc, isLoading: docLoading, refetch } = useVisionDocument();
+  const { data: stats, isLoading: statsLoading } = useVisionStats();
+  const { data: funding, isLoading: fundingLoading } = useVisionWithFunding();
+  const { actor } = useActor(createActor);
+  const [paperText, setPaperText] = reactExports.useState("");
+  const [paperLoading, setPaperLoading] = reactExports.useState(false);
+  const founderStory = (funding == null ? void 0 : funding.founderStory) ?? (doc == null ? void 0 : doc.foundingStory) ?? "";
+  const totalStudents = funding ? Number(funding.totalStudents) : null;
+  const totalRecognitions = funding ? Number(funding.totalRecognitions) : null;
+  const activePrograms = funding ? Number(funding.activePrograms) : null;
+  const fundingTargets = (funding == null ? void 0 : funding.fundingTargets) ?? [];
+  const NAV_SECTIONS = [
+    {
+      id: "founding",
+      label: "Why It Exists",
+      icon: Heart,
+      anchor: "#founding"
+    },
+    {
+      id: "vision",
+      label: "Platform Vision",
+      icon: Sparkles,
+      anchor: "#vision"
+    },
+    {
+      id: "sovereignty",
+      label: "Technical Sovereignty",
+      icon: Shield,
+      anchor: "#sovereignty"
+    },
+    { id: "impact", label: "Impact Case", icon: TrendingUp, anchor: "#impact" },
+    {
+      id: "funding-tracker",
+      label: "Funding Tracker",
+      icon: Wallet,
+      anchor: "#funding-tracker"
+    },
+    {
+      id: "funding",
+      label: "Funding Strategy",
+      icon: BookOpen,
+      anchor: "#funding"
+    }
+  ];
+  const contentSections = [
+    {
+      id: "vision",
+      icon: Sparkles,
+      title: "Platform Vision",
+      content: (doc == null ? void 0 : doc.platformVision) ?? "",
+      color: "oklch(0.62 0.2 260)"
+    },
+    {
+      id: "sovereignty",
+      icon: Shield,
+      title: "Technical Sovereignty",
+      content: (doc == null ? void 0 : doc.technicalSovereignty) ?? "",
+      color: "oklch(0.72 0.17 155)"
+    },
+    {
+      id: "impact",
+      icon: TrendingUp,
+      title: "Impact Case",
+      content: (doc == null ? void 0 : doc.impactCase) ?? "",
+      color: "oklch(0.78 0.22 200)"
+    },
+    {
+      id: "funding",
+      icon: BookOpen,
+      title: "Funding Strategy",
+      content: (doc == null ? void 0 : doc.fundingStrategy) ?? "",
+      color: "oklch(0.68 0.18 280)"
+    }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen bg-background", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "sticky top-0 z-50 glass-max border-b border-white/5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-5 h-14 flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            asChild: true,
+            "data-ocid": "vision.back_button",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Link, { to: "/", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "h-4 w-4 mr-1" }),
+              "Back"
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground text-sm", children: "/" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium", children: "Sovereign Vision" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            onClick: () => refetch(),
+            "data-ocid": "vision.refresh_button",
+            className: "gap-1.5 text-xs",
+            type: "button",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "h-3.5 w-3.5" }),
+              "Regenerate"
+            ]
+          }
+        ),
+        !isAuthenticated && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button,
+          {
+            size: "sm",
+            onClick: () => login(),
+            "data-ocid": "vision.signin_button",
+            type: "button",
+            children: "Sign In"
+          }
+        )
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-5 py-12", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.5 },
+          className: "mb-10",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Badge, { className: "mb-4 glass-sm border-primary/30 text-primary px-4 py-1 text-xs font-semibold uppercase tracking-wider", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "h-3 w-3 mr-1.5" }),
+              "Generated by COGT + META + AUTN — Architecture Council"
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-mono text-amber-400/60 mb-2", children: [
+              "Charter v21",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white/30", children: "(Ratified 2026-05-19)" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "font-display font-black text-4xl md:text-5xl text-foreground mb-4 leading-tight", children: [
+              "The EduAI",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Sovereign Vision" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground max-w-2xl leading-relaxed", children: "This document surfaces the founding insight, technical architecture, and funding case for EduAI — generated by the platform’s own sovereign intelligence engines, not written by a marketer." })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 12 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.4, delay: 0.15 },
+          className: "glass-lg rounded-2xl p-5 mb-10",
+          "data-ocid": "vision.stats_strip",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-5 gap-4", children: statsLoading || fundingLoading ? [1, 2, 3, 4, 5].map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-14 rounded-xl" }, k)) : [
+            {
+              value: totalStudents ?? (stats ? Number(stats.totalStudentsFlagged) : null),
+              label: "Students",
+              color: "oklch(0.78 0.22 200)"
+            },
+            {
+              value: totalRecognitions ?? (stats ? Number(stats.achievementsSealed) : null),
+              label: "Recognitions",
+              color: "oklch(0.75 0.16 70)"
+            },
+            {
+              value: activePrograms,
+              label: "Active Programs",
+              color: "oklch(0.72 0.17 155)"
+            },
+            {
+              value: stats ? Number(stats.nominationsSent) : null,
+              label: "Nominations Sent",
+              color: "oklch(0.68 0.18 280)"
+            },
+            {
+              value: fundingTargets.filter((t) => t.status === "Funded").length || null,
+              label: "Funded Initiatives",
+              color: "oklch(0.72 0.17 145)"
+            }
+          ].map((s) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "font-display font-black text-2xl",
+                style: { color: s.color },
+                children: s.value !== null && s.value !== void 0 ? Number(s.value).toLocaleString() : "—"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: s.label })
+          ] }, s.label)) })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid md:grid-cols-[200px_1fr] gap-8", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("aside", { className: "hidden md:block", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sticky top-20 glass rounded-2xl p-3 space-y-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] uppercase tracking-widest text-muted-foreground/50 px-2 mb-3 font-semibold", children: "Sections" }),
+          NAV_SECTIONS.map((s) => {
+            const Icon = s.icon;
+            return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "a",
+              {
+                href: s.anchor,
+                "data-ocid": `vision.nav.${s.id}_link`,
+                className: "flex items-center gap-2 rounded-xl px-3 py-2.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-white/5 transition-smooth",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { className: "h-3.5 w-3.5 shrink-0" }),
+                  s.label
+                ]
+              },
+              s.id
+            );
+          })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            FounderStorySection,
+            {
+              founderStory,
+              isLoading: docLoading && fundingLoading
+            }
+          ),
+          contentSections.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            SectionBlock,
+            {
+              id: s.id,
+              icon: s.icon,
+              title: s.title,
+              content: s.content,
+              accentColor: s.color,
+              isLoading: docLoading
+            },
+            s.id
+          )),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            FundingTracker,
+            {
+              targets: fundingTargets,
+              isLoading: fundingLoading
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              initial: { opacity: 0, y: 16 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              className: "glass-lg rounded-2xl p-6 border border-primary/15 text-center",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "h-6 w-6 text-accent mx-auto mb-4" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-bold text-lg text-foreground mb-3", children: "Experience the Platform" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mb-5", children: "This is not a pitch. The intelligence that built this platform is waiting for you." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-3 justify-center", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { asChild: true, "data-ocid": "vision.try_demo_button", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/demo", children: "Try Demo" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button,
+                    {
+                      variant: "outline",
+                      asChild: true,
+                      "data-ocid": "vision.student_portal_button",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Link, { to: "/dashboard", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(GraduationCap, { className: "mr-1.5 h-4 w-4" }),
+                        "Student Portal"
+                      ] })
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button,
+                    {
+                      variant: "outline",
+                      asChild: true,
+                      "data-ocid": "vision.engines_button",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Link, { to: "/engines", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Layers, { className: "mr-1.5 h-4 w-4" }),
+                        "Engine Registry"
+                      ] })
+                    }
+                  )
+                ] })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "glass-sm rounded-2xl px-5 py-4 flex flex-wrap gap-2",
+              "data-ocid": "vision.laws_ribbon",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] uppercase tracking-widest text-muted-foreground/50 font-semibold w-full mb-1", children: "Governing Laws & Protocols" }),
+                [
+                  "LEX_SVRN",
+                  "LEX_MLTS",
+                  "LEX_FLOR",
+                  "LEX_INIT",
+                  "LEX_RNVT",
+                  "LEX_SPEC",
+                  "LEX_PRSN",
+                  "LEX_PONT",
+                  "LEX_RGST",
+                  "PRTL_UXIN",
+                  "PRTL_SSSC",
+                  "PRTL_ADXF",
+                  "PRTL_COHG",
+                  "PRTL_RCGN",
+                  "PRTL_TCHR",
+                  "PRTL_PRCP"
+                ].map((law) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Badge,
+                  {
+                    variant: "outline",
+                    className: "text-[10px] font-mono glass-sm border-primary/20 text-primary/70",
+                    children: law
+                  },
+                  law
+                ))
+              ]
+            }
+          )
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "mt-12 border-t border-white/10 pt-12 max-w-5xl mx-auto px-5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-white/40 font-mono text-xs tracking-widest uppercase mb-8", children: "Charter v21 — New Articles" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-8", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "glass border border-amber-500/20 rounded-xl p-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-amber-400 font-mono text-sm tracking-widest mb-4", children: "ARTICLE VI — LANGUAGE BRIDGES (ENTANGLEMENTS)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "w-full text-xs font-mono", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: "text-white/40 border-b border-white/10", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left py-2 pr-4", children: "ID" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left py-2 pr-4", children: "Substrates" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left py-2", children: "Protocol" })
+            ] }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { className: "text-white/70", children: [
+              [
+                "PONT",
+                "ICPM ↔ JLIA",
+                "Motoko→Julia math, FLOR both sides"
+              ],
+              ["MRDM", "ICPM ↔ EMRT", "State→memory, append-only"],
+              [
+                "AXON",
+                "EART → ICPM",
+                "Autonomous outputs inject into pipeline"
+              ],
+              [
+                "CRUX",
+                "JLIA → EMRT",
+                "FLOR values direct to memory zones"
+              ],
+              ["NXUS", "All → RGST", "Registry stats write-only"]
+            ].map(([id, sub, proto]) => /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: "border-b border-white/5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2 pr-4 text-amber-400", children: id }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2 pr-4", children: sub }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2 text-white/50", children: proto })
+            ] }, id)) })
+          ] }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "glass border border-amber-500/20 rounded-xl p-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-amber-400 font-mono text-sm tracking-widest mb-4", children: "ARTICLE VII — SILVER BUILDERS" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-3", children: [
+            ["SVRN", "Sovereignty"],
+            ["INTL", "Intelligence"],
+            ["MMRY", "Memory"],
+            ["KNOW", "Knowledge"],
+            ["BRDG", "Bridges"],
+            ["RGTM", "Registry"],
+            ["AUTH", "Auth"],
+            ["ANLX", "Analytics"]
+          ].map(([id, domain]) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "glass border border-white/10 rounded-lg p-3",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-amber-400 font-mono text-sm", children: id }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/50 text-xs mt-1", children: domain })
+              ]
+            },
+            id
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "glass border border-amber-500/20 rounded-xl p-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-amber-400 font-mono text-sm tracking-widest mb-4", children: "ARTICLE VIII — THE THREE FLOORS" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: [
+            [
+              "FLOR",
+              "Fibonacci Integer Floor",
+              "compound_floor(n) = floor(n × PHI) → nearest F(k). All scores compound on Fibonacci integers."
+            ],
+            [
+              "ZFLR",
+              "Zone Floor",
+              "Memory only moves: HOT→WARM→COLD→FROZEN→VAULT. Never backward."
+            ],
+            [
+              "TFLR",
+              "Temporal Floor",
+              "All intervals are Fibonacci numbers only: 1,1,2,3,5,8,13,21,34,55..."
+            ]
+          ].map(([id, name, formula]) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-4 p-3 rounded-lg bg-white/5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-amber-400 font-mono text-sm", children: id }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/70 text-xs font-medium", children: name }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/40 text-xs mt-1 font-mono", children: formula })
+            ] })
+          ] }, id)) })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.section,
+      {
+        id: "research",
+        "data-ocid": "vision.research_section",
+        initial: { opacity: 0, y: 24 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.5 },
+        className: "mt-16",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "glass rounded-2xl p-6 md:p-8 mb-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "h-10 w-10 rounded-xl flex items-center justify-center",
+                style: {
+                  background: "rgba(255,185,0,0.12)",
+                  border: "1px solid rgba(255,185,0,0.30)"
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  BookOpen,
+                  {
+                    className: "h-5 w-5",
+                    style: { color: "oklch(0.85 0.18 85)" }
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-black text-xl text-foreground", children: "Research & Theory" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: "Sovereign intelligence papers generated by COGT+META+AUTN" })
+            ] })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "glass rounded-2xl p-6 md:p-8", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "text-xs font-semibold px-2 py-0.5 rounded-full",
+                      style: {
+                        background: "rgba(255,185,0,0.12)",
+                        color: "oklch(0.85 0.18 85)",
+                        border: "1px solid rgba(255,185,0,0.25)"
+                      },
+                      children: "CASE STUDY"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "text-xs font-semibold px-2 py-0.5 rounded-full",
+                      style: {
+                        background: "rgba(100,200,255,0.10)",
+                        color: "oklch(0.78 0.14 210)",
+                        border: "1px solid rgba(100,200,255,0.20)"
+                      },
+                      children: "ACHV:DIEGO_001"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-black text-lg text-foreground", children: "The Diego Protocol" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-1", children: "Sovereign Intelligence-Driven Preparation for Non-Traditional Academic Competition in Under-Resourced Schools" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground/70 mt-2", children: "Generated by COGT_v4 + META_v3 + AUTN_v2 · Sealed under LEX_SOVEREIGNUS · PRTL_RCGN + PRTL_SSSC + PRTL_ADXF" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  "data-ocid": "vision.diego_protocol_load_button",
+                  disabled: paperLoading,
+                  onClick: async () => {
+                    var _a;
+                    setPaperLoading(true);
+                    try {
+                      const result = await ((_a = actor == null ? void 0 : actor.getDiegoProtocol) == null ? void 0 : _a.call(actor));
+                      setPaperText(typeof result === "string" ? result : "");
+                    } catch {
+                      setPaperText("");
+                    } finally {
+                      setPaperLoading(false);
+                    }
+                  },
+                  className: "shrink-0 text-xs font-semibold",
+                  style: {
+                    background: "rgba(255,185,0,0.12)",
+                    color: "oklch(0.85 0.18 85)",
+                    border: "1px solid rgba(255,185,0,0.30)"
+                  },
+                  children: [
+                    paperLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "h-3.5 w-3.5 animate-spin mr-1.5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "h-3.5 w-3.5 mr-1.5" }),
+                    paperLoading ? "Loading…" : "Load Full Paper"
+                  ]
+                }
+              )
+            ] }),
+            paperText && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                "data-ocid": "vision.diego_protocol_paper",
+                className: "mt-4 rounded-xl p-4 max-h-96 overflow-y-auto",
+                style: {
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.08)"
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "text-xs text-muted-foreground whitespace-pre-wrap font-mono leading-relaxed", children: paperText })
+              }
+            )
+          ] })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "mt-16 border-t border-white/5 glass-xl py-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-5 flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(GraduationCap, { className: "h-4 w-4 text-primary" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-sm", children: [
+          "Edu",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "AI" })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground/50", children: [
+        "© ",
+        (/* @__PURE__ */ new Date()).getFullYear(),
+        ". Built with love using",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "a",
+          {
+            href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== "undefined" ? window.location.hostname : "")}`,
+            className: "hover:text-muted-foreground transition-colors",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            children: "caffeine.ai"
+          }
+        )
+      ] })
+    ] }) })
+  ] });
+}
+export {
+  Vision as default
+};

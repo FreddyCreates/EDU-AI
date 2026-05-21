@@ -1,0 +1,2452 @@
+type XcrrStats = 
+ record {
+   activeClubCount: nat;
+   avgMembersPerClub: nat;
+   totalClubs: nat;
+   totalMemberships: nat;
+ };
+type WeekProgress = 
+ record {
+   avgScore: float64;
+   completedLessons: nat;
+   week: nat;
+ };
+type VisionWithFunding = 
+ record {
+   activePrograms: nat;
+   founderStory: text;
+   fundingTargets: vec FundingTarget;
+   totalRecognitions: nat;
+   totalStudents: nat;
+   visionText: text;
+ };
+type VisionStats = 
+ record {
+   achievementsSealed: nat;
+   nominationsSent: nat;
+   totalStudentsFlagged: nat;
+ };
+type VisionDocumentV2 = 
+ record {
+   architectureSection: text;
+   diegoProtocol: text;
+   founderStory: text;
+   fundingSection: text;
+   generatedBy: text;
+   impactCase: text;
+   marketGap: text;
+   missionStatement: text;
+   timestamp: int;
+   version: text;
+ };
+type VisionDocument = 
+ record {
+   foundingStory: text;
+   fundingStrategy: text;
+   impactCase: text;
+   liveStats: VisionStats;
+   platformVision: text;
+   technicalSovereignty: text;
+ };
+type VaultEntry = 
+ record {
+   addedAt: int;
+   contentType: text;
+   entryId: text;
+   gradeLevel: nat;
+   subject: text;
+   summary: text;
+ };
+type UserId = principal;
+type UserAgent = 
+ record {
+   createdAt: Timestamp;
+   id: text;
+   memoryConfig: text;
+   modeBinding: EDDIMode;
+   name: text;
+   owner: UserId;
+   reasoningSeed: text;
+ };
+type TutoringSession = 
+ record {
+   durationMinutes: nat;
+   gradeLevel: nat;
+   id: nat;
+   masteryDeltaAfter: nat;
+   masteryDeltaBefore: nat;
+   sealed: bool;
+   startedAt: int;
+   studentPrincipal: principal;
+   subjectId: nat;
+   transcriptHash: opt blob;
+   tutorRef: text;
+   tutorType: TutorType;
+ };
+type TutorType = 
+ variant {
+   peer;
+   teacher;
+ };
+type TranscriptMilestone = 
+ record {
+   completedAt: opt int;
+   gpaImpact: opt int;
+   gradeLevel: nat;
+   id: nat;
+   title: text;
+ };
+type TrackId = 
+ variant {
+   buildFirstAI;
+   giveAIAVoice;
+   teachAIToRemember;
+ };
+type TrackEnrollment = 
+ record {
+   completedAt: opt int;
+   createdArtifactName: opt text;
+   currentStep: nat;
+   enrolledAt: int;
+   studentId: principal;
+   trackId: TrackId;
+ };
+type Track = 
+ record {
+   codeName: text;
+   description: text;
+   durationMinutes: nat;
+   guidingEngines: vec text;
+   id: TrackId;
+   stepCount: nat;
+   subtitle: text;
+   title: text;
+ };
+type TprpStats = 
+ record {
+   avgMasteryDelta: int;
+   byMode: vec record {
+                 text;
+                 nat;
+               };
+   totalSessions: nat;
+ };
+type TpdfStats = 
+ record {
+   avgHoursPerTeacher: nat;
+   totalCertificationsEarned: nat;
+   totalHoursLogged: nat;
+   totalTeachers: nat;
+ };
+type Topic = 
+ record {
+   description: text;
+   gradeLevel: text;
+   id: text;
+   subjectId: text;
+   title: text;
+ };
+type Timestamp = int;
+type TestPrepSession = 
+ record {
+   completedAt: opt int;
+   correctCount: nat;
+   id: nat;
+   masteryDelta: int;
+   mode: TestPrepMode;
+   questionsAttempted: nat;
+   startedAt: int;
+   strategyNotes: vec text;
+   studentPrincipal: principal;
+   subjectId: nat;
+ };
+type TestPrepMode = 
+ variant {
+   ACT;
+   AP: text;
+   PSAT;
+   SAT;
+   STAAR;
+ };
+type TeacherRecommendation = 
+ record {
+   action: text;
+   affectedStudents: vec text;
+   classId: text;
+   novelApproach: text;
+   priority: nat;
+   suggestedEngine: text;
+ };
+type TeacherClassMetrics = 
+ record {
+   advancedCount: nat;
+   avgMastery: nat;
+   classId: text;
+   className: text;
+   currentTopic: text;
+   lastActivity: int;
+   strugglingCount: nat;
+   studentCount: nat;
+ };
+type TeacherClass = 
+ record {
+   createdAt: int;
+   gradeLevel: nat;
+   id: text;
+   name: text;
+   studentIds: vec text;
+   subject: text;
+   teacherId: text;
+ };
+type TchrStats = 
+ record {
+   recommendationsGenerated: nat;
+   totalClasses: nat;
+   totalStudents: nat;
+ };
+type SystemMetrics = 
+ record {
+   activeSessions: nat;
+   avgPlatformMastery: float64;
+   totalLessonsCompleted: nat;
+   totalStudents: nat;
+ };
+type SuggestionAction = 
+ variant {
+   advance;
+   continue;
+   quizNow;
+   remedialReview;
+ };
+type SubsStats = 
+ record {
+   avgDailySubCount: nat;
+   totalIncidents: nat;
+   totalSubRecords: nat;
+ };
+type SubmissionStatus = 
+ variant {
+   graded;
+   pending;
+   returned;
+   submitted;
+ };
+type Submission = 
+ record {
+   assignmentId: nat;
+   contentHash: blob;
+   id: nat;
+   status: SubmissionStatus;
+   studentPrincipal: principal;
+   submittedAt: int;
+ };
+type SubjectTemplate = 
+ record {
+   createdBy: text;
+   gradeLevel: GradeLevel;
+   masterLocked: bool;
+   standardsRef: vec text;
+   subject: text;
+   templateId: text;
+   topicIds: vec text;
+ };
+type Subject = 
+ record {
+   gradeLevel: text;
+   id: text;
+   name: text;
+ };
+type SubRecord = 
+ record {
+   accessLevel: SubAccessLevel;
+   classCode: text;
+   coveringTeacherPrincipal: principal;
+   date: int;
+   handoffNotes: text;
+   id: nat;
+   incidentLog: vec IncidentEntry;
+   subPrincipal: principal;
+ };
+type SubAccessLevel = 
+ variant {
+   limited;
+   readOnly;
+ };
+type StudyGroup = 
+ record {
+   active: bool;
+   createdAt: int;
+   gradeLevel: nat;
+   id: nat;
+   memberPrincipals: vec principal;
+   sssRangeHigh: nat;
+   sssRangeLow: nat;
+   subjectId: nat;
+ };
+type StudentSummary = 
+ record {
+   currentTopic: text;
+   lastActive: int;
+   masteryScore: float64;
+   name: text;
+   studentId: text;
+ };
+type StudentProfile = 
+ record {
+   createdAt: Timestamp;
+   gradeLevel: GradeLevel;
+   id: UserId;
+   name: text;
+ };
+type StudentMasteryCard = 
+ record {
+   currentStreak: nat;
+   gradeLevel: nat;
+   lastActive: int;
+   name: text;
+   predictedStruggle: vec text;
+   recommendation: text;
+   studentId: text;
+   subjectMastery: vec record {
+                         text;
+                         nat;
+                       };
+ };
+type StndStats = 
+ record {
+   byFramework: vec record {
+                      text;
+                      nat;
+                    };
+   byGrade: vec record {
+                  nat;
+                  nat;
+                };
+   totalStandards: nat;
+ };
+type StandardWithDigestStatus = 
+ record {
+   conceptCount: nat;
+   hasContent: bool;
+   lastDigested: opt int;
+   quizSeedCount: nat;
+   standard: Standard;
+ };
+type StandardFramework = 
+ variant {
+   CommonCore;
+   NGSS;
+   Other: text;
+   TEKS;
+   WIDA;
+ };
+type StandardCode = text;
+type StandardAlignment = 
+ record {
+   alignedAt: int;
+   contentId: nat;
+   masteryThreshold: nat;
+   standardCode: StandardCode;
+ };
+type Standard = 
+ record {
+   bloomsLevel: opt nat;
+   code: StandardCode;
+   description: text;
+   fibWeight: nat;
+   framework: StandardFramework;
+   gradeLevel: nat;
+   strand: opt text;
+   subject: text;
+ };
+type StaffRole = 
+ variant {
+   STAFF_ADMIN;
+   STAFF_COACH;
+   STAFF_COUNSELOR;
+   STAFF_IT;
+   STAFF_LIBRARIAN;
+   STAFF_SUPPORT;
+ };
+type StaffMember = 
+ record {
+   accessLevel: nat;
+   department: text;
+   lastActive: int;
+   name: text;
+   role: StaffRole;
+   staffId: text;
+ };
+type SovereignPassport = 
+ record {
+   achievements: vec text;
+   collegium: text;
+   createdAt: Timestamp;
+   gradeLevel: text;
+   holder: UserId;
+   kernelSeeds: vec KernelSeed;
+   lastActiveAt: Timestamp;
+   passportId: text;
+   studentName: text;
+   totalSessions: nat;
+ };
+type SovereignLaw = 
+ record {
+   attribution: text;
+   description: text;
+   domain: text;
+   englishName: text;
+   id: nat;
+   latinName: text;
+ };
+type SovereignEngine = 
+ record {
+   codeName: text;
+   description: text;
+   domain: text;
+   fullName: text;
+   id: nat;
+   lessonsAvailable: vec text;
+   mathFoundation: text;
+   status: EngineStatus;
+   teachingMethod: text;
+ };
+type SonrStatus = 
+ record {
+   coh: float64;
+   pil: float64;
+   risk: float64;
+   status: variant {
+             mutaTriggered;
+             quiet;
+           };
+ };
+type SkaiTeachResponse = 
+ record {
+   doctrine: text;
+   engineSelected: text;
+   studentWelcome: text;
+   suggestedNext: text;
+ };
+type SkaiDocensInfo = 
+ record {
+   doctrine: text;
+   name: text;
+   protocol: text;
+   title: text;
+ };
+type SisStudentId = text;
+type SisRecord = 
+ record {
+   enrollmentStatus: EnrollmentStatus;
+   grade: nat;
+   schoolId: nat;
+   sisId: SisStudentId;
+   studentPrincipal: opt principal;
+   updatedAt: int;
+ };
+type SilverBuilderStatus = 
+ variant {
+   active;
+   dormant;
+   sealed;
+ };
+type SilverBuilder = 
+ record {
+   codeName: text;
+   createdAt: int;
+   domain: text;
+   domainsOwned: vec text;
+   id: text;
+   protocol: text;
+   purpose: text;
+   status: SilverBuilderStatus;
+ };
+type SessionSchedule = 
+ record {
+   compressRatio: float64;
+   intervalMinutes: nat;
+   missedCount: nat;
+   mode: SessionMode;
+   nextReviewAt: int;
+ };
+type SessionMode = 
+ variant {
+   freeAfternoon;
+   workNight;
+ };
+type SessionMetrics = 
+ record {
+   activeSessions: nat;
+   activeStudents: nat;
+   classBreakdown: vec ClassSessionMetrics;
+ };
+type SelfStudyTrack = 
+ record {
+   category: text;
+   competitionDate: int;
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   masteryPct: nat;
+   milestones: vec SelfStudyMilestone;
+   passportSealed: bool;
+   title: text;
+ };
+type SelfStudyMilestone = 
+ record {
+   completedAt: opt int;
+   description: text;
+   domain: text;
+   isComplete: bool;
+   masteryScore: nat;
+   title: text;
+   weeksBefore: nat;
+ };
+type SdkEntry = 
+ record {
+   accessProtocol: text;
+   category: text;
+   description: text;
+   entryPoints: vec text;
+   id: text;
+   name: text;
+   status: text;
+   version: text;
+ };
+type ScoreProjection = 
+ record {
+   computedAt: int;
+   confidenceLevel: nat;
+   mode: TestPrepMode;
+   projectedScore: nat;
+   sessionsUsed: nat;
+   studentPrincipal: principal;
+ };
+type SchoolId = nat;
+type ScholarshipProgram = 
+ record {
+   awardAmount: opt nat;
+   categories: vec text;
+   deadline: opt int;
+   eligibilityCriteria: vec text;
+   id: nat;
+   name: text;
+   sponsor: text;
+   url: text;
+ };
+type ScholarshipMatch = 
+ record {
+   applicationStatus: ApplicationStatus;
+   id: nat;
+   matchScore: nat;
+   matchedAt: int;
+   notes: text;
+   programId: nat;
+   studentPrincipal: principal;
+ };
+type SchfStats = 
+ record {
+   awardedCount: nat;
+   topCategories: vec record {
+                        text;
+                        nat;
+                      };
+   totalMatches: nat;
+   totalPrograms: nat;
+ };
+type ResourceType = 
+ variant {
+   audiobook;
+   book;
+   ebook;
+   other: text;
+   periodical;
+   referenceDoc;
+   video;
+ };
+type RegistrationResult = 
+ record {
+   apiKey: text;
+   approvedEndpoints: vec text;
+   clientId: text;
+   rateLimitPerMinute: nat;
+   status: text;
+ };
+type RegistrationRequest = 
+ record {
+   description: text;
+   name: text;
+   requestId: text;
+   requestedEndpoints: vec text;
+   status: text;
+   submittedAt: int;
+ };
+type RecognitionTimelineEntry = 
+ record {
+   achievementType: text;
+   description: text;
+   gradeContext: text;
+   id: text;
+   isGoldMoment: bool;
+   sealedAt: int;
+   source: text;
+   zone: text;
+ };
+type RecognitionPattern = 
+ variant {
+   PaceAnomaly;
+   PerfectScore;
+   SubjectExcellence;
+   SustainedMastery;
+ };
+type RecognitionFlag = 
+ record {
+   detectedAt: Timestamp;
+   eligiblePrograms: vec EligibleProgram;
+   id: text;
+   masteryScore: nat;
+   pattern: RecognitionPattern;
+   sealed: bool;
+   studentId: UserId;
+   subject: text;
+ };
+type RecipientRef = 
+ variant {
+   classCode: text;
+   gradeLevel: nat;
+   parent: principal;
+   schoolWide: nat;
+   student: principal;
+   teacher: principal;
+ };
+type RcgnAlert = 
+ record {
+   alertType: text;
+   nominationReady: bool;
+   rcgnScore: nat;
+   studentId: text;
+   studentName: text;
+   subject: text;
+   threshold: nat;
+   timestamp: int;
+ };
+type QuizType = 
+ variant {
+   freeResponse;
+   multipleChoice;
+ };
+type QuizResult = 
+ record {
+   agentId: text;
+   quizType: QuizType;
+   score: nat;
+   timestamp: int;
+   topicId: text;
+   totalQuestions: nat;
+ };
+type QueryResultItem = 
+ record {
+   data: text;
+   id: text;
+   score: nat;
+ };
+type QueryResult = 
+ record {
+   executionCycles: nat;
+   fibFlooredAt: nat;
+   items: vec QueryResultItem;
+   queryId: text;
+   target: text;
+   timestamp: int;
+   totalFound: nat;
+ };
+type ProficiencyLevel = 
+ variant {
+   bridging;
+   developing;
+   emerging;
+   entering;
+   expanding;
+   reaching;
+ };
+type PrcpNarrativeEntry = 
+ record {
+   classId: text;
+   className: text;
+   masteryAvg: nat;
+   narrative: text;
+   rcgnEvents: nat;
+   sessionCount: nat;
+   studentsAccelerating: nat;
+   studentsAtRisk: nat;
+ };
+type PortalTransition = 
+ record {
+   fromPortal: text;
+   timestamp: int;
+   toPortal: text;
+   userId: text;
+ };
+type PlseState = 
+ record {
+   curiosityQueue: vec PlseNudge;
+   heartbeatCycle: nat;
+   lastAutonSeed: PlseSeed;
+   phiHeartbeatInterval: nat;
+ };
+type PlseSeed = 
+ record {
+   concept: text;
+   timestamp: int;
+ };
+type PlseNudge = 
+ record {
+   prompt: text;
+   ttl: nat;
+ };
+type PgrpStats = 
+ record {
+   avgGroupSize: nat;
+   avgMasteryGain: nat;
+   totalGroups: nat;
+   totalSessions: nat;
+ };
+type PermissionLevel = 
+ variant {
+   full;
+   readOnly;
+   standard;
+ };
+type PdType = 
+ variant {
+   certification;
+   conference;
+   onlineCourse;
+   other: text;
+   peerCoaching;
+   selfStudy;
+   workshop;
+ };
+type PdRecord = 
+ record {
+   certificationEarned: opt text;
+   completedAt: int;
+   growthMilestone: opt GrowthMilestone;
+   hoursLogged: nat;
+   id: nat;
+   pdType: PdType;
+   provider: text;
+   teacherPrincipal: principal;
+   title: text;
+ };
+type PassportStats = 
+ record {
+   achievements: vec text;
+   coldSeeds: nat;
+   compoundScore: float64;
+   frozenSeeds: nat;
+   hotSeeds: nat;
+   totalSeeds: nat;
+   warmSeeds: nat;
+ };
+type PassportInsight = 
+ record {
+   coldSeeds: nat;
+   eddiBrief: text;
+   frozenSeeds: nat;
+   hotSeeds: nat;
+   orbMode: text;
+   seedCount: nat;
+   sssScore: nat;
+   warmSeeds: nat;
+ };
+type ParentRecord = 
+ record {
+   contactPrefs: ContactPreferences;
+   createdAt: int;
+   displayName: text;
+   linkedStudentPrincipals: vec principal;
+   messageHistory: vec MessageRef;
+   parentId: ParentId;
+   permissionLevel: PermissionLevel;
+ };
+type ParentId = principal;
+type NrveState = 
+ record {
+   activeEngine: text;
+   cogtPhase: text;
+   coherenceScore: nat;
+   cycleCount: nat;
+   phiRatio: nat;
+ };
+type NominationStatus = 
+ variant {
+   confirmed;
+   draft;
+   submitted;
+ };
+type NominationRecord = 
+ record {
+   id: text;
+   programName: text;
+   status: NominationStatus;
+   studentId: UserId;
+   submittedAt: Timestamp;
+   teacherNote: text;
+ };
+type NexumGateEntry = 
+ record {
+   appliedLaw: text;
+   collegium: text;
+   enteredAt: int;
+   studentId: principal;
+ };
+type MsryState = 
+ record {
+   fibonacciFloorLevel: nat;
+   lastZoneTransition: int;
+   masteryCompound: nat;
+   seedCount: nat;
+   zone: text;
+ };
+type MoodAggregate = 
+ record {
+   avgMoodScore: nat;
+   checkInCount: nat;
+   highMoodCount: nat;
+   lowMoodCount: nat;
+   periodEnd: int;
+   periodStart: int;
+   schoolId: nat;
+ };
+type MilestoneCategory = 
+ variant {
+   academic;
+   career;
+   college;
+   postsecondary;
+   social;
+ };
+type MessageType = 
+ variant {
+   alert;
+   announcement;
+   eventInvitation;
+   parentTeacherMessage;
+   progressUpdate;
+   recognitionAlert;
+   systemNotice;
+ };
+type MessageRef = 
+ record {
+   messageId: nat;
+   read: bool;
+   sentAt: int;
+   subject: text;
+ };
+type MentalHealthCheckIn = 
+ record {
+   anonymousNote: opt text;
+   gradeLevel: nat;
+   moodScore: nat;
+   recordedAt: int;
+   schoolId: nat;
+   sessionToken: blob;
+ };
+type MLTVStats = 
+ record {
+   avgCoherence: nat;
+   novelAnswersGenerated: nat;
+   totalQueries: nat;
+   totalVoices: nat;
+ };
+type MLTVResponse = 
+ record {
+   fibFlooredAt: nat;
+   novelVoice: ArchCouncilVoice;
+   queryId: text;
+   timestamp: int;
+   totalCoherence: nat;
+   voices: vec ArchCouncilVoice;
+ };
+type LiveSessionMetrics = 
+ record {
+   studentsOnline: nat;
+   systemCoherence: nat;
+   timestamp: int;
+   topSubjects: vec text;
+   totalActiveSessions: nat;
+ };
+type LiveMetrics = 
+ record {
+   activeSessions: nat;
+   activeStudents: nat;
+   avgCoherenceScore: nat;
+   fibonacciCycleCount: nat;
+   timestamp: int;
+   topSubject: text;
+   totalQueriesThisHour: nat;
+ };
+type LiveIntelligenceState = 
+ record {
+   adx: nat;
+   coh: nat;
+   ias: nat;
+   isGoldMoment: bool;
+   layoutState: text;
+   rcgnThreshold: nat;
+   sss: nat;
+ };
+type LibraryRecord = 
+ record {
+   checkedOutAt: int;
+   dueDate: opt int;
+   id: nat;
+   linkedSubjectId: opt nat;
+   masteryLinked: bool;
+   readingProgressPct: nat;
+   resourceId: text;
+   resourceType: ResourceType;
+   returnedAt: opt int;
+   studentPrincipal: principal;
+   title: text;
+ };
+type LbryStats = 
+ record {
+   activeCheckouts: nat;
+   masteryLinkedCount: nat;
+   overdueCount: nat;
+   totalCheckouts: nat;
+ };
+type KnowledgeResult = 
+ record {
+   gradeLevel: GradeLevel;
+   lockedForStudent: bool;
+   subject: text;
+   topics: vec Topic;
+ };
+type KnowledgeQuery = 
+ record {
+   includeGradeRange: bool;
+   studentGrade: GradeLevel;
+   subject: text;
+ };
+type KernelSeed = 
+ record {
+   artifactName: opt text;
+   createdAt: Timestamp;
+   engineUsed: text;
+   id: text;
+   sessionSummary: text;
+   trackName: text;
+ };
+type InterestScore = 
+ record {
+   cluster: CareerCluster;
+   score: nat;
+   surveyDate: int;
+ };
+type IncidentSeverity = 
+ variant {
+   major;
+   minor;
+   moderate;
+ };
+type IncidentEntry = 
+ record {
+   description: text;
+   severity: IncidentSeverity;
+   timestamp: int;
+ };
+type ImpactResult = 
+ record {
+   costPerStudent: float64;
+   estimatedRecognitionsPerYear: nat;
+   projectedNominationsPerYear: nat;
+   roiForDistrict: text;
+   totalStudents: nat;
+ };
+type IesmStats = 
+ record {
+   activeAccomCount: nat;
+   mostCommonAccom: text;
+   totalStudentsWithAccom: nat;
+ };
+type IepAccommodation = 
+ record {
+   accommodationTypes: vec AccommodationType;
+   active: bool;
+   addedBy: principal;
+   effectiveFrom: int;
+   reviewDate: opt int;
+   studentPrincipal: principal;
+ };
+type IasResult = 
+ record {
+   iasScore: nat;
+   layoutState: text;
+ };
+type HeatmapWithNoms = 
+ record {
+   activeStudents: nat;
+   avgMastery: nat;
+   classId: text;
+   grade: nat;
+   lastActive: int;
+   pendingNoms: nat;
+   recentAchievements: nat;
+   sessionCount: nat;
+   subject: text;
+ };
+type GvltStats = 
+ record {
+   totalAllowed: nat;
+   totalBlocked: nat;
+   totalEntries: nat;
+ };
+type GrowthMilestone = 
+ record {
+   achievedAt: int;
+   category: text;
+   title: text;
+ };
+type GroupSession = 
+ record {
+   durationMinutes: nat;
+   groupId: nat;
+   id: nat;
+   participantCount: nat;
+   sharedMasteryDelta: nat;
+   startedAt: int;
+ };
+type GradeVaultSummary = 
+ record {
+   avgMastery: float64;
+   grade: nat;
+   strugglingSubject: text;
+   topSubject: text;
+   totalStudents: nat;
+   weeklyProgress: vec WeekProgress;
+ };
+type GradeVaultEntry = 
+ record {
+   contentId: text;
+   contentType: text;
+   gradeLevel: nat;
+   lockedUntilGrade: nat;
+   subject: text;
+ };
+type GradeRecord = 
+ record {
+   assignmentId: nat;
+   feedback: text;
+   gradedAt: int;
+   gradedBy: principal;
+   maxScore: nat;
+   passportSeedId: opt nat;
+   score: nat;
+   studentPrincipal: principal;
+   submissionId: nat;
+ };
+type GradePerformance = 
+ record {
+   avgMastery: nat;
+   gradeLevel: nat;
+   lastUpdated: int;
+   studentsAtLevel: nat;
+   subject: text;
+   topicBreakdown: vec record {
+                         text;
+                         nat;
+                       };
+   weeklyTrend: vec nat;
+ };
+type GradeLevel = text;
+type GradeGate = 
+ record {
+   allowed: bool;
+   reason: text;
+   requestedGrade: nat;
+   studentGrade: nat;
+ };
+type GradeDrilldown = 
+ record {
+   fibCycleStamp: nat;
+   grade: nat;
+   masteryDistribution: vec record {
+                              text;
+                              nat;
+                            };
+   strugglingStudents: vec text;
+   subjectBreakdown: vec record {
+                           text;
+                           nat;
+                         };
+   totalStudents: nat;
+ };
+type GradeCount = 
+ record {
+   activeSessionCount: nat;
+   avgMastery: float64;
+   grade: nat;
+   studentCount: nat;
+ };
+type FundingTarget = 
+ record {
+   amount: text;
+   name: text;
+   status: text;
+ };
+type FundingStage = 
+ variant {
+   APPLIED;
+   AWARDED;
+   DECLINED;
+   IDENTIFIED;
+   PENDING;
+ };
+type FundingEntryResult = 
+ record {
+   entryId: text;
+   success: bool;
+ };
+type FundingEntryInput = 
+ record {
+   contactEmail: text;
+   notes: text;
+   programName: text;
+   stage: text;
+   targetAmount: nat;
+ };
+type FundingEntry = 
+ record {
+   contactEmail: text;
+   entryId: text;
+   notes: text;
+   programName: text;
+   stage: FundingStage;
+   targetAmount: nat;
+   timestamp: int;
+ };
+type FtrpStats = 
+ record {
+   byType: vec record {
+                 text;
+                 nat;
+               };
+   passportArchivedCount: nat;
+   totalActivities: nat;
+   totalAttendees: nat;
+ };
+type FluxState = 
+ record {
+   difficultyLevel: nat;
+   masteryFloor: nat;
+   nextFloorThreshold: nat;
+   phiConfidence: nat;
+   phiRatio: nat;
+ };
+type FieldTripRecord = 
+ record {
+   activityDate: int;
+   attendeeCount: nat;
+   attendeePrincipals: vec principal;
+   enrichmentType: EnrichmentType;
+   gradeLevel: nat;
+   id: nat;
+   location: text;
+   organizer: principal;
+   passportArchived: bool;
+   postAssessmentId: opt nat;
+   preAssessmentId: opt nat;
+   schoolId: nat;
+   title: text;
+ };
+type FeedbackEvent = 
+ record {
+   createdAt: int;
+   eddiResponse: text;
+   id: text;
+   itEscalated: bool;
+   message: text;
+   proposedFix: opt text;
+   resolved: bool;
+   resolvedAt: opt int;
+   selfCorrectionAttempts: nat;
+   severity: text;
+   userId: UserId;
+ };
+type EsllStats = 
+ record {
+   byProficiencyLevel: vec record {
+                             text;
+                             nat;
+                           };
+   scaffoldingEnabledCount: nat;
+   totalEllStudents: nat;
+ };
+type EslProfile = 
+ record {
+   adaptedPromptsEnabled: bool;
+   nativeLanguage: text;
+   preferredLanguage: text;
+   proficiencyLevel: ProficiencyLevel;
+   studentPrincipal: principal;
+   translationFlags: vec text;
+   updatedAt: int;
+   vocabScaffoldingEnabled: bool;
+ };
+type EntanglementStatus = 
+ variant {
+   active;
+   dormant;
+ };
+type EntanglementRecord = 
+ record {
+   coherenceDelta: int;
+   direction: EntanglementDirection;
+   id: text;
+   lastEntanglement: int;
+   name: text;
+   sourceSubstrate: text;
+   status: EntanglementStatus;
+   targetSubstrate: text;
+   transitCount: nat;
+ };
+type EntanglementDirection = 
+ variant {
+   bidirectional;
+   unidirectional;
+ };
+type EnrollmentStatus = 
+ variant {
+   active;
+   graduated;
+   inactive;
+   transferred;
+ };
+type EnrollmentResult = 
+ record {
+   eddiBrief: text;
+   firstModuleContent: text;
+   firstModuleId: text;
+   firstModuleTitle: text;
+   passportSeeded: bool;
+   success: bool;
+ };
+type EnrolledCourse = 
+ record {
+   agentsBuilt: vec text;
+   completedModules: vec nat;
+   courseId: text;
+   enrolledAt: Timestamp;
+   progressPercent: nat;
+ };
+type EnrichmentType = 
+ variant {
+   STEMEvent;
+   fieldTrip;
+   guestSpeaker;
+   labVisit;
+   museumVisit;
+   other: text;
+ };
+type EngineStatus = 
+ variant {
+   active;
+   dormant;
+ };
+type EligibleProgram = 
+ record {
+   description: text;
+   name: text;
+   url: text;
+ };
+type EchoResult = 
+ record {
+   coherenceDelta: int;
+   newCoherence: nat;
+   passportUpdated: bool;
+ };
+type EDDIMode = 
+ variant {
+   ARCHITECT_MODE;
+   BUILD_MODE;
+   MEMORY_MODE;
+   PRINCIPAL_MODE;
+   RECOGNITION_MODE;
+   STUDENT_MODE;
+   TEACHER_MODE;
+ };
+type EDDI = 
+ record {
+   id: text;
+   law: text;
+   modeCount: nat;
+   name: text;
+   sealedAt: Timestamp;
+   version: nat;
+ };
+type DistrictStats = 
+ record {
+   achievementGapIndex: nat;
+   avgMasteryScore: nat;
+   totalSchools: nat;
+   totalStudents: nat;
+ };
+type DistrictProfile = 
+ record {
+   contactEmail: text;
+   createdAt: int;
+   id: DistrictId;
+   name: text;
+   schoolIds: vec SchoolId;
+   state: text;
+ };
+type DistrictId = nat;
+type DigtStatus = 
+ record {
+   conceptCount: nat;
+   hasContent: bool;
+   lastDigested: opt int;
+   quizSeedCount: nat;
+   standardId: text;
+ };
+type DigtStats = 
+ record {
+   subjectsDigested: vec text;
+   totalConcepts: nat;
+   totalInputs: nat;
+   totalQuizSeeds: nat;
+ };
+type DigtQuizSeed = 
+ record {
+   answer: text;
+   conceptId: text;
+   distractors: vec text;
+   gradeLevel: nat;
+   id: text;
+   question: text;
+   subject: text;
+ };
+type DigtDigestResult = 
+ record {
+   conceptsExtracted: nat;
+   gradeLevel: nat;
+   inputId: text;
+   processingCycles: nat;
+   quizSeedsGenerated: nat;
+   subject: text;
+   timestamp: int;
+   workedExamplesFound: nat;
+ };
+type DigtConcept = 
+ record {
+   definition: text;
+   difficulty: nat;
+   fibWeight: nat;
+   gradeLevel: nat;
+   id: text;
+   subject: text;
+   term: text;
+ };
+type DigestStatus = 
+ record {
+   completedAt: int;
+   jobId: text;
+   progress: nat;
+   status: text;
+ };
+type DigestResult = 
+ record {
+   conceptsExtracted: vec DigtConcept;
+   gradeVaultEntryId: text;
+   jobId: text;
+   quizSeedsGenerated: nat;
+   status: text;
+   workedExamplesGenerated: nat;
+ };
+type DigestJob = 
+ record {
+   completedAt: int;
+   conceptsFound: nat;
+   gradeLevel: nat;
+   jobId: text;
+   quizSeeds: nat;
+   status: text;
+   subject: text;
+   submittedAt: int;
+   teacherId: text;
+   title: text;
+ };
+type CrptStats = 
+ record {
+   avgExplorationDepth: nat;
+   topClusters: vec record {
+                      CareerCluster;
+                      nat;
+                    };
+   totalPathways: nat;
+ };
+type CrossSchoolTrend = 
+ record {
+   avgMastery: nat;
+   gradeLevel: nat;
+   periodLabel: text;
+   schoolId: SchoolId;
+   sessionCount: nat;
+   subjectId: nat;
+ };
+type CourseSummary = 
+ record {
+   course: Course;
+   isEnrolled: bool;
+   isUnlocked: bool;
+   progressPercent: nat;
+ };
+type CourseCategory = 
+ variant {
+   ACADEMICS;
+   CTE_AUTOMOTIVE;
+   CTE_CONSTRUCTION;
+   CTE_COSMETOLOGY;
+   CTE_CULINARY;
+   CTE_HEALTH;
+   CTE_HVAC;
+   CTE_ROBOTICS;
+   CTE_WELDING;
+   DECA;
+   FFA;
+   HOSA;
+   SKILLS_USA;
+   UIL_ENGLISH;
+   UIL_MATH;
+   UIL_MUSIC;
+   UIL_SCIENCE;
+   UIL_SPEECH;
+ };
+type Course = 
+ record {
+   category: text;
+   description: text;
+   id: text;
+   moduleCount: nat;
+   order: nat;
+   requiredSssThreshold: nat;
+   title: text;
+ };
+type CounselorPlan = 
+ record {
+   accommodationTypes: vec text;
+   careerPathwayId: opt nat;
+   collegeReadinessStage: opt CollegeReadinessStage;
+   counselorPrincipal: principal;
+   createdAt: int;
+   iepFlagged: bool;
+   milestones: vec CounselorMilestone;
+   notes: text;
+   studentPrincipal: principal;
+   updatedAt: int;
+ };
+type CounselorMilestone = 
+ record {
+   category: MilestoneCategory;
+   completedAt: opt int;
+   id: nat;
+   targetDate: opt int;
+   title: text;
+ };
+type CounPlanStats = 
+ record {
+   iepFlaggedCount: nat;
+   milestoneCompletionRate: nat;
+   totalPlans: nat;
+   withCareerPathway: nat;
+ };
+type ContactPreferences = 
+ record {
+   language: text;
+   preferEmail: bool;
+   preferInApp: bool;
+   quietHoursEnd: opt nat;
+   quietHoursStart: opt nat;
+ };
+type CompetitionTemplate = 
+ record {
+   category: CourseCategory;
+   description: text;
+   domains: vec text;
+   name: text;
+   organization: text;
+   prepWeeksTypical: nat;
+ };
+type CommStats = 
+ record {
+   byType: vec record {
+                 text;
+                 nat;
+               };
+   totalMessages: nat;
+   translationRequestCount: nat;
+   unreadCount: nat;
+ };
+type CommMessage = 
+ record {
+   attachmentHashes: vec blob;
+   body: text;
+   expiresAt: opt int;
+   id: nat;
+   messageType: MessageType;
+   recipientRefs: vec RecipientRef;
+   sender: principal;
+   sentAt: int;
+   subject: text;
+   translationNeeded: bool;
+ };
+type CollegeReadinessStage = 
+ variant {
+   applying;
+   committed;
+   exploring;
+   planning;
+   preparing;
+ };
+type CollegeReadinessRecord = 
+ record {
+   admissionsTimeline: vec AdmissionsEvent;
+   apCourseIds: vec nat;
+   collegeExplorationList: vec CollegeEntry;
+   ibCourseIds: vec nat;
+   studentPrincipal: principal;
+   transcriptMilestones: vec TranscriptMilestone;
+   updatedAt: int;
+ };
+type CollegeMatchTier = 
+ variant {
+   reach;
+   safety;
+   target;
+ };
+type CollegeEntry = 
+ record {
+   addedAt: int;
+   applicationStatus: text;
+   collegeName: text;
+   matchTier: CollegeMatchTier;
+ };
+type ClubRole = 
+ variant {
+   member;
+   officer;
+   president;
+   secretary;
+   treasurer;
+   vicePresident;
+ };
+type ClubRecord = 
+ record {
+   active: bool;
+   advisorPrincipal: principal;
+   category: ClubCategory;
+   createdAt: int;
+   id: nat;
+   memberPrincipals: vec principal;
+   name: text;
+   schoolId: nat;
+ };
+type ClubMembership = 
+ record {
+   clubId: nat;
+   hoursLogged: nat;
+   joinedAt: int;
+   linkedAchvId: opt nat;
+   role: ClubRole;
+   studentPrincipal: principal;
+ };
+type ClubCategory = 
+ variant {
+   academic;
+   arts;
+   civic;
+   community;
+   other: text;
+   sports;
+   stem;
+ };
+type ClrdStats = 
+ record {
+   avgApCourseCount: nat;
+   collegeListSize: nat;
+   totalRecords: nat;
+ };
+type ClassSessionMetrics = 
+ record {
+   activeCount: nat;
+   classId: text;
+   className: text;
+   masteryAvg: nat;
+   rcgnStream: nat;
+   sssAvg: nat;
+ };
+type ClassRoster = 
+ record {
+   classCode: text;
+   gradeLevel: nat;
+   studentSisIds: vec SisStudentId;
+   subjectId: nat;
+   teacherPrincipal: principal;
+ };
+type ClassRecord = 
+ record {
+   avgMastery: float64;
+   classId: text;
+   className: text;
+   grade: nat;
+   studentCount: nat;
+   subject: text;
+ };
+type ClassHeatmapData = 
+ record {
+   activeStudents: nat;
+   avgMastery: nat;
+   classId: text;
+   grade: nat;
+   lastActive: int;
+   sessionCount: nat;
+   subject: text;
+ };
+type ClassHeatmap = 
+ record {
+   avgClassMastery: nat;
+   classId: text;
+   gradeLevel: nat;
+   highPerformers: vec text;
+   needsSupport: vec text;
+   subject: text;
+   timestamp: int;
+   topicMastery: vec record {
+                       text;
+                       nat;
+                     };
+ };
+type ClassDetail = 
+ record {
+   classId: text;
+   className: text;
+   grade: nat;
+   recentActivity: vec ActivityRecord;
+   students: vec StudentSummary;
+   subject: text;
+ };
+type CatalogModule = 
+ record {
+   description: text;
+   fibMilestone: nat;
+   moduleId: text;
+   order: nat;
+   title: text;
+ };
+type CatalogCourseDetail = 
+ record {
+   courseId: text;
+   cteProgram: text;
+   gradeMax: nat;
+   gradeMin: nat;
+   modules: vec CatalogModule;
+   title: text;
+   uilProgram: text;
+ };
+type CatalogCourse = 
+ record {
+   category: CourseCategory;
+   courseId: text;
+   cteProgram: text;
+   description: text;
+   gradeMax: nat;
+   gradeMin: nat;
+   phiGateScore: nat;
+   title: text;
+   totalModules: nat;
+   uilProgram: text;
+ };
+type CareerPathway = 
+ record {
+   explorationHistory: vec CareerExplorationEntry;
+   id: nat;
+   interestSurveyResults: vec InterestScore;
+   milestones: vec CareerMilestone;
+   recommendedClusters: vec CareerCluster;
+   studentPrincipal: principal;
+   updatedAt: int;
+ };
+type CareerMilestone = 
+ record {
+   completedAt: opt int;
+   id: nat;
+   linkedSubjectId: opt nat;
+   title: text;
+ };
+type CareerExplorationEntry = 
+ record {
+   bookmarked: bool;
+   careerId: nat;
+   careerTitle: text;
+   cluster: CareerCluster;
+   exploredAt: int;
+ };
+type CareerCluster = text;
+type CalendarEvent = 
+ record {
+   affectedGrades: vec nat;
+   eventDate: int;
+   eventType: text;
+   schoolId: nat;
+   title: text;
+ };
+type BuilderStats = 
+ record {
+   lastActiveAt: int;
+   seedsSealed: nat;
+   sessionsProcessed: nat;
+   workflowCompletions: nat;
+ };
+type AttendanceStatus = 
+ variant {
+   absent;
+   excused;
+   present;
+   tardy;
+ };
+type AttendanceRecord = 
+ record {
+   date: int;
+   periodCode: opt text;
+   sisId: SisStudentId;
+   status: AttendanceStatus;
+ };
+type Assignment = 
+ record {
+   autoSeedPassport: bool;
+   classCode: text;
+   createdAt: int;
+   description: text;
+   dueDate: opt int;
+   gradeLevel: nat;
+   id: nat;
+   maxScore: nat;
+   standardCodes: vec text;
+   subjectId: nat;
+   teacherPrincipal: principal;
+   title: text;
+ };
+type AsgnStats = 
+ record {
+   avgScore: nat;
+   gradedCount: nat;
+   totalAssignments: nat;
+   totalSubmissions: nat;
+ };
+type ArchCouncilVoice = 
+ record {
+   answer: text;
+   confidence: nat;
+   engine: text;
+   mathBasis: text;
+   voiceId: text;
+ };
+type ApplicationStatus = 
+ variant {
+   applied;
+   awarded;
+   declined;
+   expired;
+   interested;
+   matched;
+ };
+type ApiVersion = 
+ record {
+   deprecated: bool;
+   endpointCount: nat;
+   releaseDate: int;
+   version: text;
+ };
+type ApiUsageStats = 
+ record {
+   approvedEndpoints: vec text;
+   callsThisMinute: nat;
+   clientId: text;
+   lastCall: int;
+   rateLimitTier: nat;
+   totalCalls: nat;
+ };
+type ApiStats = 
+ record {
+   activeEndpoints: nat;
+   totalCalls: nat;
+   totalEndpoints: nat;
+ };
+type ApiEndpoint = 
+ record {
+   description: text;
+   domain: text;
+   id: text;
+   method: text;
+   name: text;
+   path: text;
+   rateLimit: nat;
+   requiresAuth: bool;
+   sealedAt: int;
+   substrateDomain: text;
+   version: text;
+ };
+type ApiCallLog = 
+ record {
+   callerId: text;
+   endpointId: text;
+   responseTime: nat;
+   success: bool;
+   timestamp: int;
+ };
+type AllocatorStats = 
+ record {
+   blockCount: nat;
+   totalAllocated: nat;
+   totalCapacity: nat;
+   utilizationPct: float64;
+   zoneDistribution: vec nat;
+ };
+type AgentRole = 
+ variant {
+   assessor;
+   curator;
+   encourager;
+   explainer;
+   guide;
+   quizmaster;
+ };
+type Agent = 
+ record {
+   engine: text;
+   id: text;
+   isActive: bool;
+   name: text;
+   protocols: vec text;
+   registeredAt: int;
+   role: AgentRole;
+   systemPrompt: text;
+   version: text;
+   workspace: text;
+ };
+type AdmissionsEvent = 
+ record {
+   completedAt: opt int;
+   eventType: text;
+   id: nat;
+   notes: text;
+   scheduledDate: opt int;
+ };
+type AdaptiveWorkflow = 
+ record {
+   fibDifficultyLevel: nat;
+   nextAction: AdaptiveAction;
+   phiConfidence: float64;
+   reasonPhrase: text;
+   suggestedTopics: vec text;
+ };
+type AdaptiveSuggestion = 
+ record {
+   action: SuggestionAction;
+   message: text;
+ };
+type AdaptiveAction = 
+ variant {
+   advance;
+   continue;
+   quizNow;
+   remedialReview;
+ };
+type ActivityRecord = 
+ record {
+   action: text;
+   score: float64;
+   studentName: text;
+   timestamp: int;
+ };
+type ActivityEntry = 
+ record {
+   action: text;
+   details: text;
+   staffId: text;
+   timestamp: int;
+ };
+type AchievementZone = 
+ variant {
+   cold;
+   frozen;
+   hot;
+   warm;
+ };
+type AchievementType = 
+ variant {
+   MasterySeal;
+   NominationSent;
+   PaceAnomaly;
+   PerfectScore;
+   RecognitionFlag;
+ };
+type AchievementTimelineEntry = 
+ record {
+   description: text;
+   domain: text;
+   eventId: text;
+   eventType: text;
+   goldSealed: bool;
+   grade: nat;
+   programName: text;
+   timestamp: int;
+   title: text;
+   year: nat;
+ };
+type AchievementRecord = 
+ record {
+   achievementType: AchievementType;
+   description: text;
+   id: text;
+   sealedAt: Timestamp;
+   source: text;
+   studentId: UserId;
+   zone: AchievementZone;
+ };
+type AchievementGapRecord = 
+ record {
+   computedAt: int;
+   districtId: DistrictId;
+   gapScore: nat;
+   gradeLevel: nat;
+   highGroupAvg: nat;
+   lowGroupAvg: nat;
+   subjectId: nat;
+ };
+type AccommodationType = 
+ variant {
+   breaksBetweenTasks;
+   calculator;
+   extendedTime;
+   largeFontSize;
+   other: text;
+   preferredSeating;
+   readAloud;
+   reducedDistraction;
+   simplifiedLanguage;
+   spellChecker;
+ };
+service : {
+  addAdmissionsEvent: (event: AdmissionsEvent) -> (bool);
+  addCalendarEvent: (event: CalendarEvent) -> ();
+  addCollegeToList: (entry: CollegeEntry) -> (bool);
+  addCounselorMilestone: (studentPrincipal: principal, milestone:
+   CounselorMilestone) -> (bool);
+  addFieldTripAttendee: (tripId: nat, p: principal) -> ();
+  addGroupMember: (groupId: nat, member: principal) -> (bool);
+  addScholarshipProgram: (program: ScholarshipProgram) -> (nat);
+  addSchoolToDistrict: (districtId: DistrictId, schoolId: SchoolId) -> (bool);
+  addStaffMember: (id: text, name: text, role: StaffRole, dept: text, level:
+   nat) -> (bool);
+  addSubHandoffNote: (subRecordId: nat, note: text) -> ();
+  advanceTrackStep: (trackId: TrackId, artifactName: opt text, now: int) ->
+   (variant {
+      err: text;
+      ok: TrackEnrollment;
+    });
+  alignContent: (alignment: StandardAlignment) -> ();
+  approveClient: (requestId: text, apiKey: text) -> (opt RegistrationResult);
+  archiveTripToPassport: (tripId: nat) -> ();
+  askAgent: (agentRole: text, userMessage: text, topic: text, subject: 
+   text, gradeLevel: text, messageIndex: nat) -> (text);
+  autoSealFromSession: (sessionSummary: text, engineUsed: text, subject:
+   text, gradeLevel: text) -> (text);
+  chatWithEddi: (mode: EDDIMode, message: text, sessionId: text) ->
+   (record {
+      modeUsed: EDDIMode;
+      nextModeSuggestion: opt EDDIMode;
+      response: text;
+    });
+  checkGradeAccess: (studentGrade: nat, contentGrade: nat) ->
+   (GradeGate) query;
+  checkOutResource: (resourceType: ResourceType, resourceId: text, title:
+   text, dueDate: opt int) -> (nat);
+  completeModule: (courseId: text, moduleIndex: nat) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  completeSelfStudyMilestone: (trackId: text, milestoneIndex: nat) -> (bool);
+  completeTestPrepSession: (sessionId: nat, correct: nat, attempted: 
+   nat, completedAt: int) -> (bool);
+  completeTrack: (trackId: TrackId, artifactName: opt text, now: int) ->
+   (variant {
+      err: text;
+      ok: TrackEnrollment;
+    });
+  completeTutoringSession: (sessionId: nat, masteryDeltaAfter: nat,
+   transcriptHash: opt blob) -> (bool);
+  computeCareerRecommendations: (passportMastery: vec record {
+                                                        nat;
+                                                        nat;
+                                                      }) ->
+   (vec CareerCluster);
+  computeIAS: (sssScore: nat, cohScore: nat) -> (IasResult) query;
+  computeImpact: (schoolCount: nat, studentsPerSchool: nat) ->
+   (ImpactResult) query;
+  computeScoreProjection: (mode: TestPrepMode, computedAt: int) ->
+   (ScoreProjection);
+  computeStudentState: (sssPrev: nat) -> (LiveIntelligenceState) query;
+  createAgent: (name: text, modeBinding: EDDIMode, reasoningSeed: text,
+   memoryConfig: text) -> (UserAgent);
+  createAssignment: (assignment: Assignment) -> (nat);
+  createClass: (teacherId: text, name: text, subject: text, gradeLevel: 
+   nat, studentIds: vec text) -> (bool);
+  createClub: (name: text, category: ClubCategory, schoolId: nat) -> (nat);
+  createCounselorPlan: (plan: CounselorPlan) -> ();
+  createDistrict: (name: text, state: text, contactEmail: text, createdAt:
+   int) -> (DistrictId);
+  createFactoryStudent: (username: text, gradeLevel: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  createFieldTrip: (title: text, schoolId: nat, gradeLevel: nat,
+   activityDate: int, location: text, enrichmentType: EnrichmentType) ->
+   (nat);
+  createSelfStudyTrack: (title: text, category: text, competitionDate:
+   int) -> (text);
+  createSovereignPassport: (studentName: text, gradeLevel: text, collegium:
+   text) -> (SovereignPassport);
+  createStudentProfile: (name: text, gradeLevel: text) -> (StudentProfile);
+  createSubRecord: (coveringTeacherPrincipal: principal, classCode: text,
+   date: int, accessLevel: SubAccessLevel) -> (nat);
+  createTutoringSession: (session: TutoringSession) -> (nat);
+  deactivateAccommodations: (studentPrincipal: principal) -> (bool);
+  diagSystem: () ->
+   (record {
+      avgCoh: float64;
+      errors: vec text;
+      heartbeatCount: nat;
+      pilScore: float64;
+      status: variant {
+                muta;
+                ok;
+              };
+    }) query;
+  digestCurriculumText: (title: text, gradeLevel: nat, subject: text,
+   rawText: text, teacherId: text) -> (DigestResult);
+  digestTextbook: (title: text, gradeLevel: nat, subject: text, rawText:
+   text) -> (DigtDigestResult);
+  dissolveClub: (clubId: nat) -> ();
+  dissolveStudyGroup: (groupId: nat) -> (bool);
+  drainVaultBuffer: () -> (vec blob);
+  enrollInCourse: (courseId: text) -> (variant {
+                                         err: text;
+                                         ok;
+                                       });
+  enrollInCourseWithStart: (courseId: text) -> (EnrollmentResult);
+  enrollInTrack: (trackId: TrackId, now: int) ->
+   (variant {
+      err: text;
+      ok: TrackEnrollment;
+    });
+  enterNexumGate: (collegium: text, now: int) -> (NexumGateEntry);
+  executeQuery: (target: text, filters: vec record {
+                                              text;
+                                              text;
+                                              text;
+                                            }, limit: nat) -> (QueryResult);
+  factoryAdminSetup: (adminName: text) -> (variant {
+                                             err: text;
+                                             ok: text;
+                                           });
+  factoryStatus: () ->
+   (record {
+      adminExists: bool;
+      factoryLocked: bool;
+      studentCount: nat;
+    }) query;
+  fireArchCouncil: (queryText: text, domain: text) -> (MLTVResponse);
+  flagStudentIep: (studentPrincipal: principal) -> (bool);
+  formStudyGroup: (subjectId: nat, gradeLevel: nat, memberPrincipals:
+   vec principal, sssLow: nat, sssHigh: nat) -> (nat);
+  generateClassHeatmap: (classId: text) -> (opt ClassHeatmap) query;
+  generateTeacherRecommendations: (classId: text) ->
+   (vec TeacherRecommendation);
+  generateVisionDocument: () -> (VisionDocument) query;
+  getAccessibleContent: (studentGrade: nat) -> (vec GradeVaultEntry) query;
+  getAccommodations: (studentPrincipal: principal) ->
+   (opt IepAccommodation) query;
+  getAchievementGaps: (districtId: DistrictId) ->
+   (vec AchievementGapRecord) query;
+  getAchievementTimeline: (studentId: UserId) ->
+   (vec AchievementTimelineEntry) query;
+  getAchievements: (studentId: UserId) -> (vec AchievementRecord) query;
+  getAdaptiveSuggestion: (subjectId: text) -> (AdaptiveSuggestion) query;
+  getAdaptiveWorkflow: (subjectId: text, gradeLevel: text) ->
+   (AdaptiveWorkflow) query;
+  getAgent: (id: text) -> (opt Agent) query;
+  getAgents: () -> (vec Agent) query;
+  getAgentsByEngine: (engine: text) -> (vec Agent) query;
+  getAgentsByProtocol: (protocol: text) -> (vec Agent) query;
+  getAgentsByWorkspace: (workspace: text) -> (vec Agent) query;
+  getAlignments: (standardCode: StandardCode) ->
+   (vec StandardAlignment) query;
+  getAllBuilderStats: () -> (vec record {
+                                   text;
+                                   BuilderStats;
+                                 }) query;
+  getAllMoodAggregates: () -> (vec MoodAggregate) query;
+  getAllRecognitionFlags: () -> (vec RecognitionFlag) query;
+  getAllSubjects: () -> (vec Subject) query;
+  getAllocatorStats: () -> (AllocatorStats) query;
+  getAnnouncementsBySchool: (schoolId: nat) -> (vec CommMessage) query;
+  getApiCallLogs: (n: nat) -> (vec ApiCallLog) query;
+  getApiEndpointById: (id: text) -> (opt ApiEndpoint) query;
+  getApiEndpoints: () -> (vec ApiEndpoint) query;
+  getApiEndpointsByDomain: (domain: text) -> (vec ApiEndpoint) query;
+  getApiStats: () -> (ApiStats) query;
+  getApiUsageStats: (clientId: text) -> (opt ApiUsageStats) query;
+  getApiVersions: () -> (vec ApiVersion) query;
+  getAsgnStats: () -> (AsgnStats) query;
+  getAssignment: (id: nat) -> (opt Assignment) query;
+  getAssignmentsByClass: (classCode: text) -> (vec Assignment) query;
+  getAttendance: (sisId: SisStudentId) -> (vec AttendanceRecord) query;
+  getBuilderStats: (builderId: text) -> (opt BuilderStats) query;
+  getCalendarEvents: (schoolId: nat) -> (vec CalendarEvent) query;
+  getCatalog: () -> (vec CatalogCourse) query;
+  getCheckoutsByStudent: (studentPrincipal: principal) ->
+   (vec LibraryRecord) query;
+  getClassAverage: (assignmentId: nat) -> (nat) query;
+  getClassDetail: (classId: text) -> (opt ClassDetail) query;
+  getClassesByTeacher: (teacherId: text) -> (vec TeacherClass) query;
+  getClassesByTeacherId: (teacherId: principal) -> (vec ClassRecord) query;
+  getClrdStats: () -> (ClrdStats) query;
+  getClubEngagementScore: (studentPrincipal: principal) -> (nat) query;
+  getClubsBySchool: (schoolId: nat) -> (vec ClubRecord) query;
+  getCommStats: () -> (CommStats) query;
+  getCompetitionTemplates: () -> (vec CompetitionTemplate) query;
+  getConceptsByGrade: (grade: nat) -> (vec DigtConcept) query;
+  getCounPlanStats: () -> (CounPlanStats) query;
+  getCounselorPlan: (studentPrincipal: principal) ->
+   (opt CounselorPlan) query;
+  getCourseDetail: (courseId: text) -> (opt CatalogCourseDetail) query;
+  getCourses: () -> (vec CourseSummary) query;
+  getCrossSchoolTrends: (districtId: DistrictId) ->
+   (vec CrossSchoolTrend) query;
+  getCrptStats: () -> (CrptStats) query;
+  getDemoStudentData: () ->
+   (record {
+      samplePassport: SovereignPassport;
+      sampleSessions: vec QuizResult;
+      subjects: vec Subject;
+    }) query;
+  getDigestStatus: (jobId: text) -> (opt DigestStatus) query;
+  getDigtStats: () -> (DigtStats) query;
+  getDigtStatusForStandard: (standardId: text) -> (DigtStatus) query;
+  getDistrict: (districtId: DistrictId) -> (opt DistrictProfile) query;
+  getDistrictStats: (districtId: DistrictId) -> (DistrictStats) query;
+  getEddi: () -> (EDDI) query;
+  getEddiInsight: () -> (text) query;
+  getEddiMode: () -> (EDDIMode) query;
+  getEngineByCodeName: (name: text) -> (opt SovereignEngine) query;
+  getEngineById: (id: nat) -> (opt SovereignEngine) query;
+  getEngines: () -> (vec SovereignEngine) query;
+  getEnrolledCourses: () -> (vec EnrolledCourse) query;
+  getEntanglementById: (id: text) -> (opt EntanglementRecord) query;
+  getEntanglementStats: () ->
+   (record {
+      activeCount: nat;
+      avgCoherenceDelta: int;
+      lastRefresh: int;
+      totalTransits: nat;
+    }) query;
+  getEntanglements: () -> (vec EntanglementRecord) query;
+  getEslProfile: (studentPrincipal: principal) -> (opt EslProfile) query;
+  getEsllStats: () -> (EsllStats) query;
+  getFeedbackEvents: () -> (vec FeedbackEvent) query;
+  getFieldTripsByGrade: (gradeLevel: nat) -> (vec FieldTripRecord) query;
+  getFieldTripsBySchool: (schoolId: nat) -> (vec FieldTripRecord) query;
+  getFluxState: (studentId: text) -> (FluxState) query;
+  getFtrpStats: () -> (FtrpStats) query;
+  getFullPassportStats: () -> (opt PassportStats) query;
+  getFundingTracker: () -> (vec FundingEntry) query;
+  getGradePerformance: (gradeLevel: nat) -> (vec GradePerformance) query;
+  getGradeVaultContents: (grade: nat) -> (vec VaultEntry) query;
+  getGradeVaultSummary: (grade: nat) -> (GradeVaultSummary) query;
+  getGroupsBySubject: (subjectId: nat) -> (vec StudyGroup) query;
+  getGvltStats: () -> (GvltStats) query;
+  getHeatmapData: () -> (vec ClassHeatmapData) query;
+  getIesmStats: () -> (IesmStats) query;
+  getKernelSeeds: () -> (vec KernelSeed) query;
+  getKnowledgeByGrade: (q: KnowledgeQuery) -> (vec KnowledgeResult) query;
+  getLawById: (id: nat) -> (opt SovereignLaw) query;
+  getLawByLatinName: (name: text) -> (opt SovereignLaw) query;
+  getLaws: () -> (vec SovereignLaw) query;
+  getLbryStats: () -> (LbryStats) query;
+  getLessonContent: (topicId: text, gradeLevel: text, agentRole: text) ->
+   (record {
+      coreConceptBlock: text;
+      expansionBlock: text;
+      introduction: text;
+      practicePrompt: text;
+      reviewSummary: text;
+      title: text;
+    }) query;
+  getLiveIntelligenceState: (studentId: UserId) ->
+   (LiveIntelligenceState) query;
+  getLiveMetrics: () -> (LiveMetrics) query;
+  getLiveSessionMetrics: () -> (LiveSessionMetrics) query;
+  getMLTVStats: () -> (MLTVStats) query;
+  getMembershipsByStudent: (studentPrincipal: principal) ->
+   (vec ClubMembership) query;
+  getMessagesForRecipient: (ref: RecipientRef) -> (vec CommMessage) query;
+  getMhckStats: () ->
+   (record {
+      schoolsMonitored: nat;
+      totalCheckIns: nat;
+    }) query;
+  getMoodAggregate: (schoolId: nat) -> (opt MoodAggregate) query;
+  getMsryState: (studentId: text) -> (MsryState) query;
+  getMyCareerPathway: () -> (opt CareerPathway) query;
+  getMyClubs: () -> (vec ClubMembership) query;
+  getMyCollegeReadinessRecord: () -> (opt CollegeReadinessRecord) query;
+  getMyEnrollments: () -> (vec TrackEnrollment) query;
+  getMyFeedback: () -> (vec FeedbackEvent) query;
+  getMyGateEntries: () -> (vec NexumGateEntry) query;
+  getMyGrades: () -> (vec GradeRecord) query;
+  getMyLibraryRecords: () -> (vec LibraryRecord) query;
+  getMyParentRecord: () -> (opt ParentRecord) query;
+  getMyPdGrowthScore: () -> (nat) query;
+  getMyPdHours: () -> (nat) query;
+  getMyPdRecords: () -> (vec PdRecord) query;
+  getMyScholarshipMatches: () -> (vec ScholarshipMatch) query;
+  getMyStudyGroups: () -> (vec StudyGroup) query;
+  getMySubRecords: () -> (vec SubRecord) query;
+  getMySubmissions: () -> (vec Submission) query;
+  getMyTestPrepSessions: () -> (vec TestPrepSession) query;
+  getMyTracks: () -> (vec SelfStudyTrack) query;
+  getMyTutoringSessions: () -> (vec TutoringSession) query;
+  getNewScholarshipMatches: (studentId: text, sinceTimestamp: int) ->
+   (vec ScholarshipMatch) query;
+  getNominations: (studentId: UserId) -> (vec NominationRecord) query;
+  getNrveState: () -> (NrveState) query;
+  getOverdueCheckouts: () -> (vec LibraryRecord) query;
+  getOwner: () -> (opt principal) query;
+  getParentsByStudent: (studentPrincipal: principal) ->
+   (vec ParentRecord) query;
+  getPassportInsight: (studentId: UserId) -> (PassportInsight) query;
+  getPassportSeeds: (page: nat, pageSize: nat) -> (vec KernelSeed) query;
+  getPassportStats: () ->
+   (opt record {
+          lastActive: int;
+          totalSeeds: nat;
+          totalSessions: nat;
+        }) query;
+  getPdGrowthScore: (teacherPrincipal: principal) -> (nat) query;
+  getPdRecordsByTeacher: (teacherPrincipal: principal) ->
+   (vec PdRecord) query;
+  getPdTotalHours: (teacherPrincipal: principal) -> (nat) query;
+  getPgrpStats: () -> (PgrpStats) query;
+  getPlseState: () -> (PlseState) query;
+  getPortalTransitions: (n: nat) -> (vec PortalTransition) query;
+  getPrcpNarrative: () -> (vec PrcpNarrativeEntry) query;
+  getPrincipalGradeDrilldown: (grade: nat) -> (GradeDrilldown) query;
+  getPrincipalHeatmapWithNoms: () -> (vec HeatmapWithNoms) query;
+  getQueryHistory: () -> (vec QueryResult);
+  getQuizSeedsByGrade: (grade: nat) -> (vec DigtQuizSeed) query;
+  getRcgnAlerts: () -> (vec RcgnAlert) query;
+  getRecentMLTVResponses: (n: nat) -> (vec MLTVResponse) query;
+  getRecognitionFlags: (studentId: UserId) -> (vec RecognitionFlag) query;
+  getRecognitionTimeline: (studentId: UserId) ->
+   (vec RecognitionTimelineEntry) query;
+  getRegistryQuestion: (grade: nat, subject: text) -> (text);
+  getRoster: (classCode: text) -> (opt ClassRoster) query;
+  getSchfStats: () -> (SchfStats) query;
+  getScholarshipMatches: (studentId: text) -> (vec ScholarshipMatch) query;
+  getSdkEntries: () -> (vec SdkEntry) query;
+  getSdkEntriesByCategory: (category: text) -> (vec SdkEntry) query;
+  getSdkEntryById: (id: text) -> (opt SdkEntry) query;
+  getSelfStudyStats: (trackId: text) -> (opt SelfStudyTrack) query;
+  getSessionCount: () -> (nat) query;
+  getSessionMetrics: () -> (SessionMetrics) query;
+  getSessionMode: () -> (SessionMode);
+  getSessionSchedule: () -> (SessionSchedule);
+  getSessionsByTutor: (tutorRef: text) -> (vec TutoringSession) query;
+  getSilverBuilderById: (id: text) -> (opt SilverBuilder) query;
+  getSilverBuilders: () -> (vec SilverBuilder) query;
+  getSisAttendance: (sisId: SisStudentId) -> (vec AttendanceRecord) query;
+  getSisEnrollments: () -> (vec SisRecord) query;
+  getSisRecord: (sisId: SisStudentId) -> (opt SisRecord) query;
+  getSisRosters: () -> (vec ClassRoster) query;
+  getSisStudentData: (sisId: SisStudentId) -> (opt SisRecord) query;
+  getSisSyncStatus: () ->
+   (record {
+      errorMessage: opt text;
+      isHealthy: bool;
+      lastSync: int;
+      nextSync: int;
+    }) query;
+  getSkaiDocensInfo: () -> (SkaiDocensInfo) query;
+  getSovereignPassport: () -> (opt SovereignPassport) query;
+  getStaffActivityLog: (staffId: text) -> (vec ActivityEntry) query;
+  getStaffMember: (id: text) -> (opt StaffMember) query;
+  getStaffRoster: () -> (vec StaffMember) query;
+  getStandard: (code: StandardCode) -> (opt Standard) query;
+  getStandardsByGrade: (gradeLevel: nat) -> (vec Standard) query;
+  getStandardsBySubject: (subject: text) -> (vec Standard) query;
+  getStandardsWithDigestedContent: (gradeLevel: nat) ->
+   (vec StandardWithDigestStatus) query;
+  getStndStats: () -> (StndStats) query;
+  getStudentCountByGrade: () -> (vec GradeCount) query;
+  getStudentMasteryCard: (studentId: text) -> (opt StudentMasteryCard) query;
+  getStudentProfile: () -> (opt StudentProfile) query;
+  getStudentQuizResults: () -> (vec QuizResult) query;
+  getStudentRcgnThreshold: (studentId: UserId) -> (nat) query;
+  getSubRecordsByClass: (classCode: text) -> (vec SubRecord) query;
+  getSubRecordsByDate: (date: int) -> (vec SubRecord) query;
+  getSubjectTemplates: (gradeLevel: GradeLevel) ->
+   (vec SubjectTemplate) query;
+  getSubjectsByGrade: (gradeLevel: text) -> (vec Subject) query;
+  getSubmissionsByAssignment: (assignmentId: nat) -> (vec Submission) query;
+  getSubsStats: () -> (SubsStats) query;
+  getSystemMetricsSummary: () -> (SystemMetrics) query;
+  getTchrStats: () -> (TchrStats) query;
+  getTeacherClassMetrics: (teacherId: text) ->
+   (vec TeacherClassMetrics) query;
+  getTopicsBySubject: (subjectId: text) -> (vec Topic) query;
+  getTpdfStats: () -> (TpdfStats) query;
+  getTprpStats: () -> (TprpStats) query;
+  getTrackById: (id: TrackId) -> (opt Track) query;
+  getTracks: () -> (vec Track) query;
+  getTutoringStats: () -> (record {
+                             sealed: nat;
+                             total: nat;
+                           }) query;
+  getUnreadCount: (ref: RecipientRef) -> (nat) query;
+  getUserAgents: () -> (vec UserAgent) query;
+  getVaultCanisterId: () -> (opt principal) query;
+  getVaultStats: () ->
+   (record {
+      lastDrainAt: int;
+      totalBytesBuffered: nat;
+      totalPayloads: nat;
+    }) query;
+  getVisionDocumentV2: () -> (VisionDocumentV2) query;
+  getVisionStats: () -> (VisionStats) query;
+  getVisionWithFundingTracker: () -> (VisionWithFunding) query;
+  getWorkspaces: () -> (vec text) query;
+  getXcrrStats: () -> (XcrrStats) query;
+  gradeSubmission: (gradeRecord: GradeRecord) -> (nat);
+  hasAccommodation: (studentPrincipal: principal, accomType:
+   AccommodationType) -> (bool) query;
+  inferEddiMode: (hint: text) -> (EDDIMode) query;
+  initFactory: (adminName: text) -> (variant {
+                                       err: text;
+                                       ok: text;
+                                     });
+  isFactoryInitialized: () -> (bool) query;
+  joinClub: (clubId: nat, role: ClubRole) -> ();
+  linkClubAchievement: (clubId: nat, studentPrincipal: principal, achvId:
+   nat) -> ();
+  linkFieldTripPreAssessment: (tripId: nat, assessId: nat) -> ();
+  linkStudentToParent: (studentPrincipal: principal) -> (bool);
+  linkToSubject: (recordId: nat, subjectId: nat) -> ();
+  listDigestJobs: () -> (vec DigestJob) query;
+  listPendingRegistrations: () -> (vec RegistrationRequest) query;
+  listStaff: () -> (vec StaffMember) query;
+  logApiCall: (callerId: text, endpointId: text, responseTime: nat, success:
+   bool) -> ();
+  logClubHours: (clubId: nat, studentPrincipal: principal, hours: nat) -> ();
+  logPdRecord: (title: text, pdType: PdType, hoursLogged: nat, provider:
+   text, certificationEarned: opt text, growthMilestone:
+   opt GrowthMilestone) -> (nat);
+  logPortalTransition: (from: text, to: text, userId: text) -> ();
+  logSubIncident: (subRecordId: nat, description: text, severity:
+   IncidentSeverity) -> ();
+  markMessageRead: (messageId: nat) -> ();
+  matchStudentToScholarships: (achvSummary: vec text, matchedAt: int) ->
+   (vec ScholarshipMatch);
+  queryEngine: (engineId: text, userInput: text, context: text) -> (text);
+  queryEngineWithPassport: (engineId: text, userInput: text, context:
+   text) -> (record {
+               response: text;
+               seedGenerated: KernelSeed;
+             });
+  recognizeStudent: (studentId: UserId, subject: text, score: nat) ->
+   (record {
+      flagCreated: bool;
+      isGold: bool;
+      rcgnT: nat;
+    });
+  recordAttendance: ("record": AttendanceRecord) -> ();
+  recordCareerExploration: (entry: CareerExplorationEntry) -> (bool);
+  recordEchoEvent: (studentId: text, eventTypeStr: text, value: nat,
+   duration: nat) -> (EchoResult);
+  recordEntanglementTransit: (id: text, rawCoherenceDelta: int) -> ();
+  recordFundingEntry: (entry: FundingEntryInput) -> (FundingEntryResult);
+  recordMissedSession: () -> ();
+  recordStudyGroupSession: (session: GroupSession) -> (nat);
+  registerApiCaller: (id: text, name: text, pubKey: text, allowed:
+   vec text) -> (bool);
+  registerExternalClient: (requestId: text, name: text, description: 
+   text, requestedEndpoints: vec text) -> (RegistrationRequest);
+  registerParent: (displayName: text, contactPrefs: ContactPreferences) -> ();
+  registerStandard: (standard: Standard) -> ();
+  registerVaultContent: (contentId: text, contentType: text, gradeLevel: 
+   nat, subject: text, lockedUntilGrade: nat) -> (bool);
+  removeFieldTripAttendee: (tripId: nat, p: principal) -> ();
+  removeGroupMember: (groupId: nat, member: principal) -> (bool);
+  resolveFeedback: (eventId: text) -> (bool);
+  returnResource: (recordId: nat) -> ();
+  runHeartbeat: () -> (vec blob);
+  runRCGNScan: () -> (vec RecognitionFlag);
+  saveQuizResult: (result: QuizResult) -> ();
+  saveSessionMode: (mode: SessionMode) -> ();
+  sealKernelSeed: (seed: KernelSeed) -> (bool);
+  seedCurriculumIfEmpty: () -> (text);
+  sendAnnouncement: (schoolId: nat, subject: text, body: text) -> (nat);
+  sendCommMessage: (recipientRefs: vec RecipientRef, subject: text, body:
+   text, messageType: MessageType, translationNeeded: bool, expiresAt:
+   opt int) -> (nat);
+  setAccommodations: ("record": IepAccommodation) -> ();
+  setEddiMode: (mode: EDDIMode) -> ();
+  setEslScaffolding: (studentPrincipal: principal, enabled: bool) -> (bool);
+  setVaultCanisterId: (id: principal) -> ();
+  skaiRoute: (studentIntent: text, currentEngineId: text, sessionSummary:
+   text) -> (text);
+  skaiTeach: (studentIntent: text) -> (SkaiTeachResponse);
+  sonrCheck: () -> (SonrStatus) query;
+  startTestPrepSession: (mode: TestPrepMode, subjectId: nat, startedAt:
+   int) -> (nat);
+  submitAssignment: (submission: Submission) -> (nat);
+  submitFeedback: (message: text, severity: text) -> (text);
+  submitMoodCheckIn: (checkIn: MentalHealthCheckIn) -> ();
+  submitNomination: (studentId: UserId, programName: text, teacherNote:
+   text) -> (NominationRecord);
+  tickEntanglementCycle: () -> ();
+  updateCounselorPlan: (studentPrincipal: principal, updatedPlan:
+   CounselorPlan) -> (bool);
+  updateMemberRole: (clubId: nat, studentPrincipal: principal, role:
+   ClubRole) -> ();
+  updateParentPermission: (level: PermissionLevel) -> (bool);
+  updateReadingProgress: (recordId: nat, progressPct: nat) -> ();
+  updateScholarshipStatus: (matchId: nat, status: ApplicationStatus) ->
+   (bool);
+  updateSessionMode: (mode: SessionMode) -> ();
+  updateStaffRole: (staffId: text, newRole: StaffRole) -> (bool);
+  updateStudentGrade: (gradeLevel: text) -> (StudentProfile);
+  updateStudentMasteryScore: (studentId: text, subject: text, mastery:
+   nat) -> ();
+  upsertCareerPathway: (pathway: CareerPathway) -> (nat);
+  upsertCollegeReadinessRecord: ("record": CollegeReadinessRecord) -> ();
+  upsertEslProfile: (profile: EslProfile) -> ();
+  upsertRoster: (roster: ClassRoster) -> ();
+  upsertSisRecord: ("record": SisRecord) -> ();
+}

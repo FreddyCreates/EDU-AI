@@ -1,0 +1,32 @@
+{
+  "overview": "EduAI is a sovereign, end-to-end K-12 AI education platform built for every student — especially those in forgotten, under-resourced schools. It provides a fully free, non-commercial, self-contained AI study companion that follows students from kindergarten through graduation, with all intelligence, memory, and storage native to the platform. No external AI, no commercial APIs, no platform lock-in. Every student's achievements are permanently recorded. Every teacher gets real-time intelligence. Every principal sees their school clearly. EDDI — EduAI's unified self-thinking intelligence model — powers everything.",
+  "features": [
+    "EDDI unified intelligence model with 7 adaptive modes and live passport narration",
+    "7 role-based portals: Student, Teacher, Principal, IT, Parent, Counselor, District",
+    "Full glassmorphism UI with PHI/Fibonacci geometry and OKLCH color system",
+    "Recognition pipeline: RCGN flags students, NOMS auto-generates nominations, ACHV seals achievements permanently",
+    "Self-Study Creator with Diego Protocol — Fibonacci backward milestone prep for UIL/CTE/Skills USA competitions",
+    "University with PHI-gated courses across Academics, CTE, Music, Athletics",
+    "Live Intelligence Layer driving UI layout states (CALM/STANDARD/ACTIVE/FLOW) via IAS formula",
+    "K-12 Achievement Timeline — every recognition event from kindergarten through graduation",
+    "Real-time Principal heatmap with live class mastery metrics and RCGN stream",
+    "Elastic Fibonacci Scheduling for students with tight schedules",
+    "Sovereign Vision Document with funding tracker and Diego Protocol case study",
+    "Feedback AI — sovereign, self-healing, logs to IT portal"
+  ],
+  "category": "education",
+  "tags": [
+    "education",
+    "k-12",
+    "ai",
+    "sovereign",
+    "glassmorphism",
+    "phi",
+    "recognition",
+    "uil",
+    "cte",
+    "student",
+    "teacher"
+  ],
+  "last_updated": "2026-05-20T02:16:55.515Z"
+}

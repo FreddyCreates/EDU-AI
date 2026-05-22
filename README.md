@@ -167,7 +167,3 @@ pnpm check
 pnpm typecheck
 pnpm build
 ```
-
-## Validation Note
-
-During validation in this environment, `corepack pnpm check` triggered a workspace install that failed because pnpm build scripts were blocked pending approval (`ERR_PNPM_IGNORED_BUILDS`). That appears to be an environment/setup issue rather than a README issue.

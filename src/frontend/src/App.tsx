@@ -317,6 +317,10 @@ const PrincipalGradeDrilldown = lazy(
 );
 const ITNetworkStatus = lazy(() => import("@/pages/ITNetworkStatus"));
 const ITAuditLog = lazy(() => import("@/pages/ITAuditLog"));
+// ADEDDI + EDDI OS + Substrate pages (v26)
+const EddiOsConsolePage    = lazy(() => import("@/pages/EddiOsConsole"));
+const EddiDeepChatPage     = lazy(() => import("@/pages/EddiDeepChat"));
+const SubstrateMonitorPage = lazy(() => import("@/pages/SubstrateMonitor"));
 
 const ArchCouncilMonitorPage = lazy(() => import("@/pages/ArchCouncilMonitor"));
 const ApiExplorerPage = lazy(() => import("@/pages/ApiExplorer"));
@@ -669,6 +673,25 @@ const itPortalRoute = createRoute({
   component: ITPortalPage,
 });
 
+// ADEDDI + EDDI OS + Substrate routes (v26)
+const eddiOsConsoleRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/eddi-os",
+  component: EddiOsConsolePage,
+});
+
+const eddiDeepChatRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/eddi/deep",
+  component: EddiDeepChatPage,
+});
+
+const substrateMonitorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/substrate",
+  component: SubstrateMonitorPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   visionRoute,
@@ -724,6 +747,10 @@ const routeTree = rootRoute.addChildren([
   itApixRoute,
   itEnginesRoute,
   itPortalRoute,
+  // ADEDDI + EDDI OS + Substrate (v26)
+  eddiOsConsoleRoute,
+  eddiDeepChatRoute,
+  substrateMonitorRoute,
   // Parent portal
   parentRoute,
   parentDashboardRoute,

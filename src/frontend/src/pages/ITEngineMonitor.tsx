@@ -75,6 +75,17 @@ const ENGINE_SUBSTRATE_MAP: Record<string, Substrate> = {
   DIGT: "ICPM",
   GVLT: "ICPM",
   TCHR: "ICPM",
+  // v26 sovereign engines — ADEDDI organism
+  EDDI:      "EART",
+  ADEDDI:    "EART",
+  KRONOS:    "EMRT",
+  NEXUS:     "EMRT",
+  PRAXIS:    "EMRT",
+  CRITERIOS: "EMRT",
+  KAIROS:    "EMRT",
+  HERALD:    "ICPM",
+  TESSERA:   "EMRT",
+  AURUM:     "EMRT",
 };
 
 const STATIC_RUNTIME_ENGINES: EngineData[] = [

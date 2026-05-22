@@ -118,6 +118,9 @@ import ADEDDILib "lib/adeddi";
 import EddiOsLib "lib/eddi-os";
 import AdeddiMixin "mixins/adeddi-api";
 
+// ── Deep EDDI Kernel ──────────────────────────────────────────────────────────
+import DeepKernelMixin "mixins/deep-kernel-api";
+
 
 
 actor EduAI {
@@ -310,6 +313,9 @@ actor EduAI {
 
   // ── Alpha Deep EDDI (ADEDDI) + EDDI OS ───────────────────────────────────
   include AdeddiMixin(adeddiTraceStore, eddiOsState);
+
+  // ── Deep EDDI Kernel (stateless formula engine) ───────────────────────────
+  include DeepKernelMixin();
 
   // ── Sovereign heartbeat — ticks allocator, routes vault payloads ─────────
   system func heartbeat() : async () {

@@ -2,6 +2,8 @@
 // Connects to chatDeep() via ADEDDI API mixin.
 // Shows 7-layer reasoning trace for every response.
 
+import AstroBackground from "@/components/AstroBackground";
+import DeepKernelPanel from "@/components/DeepKernelPanel";
 import EddiOrb from "@/components/EddiOrb";
 import ReasoningTrace, { type ReasoningTraceData } from "@/components/ReasoningTrace";
 import { Link } from "@tanstack/react-router";
@@ -181,7 +183,9 @@ export default function EddiDeepChat() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen bg-black text-white flex flex-col relative">
+      {/* Astro deep-space background */}
+      <AstroBackground starCount={89} nebulaCount={5} showConstellation={false} />
       {/* Header */}
       <div
         className="sticky top-0 z-10 px-4 py-3 border-b border-white/5 flex items-center justify-between"
@@ -220,6 +224,20 @@ export default function EddiDeepChat() {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-6 max-w-3xl mx-auto w-full space-y-6">
+        {/* Deep Kernel Panel — shown while chat is empty */}
+        <AnimatePresence>
+          {showExamples && messages.length <= 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="mb-4"
+            >
+              <DeepKernelPanel showEngines={true} showFib={true} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Welcome examples */}
         <AnimatePresence>
           {showExamples && messages.length <= 1 && (

@@ -1356,3 +1356,98 @@
   --blur-strength: 12px;
   font-size: var(--text-base);
 }
+
+/* ─── ASTRO DEEP LANGUAGE — Cosmic visual system ────────────────────────── */
+
+/* Star twinkle pulse */
+@keyframes astro-twinkle {
+  0%, 100% { opacity: var(--star-opacity, 0.3); transform: scale(1); }
+  50%       { opacity: calc(var(--star-opacity, 0.3) * 2.2); transform: scale(1.4); }
+}
+
+/* Nebula breath — slow ambient bloom */
+@keyframes astro-nebula-breath {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: var(--nebula-opacity, 0.03); }
+  33%       { transform: translate(-50%, -50%) scale(1.08); opacity: calc(var(--nebula-opacity, 0.03) * 1.6); }
+  66%       { transform: translate(-50%, -50%) scale(0.95); opacity: calc(var(--nebula-opacity, 0.03) * 0.7); }
+}
+
+/* Slow orbital drift for constellation rings */
+@keyframes astro-orbit-cw {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes astro-orbit-ccw {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* PHI pulse — used by EDDI orb cosmic rings */
+@keyframes astro-phi-pulse {
+  0%, 100% { opacity: 0.15; }
+  61.8%    { opacity: 0.38; }
+}
+
+/* Deep kernel formula scroll */
+@keyframes astro-formula-tick {
+  0%   { transform: translateY(0);    opacity: 0; }
+  10%  { transform: translateY(0);    opacity: 1; }
+  85%  { transform: translateY(0);    opacity: 1; }
+  100% { transform: translateY(-4px); opacity: 0; }
+}
+
+/* Utility classes — composable with Tailwind */
+.astro-star {
+  animation: astro-twinkle var(--star-duration, 3s) var(--star-delay, 0s) ease-in-out infinite;
+}
+
+.astro-nebula {
+  animation: astro-nebula-breath var(--nebula-duration, 10s) var(--nebula-delay, 0s) ease-in-out infinite;
+}
+
+.astro-orbit-cw {
+  animation: astro-orbit-cw var(--orbit-duration, 34s) linear infinite;
+}
+
+.astro-orbit-ccw {
+  animation: astro-orbit-ccw var(--orbit-duration, 55s) linear infinite;
+}
+
+.astro-phi-pulse {
+  animation: astro-phi-pulse 3.18s ease-in-out infinite; /* 3.18 ≈ 2 × φ */
+}
+
+/* Deep space glass — educational portal surfaces with cosmic tint */
+.glass-deep-space {
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 10, 60, 0.45) 0%,
+    rgba(5, 8, 20, 0.82) 100%
+  );
+  border: 1px solid rgba(192, 132, 252, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(192, 132, 252, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* EDDI DEEP mode card surface */
+.glass-eddi-deep {
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  background: linear-gradient(
+    135deg,
+    rgba(192, 132, 252, 0.07) 0%,
+    rgba(6, 8, 18, 0.88) 100%
+  );
+  border: 1px solid rgba(192, 132, 252, 0.18);
+  box-shadow: 0 0 40px rgba(192, 132, 252, 0.08),
+              0 8px 32px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(192, 132, 252, 0.08);
+}
+
+/* Astro glow utility — applies to any element */
+.glow-deep  { box-shadow: 0 0 32px rgba(192, 132, 252, 0.25), 0 0 64px rgba(192, 132, 252, 0.08); }
+.glow-field { box-shadow: 0 0 32px rgba(52, 211, 153, 0.22),  0 0 64px rgba(52, 211, 153, 0.07); }
+.glow-gold  { box-shadow: 0 0 32px rgba(245, 158, 11, 0.25),  0 0 64px rgba(245, 158, 11, 0.08); }

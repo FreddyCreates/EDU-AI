@@ -1,6 +1,8 @@
 // EddiOsConsole — EDDI OS Status Dashboard (IT portal only, desktop-first).
 // Displays all 10 EDDI OS subsystems with lifecycle status, heartbeat, PHI health score.
 
+import AstroBackground from "@/components/AstroBackground";
+import DeepKernelPanel from "@/components/DeepKernelPanel";
 import EddiOrb from "@/components/EddiOrb";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@tanstack/react-router";
@@ -176,7 +178,9 @@ export default function EddiOsConsole() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-10">
+    <div className="min-h-screen bg-black text-white px-6 py-10 relative">
+      {/* Astro deep-space background */}
+      <AstroBackground starCount={89} nebulaCount={5} showConstellation={true} />
       {/* Nav */}
       <div className="max-w-6xl mx-auto">
         <Link
@@ -259,6 +263,15 @@ export default function EddiOsConsole() {
           {subsystems.map((sys, i) => (
             <SubsystemCard key={sys.id} sys={sys} index={i} />
           ))}
+        </div>
+
+        {/* Deep Kernel Panel */}
+        <div className="mt-6">
+          <h2 className="text-sm font-semibold text-white/60 uppercase tracking-widest flex items-center gap-2 mb-4">
+            <span style={{ color: GOLD }}>φ</span>
+            Deep Kernel Formula Engine
+          </h2>
+          <DeepKernelPanel showEngines={true} showFib={true} />
         </div>
 
         {/* Footer */}

@@ -1,5 +1,6 @@
 import { createActor } from "@/backend";
 import type { VisionStats } from "@/backend";
+import AstroBackground from "@/components/AstroBackground";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -145,7 +146,9 @@ export default function Landing() {
   const { data: stats, isLoading: statsLoading } = useVisionStats();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* ── Astro deep-space background ── */}
+      <AstroBackground starCount={144} nebulaCount={6} showConstellation={true} />
       {/* ── Top Nav ── */}
       <header className="sticky top-0 z-50 glass-max border-b border-white/5">
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">

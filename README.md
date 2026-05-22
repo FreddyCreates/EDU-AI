@@ -144,22 +144,28 @@ This is one of the repo's strongest signals that EduAI is intended as a platform
 
 ## Local Development
 
+If `pnpm` is not already installed in your environment, enable it first with:
+
+```bash
+corepack enable
+```
+
 Root workspace commands:
 
 ```bash
-corepack pnpm check
-corepack pnpm typecheck
-corepack pnpm build
+pnpm check
+pnpm typecheck
+pnpm build
 ```
 
 Frontend workspace commands:
 
 ```bash
 cd src/frontend
-corepack pnpm dev
-corepack pnpm check
-corepack pnpm typecheck
-corepack pnpm build
+pnpm dev
+pnpm check
+pnpm typecheck
+pnpm build
 ```
 
 ## Validation Note

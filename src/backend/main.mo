@@ -109,8 +109,14 @@ import StmpLib "lib/stmp";
 import SelfStudyLib "lib/selfstudy";
 import FeedbackAILib "lib/feedbackai";
 import SelfStudyMixin "mixins/selfstudy-api";
-import FeedbackAIMixin "mixins/feedbackai-api";import CatalogVisionLib "lib/catalog-vision";
+import FeedbackAIMixin "mixins/feedbackai-api";
+import CatalogVisionLib "lib/catalog-vision";
 import CatalogVisionMixin "mixins/catalog-vision-api";
+
+// ── Alpha Deep EDDI (ADEDDI) + EDDI OS ───────────────────────────────────────
+import ADEDDILib "lib/adeddi";
+import EddiOsLib "lib/eddi-os";
+import AdeddiMixin "mixins/adeddi-api";
 
 
 
@@ -165,6 +171,10 @@ actor EduAI {
   // ── EDDI unified model state ─────────────────────────────────────────────
   let eddiModeStore  : EDDILib.ModeStore      = Map.empty();
   let eddiAgentStore : EDDILib.UserAgentStore = Map.empty();
+
+  // ── Alpha Deep EDDI (ADEDDI) + EDDI OS state ──────────────────────────────
+  let adeddiTraceStore : ADEDDILib.TraceStore = ADEDDILib.newTraceStore();
+  let eddiOsState      : EddiOsLib.OsState    = EddiOsLib.newOsState();
 
   // ── University sovereign course state ────────────────────────────────────
   let univCourseStore  : UnivLib.CourseStore      = Map.empty();
@@ -298,6 +308,9 @@ actor EduAI {
   include FeedbackAIMixin(feedbackStore);
   include CatalogVisionMixin(fundingStore, rcgnStore, nomStore, achvStore);
 
+  // ── Alpha Deep EDDI (ADEDDI) + EDDI OS ───────────────────────────────────
+  include AdeddiMixin(adeddiTraceStore, eddiOsState);
+
   // ── Sovereign heartbeat — ticks allocator, routes vault payloads ─────────
   system func heartbeat() : async () {
     let vaultPayloads = SovereignMemory.heartbeat(allocState);
@@ -311,6 +324,8 @@ actor EduAI {
     if (rcgnCycleState.count % 8 == 0) {
       ignore RcgnLib.runScan(rcgnStore, passports, passportSeeds, Time.now());
     };
+    // EDDI OS heartbeat tick — advances all subsystem counters
+    EddiOsLib.tick(eddiOsState);
     SilverBuildersLib.incrementBuilderStat(builderStats, "ARGENTUM-NEXUS", #session, Time.now());
     ignore tickEntanglementCycle();
     if (vaultPayloads.size() > 0) {

@@ -7,5 +7,16 @@ name = "my-app"
 [workspace]
 include = ["src/**"]
 
+# ── Multi-canister production architecture ───────────────────────────────────
+# backend        — main orchestrator + EDDI OS + all portal APIs
+# vault-canister — sovereign memory + KERNEL_SEEDs (AbyssusVault)
+# intelligence   — ADEDDI deep reasoning (compute-heavy, separate cycle budget)
+# recognition    — RCGN + NOMS + ACHV autonomous pipeline
+
 [canisters.frontend]
 depends_on = ["backend"]
+
+# Intelligence canister inherits from backend for shared type definitions.
+# In a full multi-canister deployment each would be a separate actor.
+# The current monolithic backend includes all mixins; this declaration
+# documents the intended separation for future canister splits.

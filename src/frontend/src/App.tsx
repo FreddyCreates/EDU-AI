@@ -44,6 +44,15 @@ const RecognitionTimelinePage = lazy(
 );
 
 const SelfStudyPage = lazy(() => import("@/pages/SelfStudy"));
+const ScaffoldSessionPage = lazy(
+  () => import("@/pages/student/ScaffoldSession"),
+);
+const FeedbackLoopTrackerPage = lazy(
+  () => import("@/pages/student/FeedbackLoopTracker"),
+);
+const ProtocolManagerPage = lazy(
+  () => import("@/pages/teacher/ProtocolManager"),
+);
 const AchievementTimelinePage = lazy(
   () => import("@/pages/AchievementTimeline"),
 );
@@ -506,6 +515,24 @@ const studentSelfStudyRoute = createRoute({
   component: SelfStudyPage,
 });
 
+const studentScaffoldRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/scaffold",
+  component: ScaffoldSessionPage,
+});
+
+const studentFeedbackLoopsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/feedback-loops",
+  component: FeedbackLoopTrackerPage,
+});
+
+const teacherProtocolsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/protocols",
+  component: ProtocolManagerPage,
+});
+
 const achievementTimelineRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/achievement-timeline",
@@ -787,6 +814,10 @@ const routeTree = rootRoute.addChildren([
   studentKnowledgeBrowserRoute,
   // Self-study
   studentSelfStudyRoute,
+  studentScaffoldRoute,
+  studentFeedbackLoopsRoute,
+  // Teacher protocols
+  teacherProtocolsRoute,
   // Achievement timeline
   achievementTimelineRoute,
 ]);

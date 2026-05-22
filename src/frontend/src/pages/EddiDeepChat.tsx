@@ -193,7 +193,7 @@ export default function EddiDeepChat() {
       >
         <div className="flex items-center gap-3">
           <Link
-            to="/student"
+            to="/dashboard"
             className="p-1.5 rounded-lg border border-white/10 text-white/40 hover:text-white/80 transition-colors"
           >
             <ArrowLeft size={14} />

@@ -254,7 +254,7 @@ export default function SubstrateMonitor() {
       <div className="max-w-6xl mx-auto">
         {/* Nav */}
         <Link
-          to="/it"
+          to="/it/portal"
           className="inline-flex items-center gap-2 text-xs text-white/40 hover:text-white/70 mb-8 transition-colors"
         >
           <ArrowLeft size={13} /> IT Portal

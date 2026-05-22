@@ -121,6 +121,14 @@ import AdeddiMixin "mixins/adeddi-api";
 // ── Deep EDDI Kernel ──────────────────────────────────────────────────────────
 import DeepKernelMixin "mixins/deep-kernel-api";
 
+// ── Scaffold, Protocol, Feedback Loop ────────────────────────────────────────
+import ScaffoldLib "lib/scaffold";
+import ScaffoldMixin "mixins/scaffold-api";
+import ProtocolLib "lib/protocol";
+import ProtocolMixin "mixins/protocol-api";
+import FeedbackLoopLib "lib/feedbackloop";
+import FeedbackLoopMixin "mixins/feedbackloop-api";
+
 
 
 actor EduAI {
@@ -178,6 +186,13 @@ actor EduAI {
   // ── Alpha Deep EDDI (ADEDDI) + EDDI OS state ──────────────────────────────
   let adeddiTraceStore : ADEDDILib.TraceStore = ADEDDILib.newTraceStore();
   let eddiOsState      : EddiOsLib.OsState    = EddiOsLib.newOsState();
+
+  // ── Scaffold, Protocol, Feedback Loop state ───────────────────────────────
+  let scaffoldFrameStore   : ScaffoldLib.FrameStore   = ScaffoldLib.newFrameStore();
+  let scaffoldSessionStore : ScaffoldLib.SessionStore = ScaffoldLib.newSessionStore();
+  let protocolStore        : ProtocolLib.ProtocolStore   = ProtocolLib.newProtocolStore();
+  let protocolAssignStore  : ProtocolLib.AssignmentStore = ProtocolLib.newAssignmentStore();
+  let feedbackLoopStore    : FeedbackLoopLib.LoopStore   = FeedbackLoopLib.newLoopStore();
 
   // ── University sovereign course state ────────────────────────────────────
   let univCourseStore  : UnivLib.CourseStore      = Map.empty();
@@ -242,6 +257,8 @@ actor EduAI {
   StmpLib.seedDefaults(stmpStore);
   SilverBuildersLib.seedBuilders(silverBuilders);
   StaffLib.seedStaff(staffStore);
+  ScaffoldLib.seedFrames(scaffoldFrameStore);
+  ProtocolLib.seedProtocols(protocolStore);
 
   // Register pinned sovereign doctrine blocks — never evicted
   ignore SovereignMemory.alloc(allocState, 256, 3, "genesis_hash",  true);
@@ -316,6 +333,11 @@ actor EduAI {
 
   // ── Deep EDDI Kernel (stateless formula engine) ───────────────────────────
   include DeepKernelMixin();
+
+  // ── Scaffold, Protocol, Feedback Loop ────────────────────────────────────
+  include ScaffoldMixin(scaffoldFrameStore, scaffoldSessionStore);
+  include ProtocolMixin(protocolStore, protocolAssignStore);
+  include FeedbackLoopMixin(feedbackLoopStore);
 
   // ── Sovereign heartbeat — ticks allocator, routes vault payloads ─────────
   system func heartbeat() : async () {

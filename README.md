@@ -153,7 +153,6 @@ corepack enable
 Root workspace commands:
 
 ```bash
-pnpm check
 pnpm typecheck
 pnpm build
 ```
@@ -163,7 +162,6 @@ Frontend workspace commands:
 ```bash
 cd src/frontend
 pnpm dev
-pnpm check
 pnpm typecheck
 pnpm build
 ```

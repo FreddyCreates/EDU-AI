@@ -36,7 +36,7 @@ module {
     // Count calls within the window
     var count : Nat = 0;
     let fresh = List.empty<Int>();
-    for (ts in existing.toArray().vals()) {
+    for (ts in List.toArray(existing).vals()) {
       if (ts > cutoff) {
         count += 1;
         fresh.add(ts);

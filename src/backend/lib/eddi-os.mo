@@ -142,7 +142,7 @@ module {
       osVersion        = "EDDI_OS v1.0 ALPHA";
       activeSubsystems = active;
       totalSubsystems  = total;
-      subsystems       = list.toArray();
+      subsystems       = List.toArray(list);
       uptimeHeartbeats = state.uptimeHeartbeats;
       fieldScore       = fibFloor(if (fieldScore > 100) 100 else fieldScore);
       timestamp        = Time.now();

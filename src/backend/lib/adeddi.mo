@@ -287,7 +287,7 @@ module {
     {
       activeUsers          = total;
       dominantMode         = #DEEP_MODE;
-      modeDistribution     = distList.toArray();
+      modeDistribution     = List.toArray(distList);
       fieldScore           = if (fieldScore > 100) 100 else fieldScore;
       activeEngineCount    = ADEDDI_INSTANCE.activeEngines.size();
       totalSessionsThisHour = total;

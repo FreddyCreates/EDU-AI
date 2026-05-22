@@ -187,7 +187,7 @@ module {
     for ((_id, a) in store.entries()) {
       if (a.sessionId == sessionId) list.add(a);
     };
-    list.toArray();
+    List.toArray(list);
   };
 
   // ── Get all vault-eligible artifacts ─────────────────────────────────────
@@ -196,6 +196,6 @@ module {
     for ((_id, a) in store.entries()) {
       if (a.vaultEligible) list.add(a);
     };
-    list.toArray();
+    List.toArray(list);
   };
 };

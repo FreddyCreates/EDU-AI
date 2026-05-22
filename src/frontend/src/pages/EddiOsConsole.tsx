@@ -45,7 +45,7 @@ const SUBSYSTEMS_SEED: Subsystem[] = [
   { id: "AUTN",         name: "AUTN Autonomous",          status: "ACTIVE",  description: "PHI-entropy seeded novel response generator",   phiLoad: 47, heartbeats: 89  },
   { id: "FIELD_MON",    name: "Field Monitor",            status: "ACTIVE",  description: "Aggregate organism health — no PII",            phiLoad: 38, heartbeats: 89  },
   { id: "DOCTRINE_CPL", name: "Doctrine Compiler",        status: "ACTIVE",  description: "5 artifact formats — on-chain crystallisation", phiLoad: 29, heartbeats: 55  },
-  { id: "SUBSTRATE_REG","name": "Substrate Registry",     status: "ACTIVE",  description: "ICP / Julia / EduAI-Native routing",            phiLoad: 21, heartbeats: 55  },
+  { id: "SUBSTRATE_REG", name: "Substrate Registry",     status: "ACTIVE",  description: "ICP / Julia / EduAI-Native routing",            phiLoad: 21, heartbeats: 55  },
   { id: "UPGRADE_GRD",  name: "Upgrade Guard",            status: "ACTIVE",  description: "Pre/post upgrade stable memory validation",      phiLoad: 13, heartbeats: 34  },
 ];
 

@@ -146,7 +146,7 @@ module {
   public func getAll(reg : SubstrateRegistry) : [SubstrateNode] {
     let list = List.empty<SubstrateNode>();
     for ((_id, n) in reg.entries()) { list.add(n) };
-    list.toArray();
+    List.toArray(list);
   };
 
   // ── Update node status ────────────────────────────────────────────────────

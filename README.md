@@ -36,11 +36,11 @@ EduAI is a full-stack application with a TypeScript frontend and a Motoko backen
 - **Routing:** TanStack Router
 - **Data fetching/state:** TanStack Query with platform actor hooks from `@caffeineai/core-infrastructure`
 - **UI system:** glassmorphism-heavy design language with Tailwind, Radix UI primitives, motion animations, and OKLCH-driven styling
-- **Entry points:** `/tmp/workspace/FreddyCreates/EDU-AI/src/frontend/src/App.tsx` defines a large route surface spanning landing, demo, student, teacher, principal, IT, parent, counselor, district, recognition, passport, university, engine registry, and API exploration experiences
+- **Entry points:** `src/frontend/src/App.tsx` defines a large route surface spanning landing, demo, student, teacher, principal, IT, parent, counselor, district, recognition, passport, university, engine registry, and API exploration experiences
 
 ### Backend
 
-- **Runtime:** Motoko canister defined in `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/main.mo`
+- **Runtime:** Motoko canister defined in `src/backend/main.mo`
 - **Composition model:** the `EduAI` actor includes many domain mixins that expose APIs for students, agents, curriculum, sessions, passport, recognition, district, feedback, lessons, knowledge, university, staff, parent, counselor, and more
 - **Persistence model:** state is maintained through explicit stores for passports, kernel seeds, recognition flags, achievements, curriculum, engines, district analytics, feedback events, university enrollment, and sovereign memory allocation
 - **Tooling:** `mops.toml` configures the Motoko build and includes `openai-client`, though the repo narrative and architecture emphasize native platform intelligence and storage
@@ -49,8 +49,8 @@ EduAI is a full-stack application with a TypeScript frontend and a Motoko backen
 
 The central intelligence abstraction is **EDDI**:
 
-- Canonically defined as one model in `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/types/eddi.mo`
-- Backed by mode-selection, persona-selection, and response framing logic in `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/eddi.mo`
+- Canonically defined as one model in `src/backend/types/eddi.mo`
+- Backed by mode-selection, persona-selection, and response framing logic in `src/backend/lib/eddi.mo`
 - Exposed in the product through engine registry, agent, and chat flows across the frontend
 
 EDDI supports 7 named modes:
@@ -73,8 +73,8 @@ In practice, the repo treats named personas such as Sage, Quill, Spark, Atlas, E
 - Study activity is converted into `KERNEL_SEED` records
 - Memory compounds over time and feeds progress and recognition systems
 - Core files:
-  - `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/passport.mo`
-  - `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/sovereign-memory.mo`
+  - `src/backend/lib/passport.mo`
+  - `src/backend/lib/sovereign-memory.mo`
 
 #### 2. Live intelligence layer
 
@@ -90,7 +90,7 @@ Those values drive UI state, difficulty, and recognition behavior.
 
 Core file:
 
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/live-intelligence.mo`
+- `src/backend/lib/live-intelligence.mo`
 
 #### 3. Recognition pipeline
 
@@ -104,8 +104,8 @@ This creates a product path from learning activity to institutional recognition.
 
 Core files:
 
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/rcgn.mo`
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/main.mo`
+- `src/backend/lib/rcgn.mo`
+- `src/backend/main.mo`
 
 #### 4. Curriculum and learning layer
 
@@ -115,8 +115,8 @@ Core files:
 
 Core files:
 
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/curriculum.mo`
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/university.mo`
+- `src/backend/lib/curriculum.mo`
+- `src/backend/lib/university.mo`
 
 #### 5. Multi-portal application layer
 
@@ -134,13 +134,13 @@ This is one of the repo's strongest signals that EduAI is intended as a platform
 
 ## Repo Highlights
 
-- `/tmp/workspace/FreddyCreates/EDU-AI/project.json` — concise platform overview and feature list
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/frontend/src/App.tsx` — application route map
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/frontend/src/pages/Landing.tsx` — public-facing product positioning
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/frontend/src/pages/Vision.tsx` — vision and funding narrative surfaces
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/main.mo` — main sovereign actor and state wiring
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/engines.mo` — engine registry including EDDI
-- `/tmp/workspace/FreddyCreates/EDU-AI/src/backend/lib/agents.mo` — persona/agent registry
+- `project.json` — concise platform overview and feature list
+- `src/frontend/src/App.tsx` — application route map
+- `src/frontend/src/pages/Landing.tsx` — public-facing product positioning
+- `src/frontend/src/pages/Vision.tsx` — vision and funding narrative surfaces
+- `src/backend/main.mo` — main sovereign actor and state wiring
+- `src/backend/lib/engines.mo` — engine registry including EDDI
+- `src/backend/lib/agents.mo` — persona/agent registry
 
 ## Local Development
 
@@ -155,7 +155,7 @@ corepack pnpm build
 Frontend workspace commands:
 
 ```bash
-cd /tmp/workspace/FreddyCreates/EDU-AI/src/frontend
+cd src/frontend
 corepack pnpm dev
 corepack pnpm check
 corepack pnpm typecheck

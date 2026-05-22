@@ -44,8 +44,13 @@ interface ConstellationNode {
 }
 
 // ── PHI-seeded pseudo-random number ─────────────────────────────────────────
-// Uses the golden ratio to generate a stable sequence without a random seed,
-// giving deterministic layout that doesn't re-render on each mount.
+// Uses the golden ratio to generate a deterministic, well-distributed sequence
+// without a random seed. Because PHI is irrational, multiplying any integer by
+// PHI and taking the fractional part produces values that never repeat in a
+// regular pattern — giving uniform coverage of [0, 1) with no clustering.
+// This is the same property used in Fibonacci-based hash tables and low-discrepancy
+// sequences in computer graphics. It ensures the star layout is stable across
+// re-renders (no useState needed).
 const PHI = 1.6180339887;
 function phiSeq(index: number, modulus = 1): number {
   return ((index * PHI) % 1) * modulus;

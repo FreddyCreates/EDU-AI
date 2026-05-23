@@ -184,8 +184,10 @@ actor EduAI {
   let eddiAgentStore : EDDILib.UserAgentStore = Map.empty();
 
   // ── Alpha Deep EDDI (ADEDDI) + EDDI OS state ──────────────────────────────
-  let adeddiTraceStore : ADEDDILib.TraceStore = ADEDDILib.newTraceStore();
-  let eddiOsState      : EddiOsLib.OsState    = EddiOsLib.newOsState();
+  let adeddiTraceStore  : ADEDDILib.TraceStore      = ADEDDILib.newTraceStore();
+  let eddiOsState       : EddiOsLib.OsState         = EddiOsLib.newOsState();
+  let adeddiFieldState  : ADEDDILib.SharedFieldState = ADEDDILib.newFieldState();
+  let adeddiArtifacts   : ADEDDILib.ArtifactStore   = ADEDDILib.newArtifactStore();
 
   // ── Scaffold, Protocol, Feedback Loop state ───────────────────────────────
   let scaffoldFrameStore   : ScaffoldLib.FrameStore   = ScaffoldLib.newFrameStore();
@@ -329,7 +331,7 @@ actor EduAI {
   include CatalogVisionMixin(fundingStore, rcgnStore, nomStore, achvStore);
 
   // ── Alpha Deep EDDI (ADEDDI) + EDDI OS ───────────────────────────────────
-  include AdeddiMixin(adeddiTraceStore, eddiOsState);
+  include AdeddiMixin(adeddiTraceStore, eddiOsState, adeddiFieldState, adeddiArtifacts);
 
   // ── Deep EDDI Kernel (stateless formula engine) ───────────────────────────
   include DeepKernelMixin();
@@ -354,6 +356,8 @@ actor EduAI {
     };
     // EDDI OS heartbeat tick — advances all subsystem counters
     EddiOsLib.tick(eddiOsState);
+    // FieldMonitor heartbeat tick — updates organism health every cycle
+    ADEDDILib.tickFieldMonitor(adeddiFieldState);
     SilverBuildersLib.incrementBuilderStat(builderStats, "ARGENTUM-NEXUS", #session, Time.now());
     ignore tickEntanglementCycle();
     if (vaultPayloads.size() > 0) {

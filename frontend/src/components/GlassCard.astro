@@ -1,0 +1,15 @@
+---
+export interface Props {
+  variant?: 'gold' | 'teal' | 'surface';
+  class?: string;
+}
+const { variant = 'surface', class: className = '' } = Astro.props;
+const glassClass = variant === 'gold'
+  ? 'glass-grade-vault'
+  : variant === 'teal'
+  ? 'glass-knowledge-surface'
+  : 'glass-surface';
+---
+<div class={`${glassClass} p-fib-2xl ${className}`}>
+  <slot />
+</div>

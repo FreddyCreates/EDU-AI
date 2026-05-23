@@ -1,0 +1,109 @@
+/* EDU-AI Design System — OKLCH tokens, PHI grid, glassmorphism */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ── OKLCH Color Tokens ────────────────────────────────────────── */
+  --color-bg:              oklch(0.07 0.01 260);
+  --color-card-base:       oklch(0.10 0.012 260);
+  --color-gold:            oklch(0.76 0.18 84);
+  --color-teal:            oklch(0.72 0.17 155);
+  --color-cyan:            oklch(0.65 0.22 200);
+  --color-orange:          oklch(0.68 0.20 40);
+
+  /* ── Text opacity hierarchy ─────────────────────────────────────── */
+  --text-primary:   rgba(255,255,255,0.90);
+  --text-secondary: rgba(255,255,255,0.70);
+  --text-tertiary:  rgba(255,255,255,0.50);
+  --text-disabled:  rgba(255,255,255,0.40);
+
+  /* ── Gold glow tokens ────────────────────────────────────────────── */
+  --gold-border:  rgba(255,185,0,0.25);
+  --gold-glow:    rgba(255,185,0,0.18);
+
+  /* ── Teal glow tokens ────────────────────────────────────────────── */
+  --teal-border:  rgba(0,220,130,0.25);
+  --teal-glow:    rgba(0,220,130,0.18);
+
+  /* ── Heatmap gradient ───────────────────────────────────────────── */
+  --heatmap-1: oklch(0.07 0.01 260);
+  --heatmap-2: oklch(0.20 0.10 240);
+  --heatmap-3: oklch(0.30 0.15 220);
+  --heatmap-4: oklch(0.40 0.18 200);
+  --heatmap-5: oklch(0.55 0.20 155);
+  --heatmap-6: oklch(0.65 0.19 120);
+  --heatmap-7: oklch(0.72 0.18 84);
+  --heatmap-8: oklch(0.80 0.20 70);
+}
+
+html, body {
+  background-color: var(--color-bg);
+  color: var(--text-primary);
+  font-family: 'Figtree', system-ui, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Glass card utility classes ────────────────────────────────────── */
+
+.glass-grade-vault {
+  background: linear-gradient(135deg,
+    oklch(0.76 0.18 84 / 0.08) 0%,
+    oklch(0.10 0.012 260 / 0.72) 100%
+  );
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 0 24px var(--gold-glow), inset 0 0.5px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 13px;
+}
+
+.glass-knowledge-surface {
+  background: linear-gradient(135deg,
+    oklch(0.72 0.17 155 / 0.08) 0%,
+    oklch(0.10 0.012 260 / 0.72) 100%
+  );
+  border: 1px solid var(--teal-border);
+  box-shadow: 0 0 24px var(--teal-glow), inset 0 0.5px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 13px;
+}
+
+.glass-surface {
+  background: oklch(0.10 0.012 260 / 0.72);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: inset 0 0.5px 0 rgba(255,255,255,0.10);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 13px;
+}
+
+.glass-nav {
+  background: oklch(0.10 0.012 260 / 0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ── Text utilities ─────────────────────────────────────────────────── */
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary  { color: var(--text-tertiary); }
+.text-disabled  { color: var(--text-disabled); }
+.text-gold      { color: var(--color-gold); }
+.text-teal      { color: var(--color-teal); }
+
+/* ── ADEDDI 7-layer badge colors ────────────────────────────────────── */
+.layer-input     { border-color: oklch(0.65 0.22 200 / 0.6); color: oklch(0.65 0.22 200); }
+.layer-classify  { border-color: oklch(0.72 0.17 155 / 0.6); color: oklch(0.72 0.17 155); }
+.layer-cogt      { border-color: oklch(0.76 0.18 84  / 0.6); color: oklch(0.76 0.18 84); }
+.layer-meta      { border-color: oklch(0.68 0.20 40  / 0.6); color: oklch(0.68 0.20 40); }
+.layer-autn      { border-color: oklch(0.72 0.17 155 / 0.6); color: oklch(0.72 0.17 155); }
+.layer-synthesis { border-color: oklch(0.76 0.18 84  / 0.6); color: oklch(0.76 0.18 84); }
+.layer-seal      { border-color: oklch(0.80 0.20 70  / 0.6); color: oklch(0.80 0.20 70); }

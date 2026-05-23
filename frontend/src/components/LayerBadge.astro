@@ -1,0 +1,23 @@
+---
+export interface Props {
+  layer: 'INPUT' | 'CLASSIFY' | 'COGT' | 'META' | 'AUTN' | 'SYNTHESIS' | 'SEAL';
+  index: number;
+  description: string;
+  weight: string;
+}
+const { layer, index, description, weight } = Astro.props;
+const layerClass = `layer-${layer.toLowerCase()}`;
+---
+<div class={`glass-surface p-fib-lg border-l-2 ${layerClass} flex items-start gap-fib-lg`}>
+  <div class="flex-shrink-0 flex flex-col items-center gap-fib-xs">
+    <span class={`text-[10px] font-mono font-bold ${layerClass}`}>L{index}</span>
+    <div class={`w-6 h-6 rounded-full border ${layerClass} flex items-center justify-center text-[9px] font-mono`}>{index}</div>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center gap-fib-md mb-fib-xs">
+      <span class={`text-[11px] font-mono font-bold uppercase tracking-widest ${layerClass}`}>{layer}</span>
+      <span class="text-[10px] font-mono" style="color: var(--text-disabled);">φ×{weight}</span>
+    </div>
+    <p class="text-[13px] leading-relaxed" style="color: var(--text-secondary);">{description}</p>
+  </div>
+</div>

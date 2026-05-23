@@ -1,0 +1,28 @@
+---
+export interface Props {
+  name: string;
+  role: string;
+  tagline: string;
+  variant: 'gold' | 'teal';
+  engines: string[];
+  href?: string;
+}
+const { name, role, tagline, variant, engines, href = '#' } = Astro.props;
+const glassClass = variant === 'gold' ? 'glass-grade-vault' : 'glass-knowledge-surface';
+const accentColor = variant === 'gold' ? 'var(--color-gold)' : 'var(--color-teal)';
+---
+<a href={href} class={`${glassClass} block p-fib-2xl group transition-all hover:scale-[1.01] hover:opacity-95`}>
+  <div class="flex items-start justify-between mb-fib-xl">
+    <div>
+      <span class="text-[10px] font-mono uppercase tracking-widest" style={`color: ${accentColor}; opacity: 0.8;`}>{role}</span>
+      <h3 class="text-[20px] font-display font-semibold mt-fib-xs" style="color: var(--text-primary);">{name}</h3>
+    </div>
+    <span class="text-[20px] group-hover:translate-x-1 transition-transform" style={`color: ${accentColor};`}>→</span>
+  </div>
+  <p class="text-[14px] mb-fib-xl" style="color: var(--text-secondary);">{tagline}</p>
+  <div class="flex flex-wrap gap-fib-md">
+    {engines.map(e => (
+      <span class="glass-surface px-fib-md py-fib-xs text-[10px] font-mono" style={`color: ${accentColor}; border-color: ${accentColor}; opacity: 0.7;`}>{e}</span>
+    ))}
+  </div>
+</a>

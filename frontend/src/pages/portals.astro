@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import PortalCard from '../components/PortalCard.astro';
+import GlassCard from '../components/GlassCard.astro';
+
+const portals = [
+  {
+    name: 'Student Portal',
+    role: 'Learner',
+    tagline: 'EDDI deep reasoning chat with the full 7-layer ADEDDI chain. Self-study session tracking, scaffold support for guided problem-solving, knowledge browser across all subject domains, and feedback loop management.',
+    variant: 'teal' as const,
+    engines: ['EDDI', 'COGT', 'META', 'AUTN', 'MEMORIA-VIVA', 'SYNTHOS'],
+  },
+  {
+    name: 'Teacher Portal',
+    role: 'Educator',
+    tagline: 'Protocol authoring and management, AI-powered assessment and rubrics, class-wide recognition events, feedback authoring, and scaffold frame management. SKAI_DOCENS engine routes all teaching intelligence.',
+    variant: 'gold' as const,
+    engines: ['SKAI_DOCENS', 'CRITERIOS', 'HERALD', 'PRAXIS', 'KAIROS'],
+  },
+  {
+    name: 'Principal Portal',
+    role: 'School Leader',
+    tagline: 'School-wide catalog vision, funding intelligence, recognition milestone tracking, Silver Builders program, field health dashboard, and full organism pulse view powered by FieldMonitor.',
+    variant: 'gold' as const,
+    engines: ['NEXUS', 'KAIROS', 'AURUM', 'VEKTOR', 'FIELD-MONITOR'],
+  },
+  {
+    name: 'IT Portal',
+    role: 'Infrastructure',
+    tagline: 'Substrate health monitoring, EDDI OS console with subsystem management, deep system diagnostics, vault canister management, entanglement cycle tracking, and full heartbeat telemetry.',
+    variant: 'teal' as const,
+    engines: ['EDDI-OS', 'KRONOS', 'TESSERA', 'FIELD-MONITOR', 'DIAG'],
+  },
+];
+---
+<Base title="Portals" description="The four sovereign portals of EDU-AI — Student, Teacher, Principal, and IT — each powered by ADEDDI on ICP.">
+  <Nav />
+  <main class="pt-[55px]">
+
+    <section class="max-w-4xl mx-auto px-fib-2xl pt-fib-3xl pb-fib-2xl text-center">
+      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Four Portals. One Sovereign Organism.</span>
+      <h1 class="text-[44px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">
+        All <span style="color: var(--color-teal);">Portals</span>
+      </h1>
+      <p class="text-[16px] max-w-2xl mx-auto" style="color: var(--text-secondary);">
+        Every role in the school ecosystem has a dedicated sovereign portal with its own engine mix, all coordinated through the ADEDDI reasoning chain running fully on ICP.
+      </p>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-fib-xl mb-fib-3xl">
+        {portals.map(p => <PortalCard {...p} />)}
+      </div>
+
+      <GlassCard variant="teal" class="text-center">
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Sovereign Architecture</span>
+        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">All Portals → One Canister</h2>
+        <p class="text-[14px] max-w-2xl mx-auto mb-fib-xl" style="color: var(--text-secondary);">
+          Every portal shares the same ICP canister backend. The ADEDDI engine, FieldMonitor organism health tracker, DoctrineCompiler vault, and all 19 sovereign engines are all native Motoko modules. No server. No database. No third-party AI.
+        </p>
+        <div class="flex flex-wrap justify-center gap-fib-md">
+          {['Motoko Backend', 'ICP Canister', 'No External APIs', 'PHI Grid Architecture', 'Heartbeat Organism', 'Sovereign Vault'].map(tag => (
+            <span class="glass-surface px-fib-lg py-fib-md text-[11px] font-mono" style="color: var(--text-tertiary);">{tag}</span>
+          ))}
+        </div>
+      </GlassCard>
+    </section>
+
+    <footer class="border-t border-white/5 py-fib-3xl px-fib-2xl text-center">
+      <p class="text-[12px] font-mono" style="color: var(--text-disabled);">
+        EDU-AI · Sovereign K-12 Intelligence · Built on ICP · LEX_SOVEREIGNUS
+      </p>
+    </footer>
+  </main>
+</Base>

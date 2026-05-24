@@ -7,45 +7,46 @@ import GlassCard from '../components/GlassCard.astro';
 const portals = [
   {
     name: 'Student Portal',
-    role: 'Learner',
-    tagline: 'EDDI deep reasoning chat with the full 7-layer ADEDDI chain. Self-study session tracking, scaffold support for guided problem-solving, knowledge browser across all subject domains, and feedback loop management.',
+    role: 'For Students',
+    tagline: 'Your personal learning space. Chat with EDDI for homework help, take practice quizzes, track your progress across all subjects, and see how much you\'ve improved over time.',
     variant: 'teal' as const,
-    engines: ['EDDI', 'COGT', 'META', 'AUTN', 'MEMORIA-VIVA', 'SYNTHOS'],
+    features: ['AI Tutor Chat', 'Homework Help', 'Practice Quizzes', 'Progress Dashboard', 'Subject Browser', 'Study Streaks'],
   },
   {
     name: 'Teacher Portal',
-    role: 'Educator',
-    tagline: 'Protocol authoring and management, AI-powered assessment and rubrics, class-wide recognition events, feedback authoring, and scaffold frame management. SKAI_DOCENS engine routes all teaching intelligence.',
+    role: 'For Educators',
+    tagline: 'Powerful tools to help you teach smarter. Create lessons with AI assistance, grade assignments faster, track class performance, and provide personalized feedback to every student.',
     variant: 'gold' as const,
-    engines: ['SKAI_DOCENS', 'CRITERIOS', 'HERALD', 'PRAXIS', 'KAIROS'],
+    features: ['Lesson Builder', 'AI Grading Assistant', 'Class Analytics', 'Student Progress', 'Feedback Tools', 'Standards Alignment'],
   },
   {
     name: 'Principal Portal',
-    role: 'School Leader',
-    tagline: 'School-wide catalog vision, funding intelligence, recognition milestone tracking, Silver Builders program, field health dashboard, and full organism pulse view powered by FieldMonitor.',
+    role: 'For School Leaders',
+    tagline: 'See the big picture of your school\'s performance. Monitor achievement trends, recognize student milestones, manage curriculum alignment, and make data-driven decisions for your school.',
     variant: 'gold' as const,
-    engines: ['NEXUS', 'KAIROS', 'AURUM', 'VEKTOR', 'FIELD-MONITOR'],
+    features: ['School Dashboard', 'Achievement Tracking', 'Recognition Events', 'Curriculum Overview', 'Performance Reports', 'Goal Setting'],
   },
   {
     name: 'IT Portal',
-    role: 'Infrastructure',
-    tagline: 'Substrate health monitoring, EDDI OS console with subsystem management, deep system diagnostics, vault canister management, entanglement cycle tracking, and full heartbeat telemetry.',
+    role: 'For Administrators',
+    tagline: 'Keep everything running smoothly. Manage user accounts, monitor system health, configure school settings, handle integrations, and ensure student data stays private and secure.',
     variant: 'teal' as const,
-    engines: ['EDDI-OS', 'KRONOS', 'TESSERA', 'FIELD-MONITOR', 'DIAG'],
+    features: ['User Management', 'System Health', 'Privacy Controls', 'SSO Integration', 'Data Exports', 'Security Logs'],
   },
 ];
 ---
-<Base title="Portals" description="The four sovereign portals of EDU-AI — Student, Teacher, Principal, and IT — each powered by ADEDDI on ICP.">
+<Base title="Portals" description="Choose your portal — Student, Teacher, Principal, or IT — and access the tools designed for your role.">
   <Nav />
   <main class="pt-[55px]">
 
     <section class="max-w-4xl mx-auto px-fib-2xl pt-fib-3xl pb-fib-2xl text-center">
-      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Four Portals. One Sovereign Organism.</span>
+      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Choose Your Experience</span>
       <h1 class="text-[44px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">
-        All <span style="color: var(--color-teal);">Portals</span>
+        Your <span style="color: var(--color-teal);">Portal</span> Awaits
       </h1>
       <p class="text-[16px] max-w-2xl mx-auto" style="color: var(--text-secondary);">
-        Every role in the school ecosystem has a dedicated sovereign portal with its own engine mix, all coordinated through the ADEDDI reasoning chain running fully on ICP.
+        Every person in your school has a dedicated experience designed just for them. 
+        Students learn, teachers teach, principals lead, and IT keeps it all running — all in one platform.
       </p>
     </section>
 
@@ -55,22 +56,46 @@ const portals = [
       </div>
 
       <GlassCard variant="teal" class="text-center">
-        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Sovereign Architecture</span>
-        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">All Portals → One Canister</h2>
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">One Platform, Everyone Connected</span>
+        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">Built for How Schools Really Work</h2>
         <p class="text-[14px] max-w-2xl mx-auto mb-fib-xl" style="color: var(--text-secondary);">
-          Every portal shares the same ICP canister backend. The ADEDDI engine, FieldMonitor organism health tracker, DoctrineCompiler vault, and all 19 sovereign engines are all native Motoko modules. No server. No database. No third-party AI.
+          When a student completes an assignment, teachers see it instantly. When teachers update grades, 
+          students and parents are notified. When principals set goals, the whole school can track progress together. 
+          EDU-AI keeps everyone on the same page — securely and privately.
         </p>
         <div class="flex flex-wrap justify-center gap-fib-md">
-          {['Motoko Backend', 'ICP Canister', 'No External APIs', 'PHI Grid Architecture', 'Heartbeat Organism', 'Sovereign Vault'].map(tag => (
+          {['Real-Time Updates', 'Secure & Private', 'Works on Any Device', 'No Training Needed', 'Free Support', 'COPPA Compliant'].map(tag => (
             <span class="glass-surface px-fib-lg py-fib-md text-[11px] font-mono" style="color: var(--text-tertiary);">{tag}</span>
           ))}
         </div>
       </GlassCard>
     </section>
 
+    <!-- ── Grade Levels Section ──────────────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
+      <div class="text-center mb-fib-2xl">
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">K-12 Coverage</span>
+        <h2 class="text-[28px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">Every Grade, Every Subject</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-fib-lg">
+        {[
+          { grades: 'K-2', label: 'Early Elementary', desc: 'Foundational skills in reading, writing, and math' },
+          { grades: '3-5', label: 'Upper Elementary', desc: 'Building knowledge across all core subjects' },
+          { grades: '6-8', label: 'Middle School', desc: 'Deeper learning and critical thinking skills' },
+          { grades: '9-12', label: 'High School', desc: 'Advanced subjects and college prep' },
+        ].map(g => (
+          <div class="glass-grade-vault p-fib-xl text-center">
+            <p class="text-[28px] font-display font-bold" style="color: var(--color-gold);">{g.grades}</p>
+            <p class="text-[12px] font-semibold mb-fib-xs" style="color: var(--text-primary);">{g.label}</p>
+            <p class="text-[11px]" style="color: var(--text-tertiary);">{g.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
     <footer class="border-t border-white/5 py-fib-3xl px-fib-2xl text-center">
       <p class="text-[12px] font-mono" style="color: var(--text-disabled);">
-        EDU-AI · Sovereign K-12 Intelligence · Built on ICP · LEX_SOVEREIGNUS
+        EDU-AI · AI-Powered Learning for K-12 Schools
       </p>
     </footer>
   </main>

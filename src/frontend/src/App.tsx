@@ -48,6 +48,13 @@ const AchievementTimelinePage = lazy(
   () => import("@/pages/AchievementTimeline"),
 );
 
+// Terminal pages - school kiosk entry points
+const TerminalHubPage = lazy(() => import("@/pages/terminals/TerminalHub"));
+const StudentTerminalPage = lazy(() => import("@/pages/terminals/StudentTerminal"));
+const StaffTerminalPage = lazy(() => import("@/pages/terminals/StaffTerminal"));
+const AdminTerminalPage = lazy(() => import("@/pages/terminals/AdminTerminal"));
+const ExternalTerminalPage = lazy(() => import("@/pages/terminals/ExternalTerminal"));
+
 // Root route
 const rootRoute = createRootRoute({
   component: () => (
@@ -447,6 +454,37 @@ const districtReportsRoute = createRoute({
   component: DistrictReports,
 });
 
+// Terminal routes - school kiosk entry points
+const terminalsHubRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/terminals",
+  component: TerminalHubPage,
+});
+
+const studentTerminalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/terminal/student",
+  component: StudentTerminalPage,
+});
+
+const staffTerminalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/terminal/staff",
+  component: StaffTerminalPage,
+});
+
+const adminTerminalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/terminal/admin",
+  component: AdminTerminalPage,
+});
+
+const externalTerminalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/terminal/external",
+  component: ExternalTerminalPage,
+});
+
 // New student feature routes
 const studentTestPrepRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -762,6 +800,12 @@ const routeTree = rootRoute.addChildren([
   studentSelfStudyRoute,
   // Achievement timeline
   achievementTimelineRoute,
+  // Terminal routes
+  terminalsHubRoute,
+  studentTerminalRoute,
+  staffTerminalRoute,
+  adminTerminalRoute,
+  externalTerminalRoute,
 ]);
 
 const router = createRouter({ routeTree });

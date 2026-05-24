@@ -377,6 +377,15 @@ const ITSystemAlerts = lazy(() => import("@/pages/it/SystemAlerts"));
 const ITDataBackup = lazy(() => import("@/pages/it/DataBackup"));
 const ITIntegrationHub = lazy(() => import("@/pages/it/IntegrationHub"));
 
+// New AI-powered features
+const ITSandboxEnvironment = lazy(() => import("@/pages/it/SandboxEnvironment"));
+const ITAINetworkDiagnostics = lazy(() => import("@/pages/it/AINetworkDiagnostics"));
+const ITSmartOnboarding = lazy(() => import("@/pages/it/SmartOnboarding"));
+const TeacherAICurriculumGenerator = lazy(() => import("@/pages/teacher/AICurriculumGenerator"));
+const TeacherAIStudentInsights = lazy(() => import("@/pages/teacher/AIStudentInsights"));
+const StudentAILearningPath = lazy(() => import("@/pages/student/AILearningPath"));
+const StudentAIWritingCoach = lazy(() => import("@/pages/student/AIWritingCoach"));
+
 // Parent portal routes
 const parentRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -801,6 +810,51 @@ const itIntegrationsRoute = createRoute({
   component: ITIntegrationHub,
 });
 
+// New AI-powered IT feature routes
+const itSandboxRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/sandbox",
+  component: ITSandboxEnvironment,
+});
+
+const itNetworkDiagnosticsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/network-diagnostics",
+  component: ITAINetworkDiagnostics,
+});
+
+const itSmartOnboardingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/smart-onboarding",
+  component: ITSmartOnboarding,
+});
+
+// New AI-powered Teacher feature routes
+const teacherCurriculumGeneratorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/curriculum-generator",
+  component: TeacherAICurriculumGenerator,
+});
+
+const teacherStudentInsightsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/student-insights",
+  component: TeacherAIStudentInsights,
+});
+
+// New AI-powered Student feature routes
+const studentLearningPathRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/learning-path",
+  component: StudentAILearningPath,
+});
+
+const studentWritingCoachRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/writing-coach",
+  component: StudentAIWritingCoach,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   visionRoute,
@@ -916,6 +970,16 @@ const routeTree = rootRoute.addChildren([
   itAlertsRoute,
   itBackupRoute,
   itIntegrationsRoute,
+  // AI-powered IT features
+  itSandboxRoute,
+  itNetworkDiagnosticsRoute,
+  itSmartOnboardingRoute,
+  // AI-powered Teacher features
+  teacherCurriculumGeneratorRoute,
+  teacherStudentInsightsRoute,
+  // AI-powered Student features
+  studentLearningPathRoute,
+  studentWritingCoachRoute,
 ]);
 
 const router = createRouter({ routeTree });

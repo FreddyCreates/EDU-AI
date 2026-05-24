@@ -7,6 +7,7 @@ import Principal "mo:core/Principal";
 import Time "mo:core/Time";
 import Debug "mo:core/Debug";
 import Float "mo:core/Float";
+import Text "mo:core/Text";
 import PassportLib "../lib/passport";
 import Common "../types/common";
 import Types "../types/passport";
@@ -66,7 +67,9 @@ func testPassportIdFormat() {
   
   let passport = PassportLib.createPassport(passports, seedStore, caller, "Bob", "3", "COLLEGIUM-VERITAS", now);
   
-  assertTrue(passport.passportId.startsWith(#text "PP-"), "Passport ID should start with PP-");
+  // Check passport ID format: starts with "PP-"
+  let idPrefix = Text.fromIter(passport.passportId.toIter().take(3));
+  assertTrue(idPrefix == "PP-", "Passport ID should start with PP-");
   assertTrue(passport.passportId.size() >= 11, "Passport ID should have minimum length");
   Debug.print("✓ testPassportIdFormat passed");
 };
@@ -295,7 +298,9 @@ func testAutoSealFromSession() {
     now
   );
   
-  assertTrue(seedId.startsWith(#text "seed-"), "Seed ID should start with seed-");
+  // Check seed ID format: starts with "seed-"
+  let seedPrefix = Text.fromIter(seedId.toIter().take(5));
+  assertTrue(seedPrefix == "seed-", "Seed ID should start with seed-");
   
   let passport = PassportLib.getPassport(passports, seedStore, caller);
   switch (passport) {

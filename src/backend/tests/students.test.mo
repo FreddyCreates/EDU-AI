@@ -5,6 +5,7 @@ import Map "mo:core/Map";
 import Principal "mo:core/Principal";
 import Time "mo:core/Time";
 import Debug "mo:core/Debug";
+import Nat "mo:core/Nat";
 import StudentsLib "../lib/students";
 import Common "../types/common";
 import Types "../types/students";

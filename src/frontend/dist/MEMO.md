@@ -1,17 +1,3 @@
-## EduAI v26 — Scaffold, Protocol & Feedback Loop Routes Wired
-Updated: 2026-05-22
-
-### New in v26
-- Scaffold Support at `/student/scaffold` — ScaffoldSession page with Tier 1/2/3 graduated hints
-- Feedback Loop Tracker at `/student/feedback-loops` — FeedbackLoopTracker with mastery ring, attempt feed, EDDI gap analysis
-- Protocol Manager at `/teacher/protocols` — ProtocolManager with protocol library, assignment modal, activation/completion flow
-- All 3 new pages lazy-loaded and registered in router (`App.tsx`)
-- Student nav: added Self-Study, Knowledge Browser, Scaffold Support, Feedback Loops entries
-- Teacher nav: added Protocols and Recognition entries
-- Fixed pre-existing broken route links: `/student` → `/dashboard` (EddiDeepChat), `/it` → `/it/portal` (EddiOsConsole, SubstrateMonitor)
-
----
-
 ## EduAI v25 — Diego Protocol + Self-Study Creator + Feedback AI
 Updated: 2026-05-20
 

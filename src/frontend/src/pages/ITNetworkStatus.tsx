@@ -263,7 +263,7 @@ export default function ITNetworkStatus() {
           className="glass-lg rounded-2xl px-[var(--phi-21)] py-[var(--phi-13)] flex items-center gap-[var(--phi-13)]"
           style={{ borderColor: "rgba(0,220,130,0.18)" }}
         >
-          <Link to="/it/portal" data-ocid="it-network.back_link">
+          <Link to="/it-security" data-ocid="it-network.back_link">
             <button
               type="button"
               className="glass-sm rounded-xl p-[var(--phi-8)] hover:bg-[oklch(0.72_0.17_155/0.1)] transition-smooth"

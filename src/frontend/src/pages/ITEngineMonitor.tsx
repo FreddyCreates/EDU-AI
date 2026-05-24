@@ -1,10 +1,8 @@
 import EddiOrb from "@/components/EddiOrb";
 import { useEngines } from "@/hooks/use-engines";
-import { Link } from "@tanstack/react-router";
 import {
   Activity,
   AlertTriangle,
-  ArrowLeft,
   CheckCircle,
   Clock,
   Cpu,
@@ -75,17 +73,6 @@ const ENGINE_SUBSTRATE_MAP: Record<string, Substrate> = {
   DIGT: "ICPM",
   GVLT: "ICPM",
   TCHR: "ICPM",
-  // v26 sovereign engines — ADEDDI organism
-  EDDI:      "EART",
-  ADEDDI:    "EART",
-  KRONOS:    "EMRT",
-  NEXUS:     "EMRT",
-  PRAXIS:    "EMRT",
-  CRITERIOS: "EMRT",
-  KAIROS:    "EMRT",
-  HERALD:    "ICPM",
-  TESSERA:   "EMRT",
-  AURUM:     "EMRT",
 };
 
 const STATIC_RUNTIME_ENGINES: EngineData[] = [
@@ -554,15 +541,6 @@ export default function ITEngineMonitor() {
         <div className="max-w-[1600px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Link to="/it/portal" data-ocid="engine_monitor.back_link">
-                <button
-                  type="button"
-                  className="glass-sm rounded-xl p-2 hover:bg-[oklch(0.72_0.17_155/0.1)] transition-smooth"
-                  aria-label="Back to IT Portal"
-                >
-                  <ArrowLeft className="w-5 h-5" style={{ color: GREEN }} />
-                </button>
-              </Link>
               <div
                 className="flex h-10 w-10 items-center justify-center rounded-xl"
                 style={{ background: GREEN_BG, boxShadow: GREEN_GLOW }}

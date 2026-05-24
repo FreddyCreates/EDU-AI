@@ -109,25 +109,8 @@ import StmpLib "lib/stmp";
 import SelfStudyLib "lib/selfstudy";
 import FeedbackAILib "lib/feedbackai";
 import SelfStudyMixin "mixins/selfstudy-api";
-import FeedbackAIMixin "mixins/feedbackai-api";
-import CatalogVisionLib "lib/catalog-vision";
+import FeedbackAIMixin "mixins/feedbackai-api";import CatalogVisionLib "lib/catalog-vision";
 import CatalogVisionMixin "mixins/catalog-vision-api";
-
-// ── Alpha Deep EDDI (ADEDDI) + EDDI OS ───────────────────────────────────────
-import ADEDDILib "lib/adeddi";
-import EddiOsLib "lib/eddi-os";
-import AdeddiMixin "mixins/adeddi-api";
-
-// ── Deep EDDI Kernel ──────────────────────────────────────────────────────────
-import DeepKernelMixin "mixins/deep-kernel-api";
-
-// ── Scaffold, Protocol, Feedback Loop ────────────────────────────────────────
-import ScaffoldLib "lib/scaffold";
-import ScaffoldMixin "mixins/scaffold-api";
-import ProtocolLib "lib/protocol";
-import ProtocolMixin "mixins/protocol-api";
-import FeedbackLoopLib "lib/feedbackloop";
-import FeedbackLoopMixin "mixins/feedbackloop-api";
 
 
 
@@ -182,19 +165,6 @@ actor EduAI {
   // ── EDDI unified model state ─────────────────────────────────────────────
   let eddiModeStore  : EDDILib.ModeStore      = Map.empty();
   let eddiAgentStore : EDDILib.UserAgentStore = Map.empty();
-
-  // ── Alpha Deep EDDI (ADEDDI) + EDDI OS state ──────────────────────────────
-  let adeddiTraceStore  : ADEDDILib.TraceStore      = ADEDDILib.newTraceStore();
-  let eddiOsState       : EddiOsLib.OsState         = EddiOsLib.newOsState();
-  let adeddiFieldState  : ADEDDILib.SharedFieldState = ADEDDILib.newFieldState();
-  let adeddiArtifacts   : ADEDDILib.ArtifactStore   = ADEDDILib.newArtifactStore();
-
-  // ── Scaffold, Protocol, Feedback Loop state ───────────────────────────────
-  let scaffoldFrameStore   : ScaffoldLib.FrameStore   = ScaffoldLib.newFrameStore();
-  let scaffoldSessionStore : ScaffoldLib.SessionStore = ScaffoldLib.newSessionStore();
-  let protocolStore        : ProtocolLib.ProtocolStore   = ProtocolLib.newProtocolStore();
-  let protocolAssignStore  : ProtocolLib.AssignmentStore = ProtocolLib.newAssignmentStore();
-  let feedbackLoopStore    : FeedbackLoopLib.LoopStore   = FeedbackLoopLib.newLoopStore();
 
   // ── University sovereign course state ────────────────────────────────────
   let univCourseStore  : UnivLib.CourseStore      = Map.empty();
@@ -259,8 +229,6 @@ actor EduAI {
   StmpLib.seedDefaults(stmpStore);
   SilverBuildersLib.seedBuilders(silverBuilders);
   StaffLib.seedStaff(staffStore);
-  ScaffoldLib.seedFrames(scaffoldFrameStore);
-  ProtocolLib.seedProtocols(protocolStore);
 
   // Register pinned sovereign doctrine blocks — never evicted
   ignore SovereignMemory.alloc(allocState, 256, 3, "genesis_hash",  true);
@@ -330,17 +298,6 @@ actor EduAI {
   include FeedbackAIMixin(feedbackStore);
   include CatalogVisionMixin(fundingStore, rcgnStore, nomStore, achvStore);
 
-  // ── Alpha Deep EDDI (ADEDDI) + EDDI OS ───────────────────────────────────
-  include AdeddiMixin(adeddiTraceStore, eddiOsState, adeddiFieldState, adeddiArtifacts);
-
-  // ── Deep EDDI Kernel (stateless formula engine) ───────────────────────────
-  include DeepKernelMixin();
-
-  // ── Scaffold, Protocol, Feedback Loop ────────────────────────────────────
-  include ScaffoldMixin(scaffoldFrameStore, scaffoldSessionStore);
-  include ProtocolMixin(protocolStore, protocolAssignStore);
-  include FeedbackLoopMixin(feedbackLoopStore);
-
   // ── Sovereign heartbeat — ticks allocator, routes vault payloads ─────────
   system func heartbeat() : async () {
     let vaultPayloads = SovereignMemory.heartbeat(allocState);
@@ -354,10 +311,6 @@ actor EduAI {
     if (rcgnCycleState.count % 8 == 0) {
       ignore RcgnLib.runScan(rcgnStore, passports, passportSeeds, Time.now());
     };
-    // EDDI OS heartbeat tick — advances all subsystem counters
-    EddiOsLib.tick(eddiOsState);
-    // FieldMonitor heartbeat tick — updates organism health every cycle
-    ADEDDILib.tickFieldMonitor(adeddiFieldState);
     SilverBuildersLib.incrementBuilderStat(builderStats, "ARGENTUM-NEXUS", #session, Time.now());
     ignore tickEntanglementCycle();
     if (vaultPayloads.size() > 0) {

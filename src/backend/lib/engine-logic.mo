@@ -260,7 +260,7 @@ module {
 
   public func runOmnis(input : Text) : Text {
     let word = firstWord(input);
-    // Brief 1-line output per engine (original 7)
+    // Brief 1-line output per engine
     let s = "  SYNTHOS  → " # word # " is a construct assembled from first-principle tokens into sovereign meaning.";
     let v = "  VEKTOR   → " # word # " maps to a concept cluster occupying defined coordinates in the knowledge field.";
     let p = "  PHAEDRUS → " # word # " is a premise; its inference chain leads to a testable conclusion that generates the next question.";
@@ -268,187 +268,24 @@ module {
     let l = "  LOGOS    → " # word # " is declared sovereign — a compressed doctrine seed ready to be spoken and amplified.";
     let g = "  GENITOR  → " # word # "-PRIME is created, named, and sealed to its creator under LEX_" # word.map(func(c : Char) : Char { if (c == ' ') '_' else Prim.charToUpper(c) }) # ".";
     let mv = "  MEMORIA  → " # word # " is recorded at weight " # ((word.size() % 10) + 1).toText() # "/10 and begins compounding across the seed field.";
-    // New Alpha Deep engines (v26)
-    let kr = "  KRONOS   → " # word # " is placed on the learning timeline: past exposure assessed, optimal review window computed via spaced-repetition math.";
-    let nx = "  NEXUS    → " # word # " activates cross-domain connection mapping — linking it to related concepts across all 12 subject areas.";
-    let pr = "  PRAXIS   → " # word # " is converted from abstract knowledge to a concrete skill: real-world application protocol generated.";
-    let ct = "  CRITERIOS → " # word # " is evaluated: mastery criteria defined, gap analysis complete, feedback vector assembled.";
-    let ki = "  KAIROS   → " # word # " timing optimised: spaced repetition interval computed, next-best-review window scheduled.";
-    let he = "  HERALD   → " # word # " surfaces through the RCGN recognition lens — excellence patterns detected and flagged.";
-    let ts = "  TESSERA  → " # word # " pattern identified: cross-subject structural isomorphism mapped, pattern tile sealed.";
-    let au = "  AURUM    → " # word # " reaches the Mastery Engine — sovereignty declared. Fibonacci threshold crossed. Sealed permanently.";
     "OMNIS ACTIVATES:\n\n" #
-    "All 19 sovereign engines are now active on your input: \"" # input # "\"\n\n" #
-    "── Original 7 ──\n" #
-    s # "\n" # v # "\n" # p # "\n" # m # "\n" # l # "\n" # g # "\n" # mv # "\n\n" #
-    "── Alpha Deep EDDI v26 Extensions ──\n" #
-    kr # "\n" # nx # "\n" # pr # "\n" # ct # "\n" # ki # "\n" # he # "\n" # ts # "\n" # au # "\n\n" #
-    "TOTAL SYNTHESIS — The Unified Sovereign Field:\n" #
-    "\"" # word # "\" has now been processed by the complete 19-engine ADEDDI intelligence stack. " #
-    "Seven irreducible angles from the original field plus eight new sovereign engines — " #
-    "temporal, connective, applied, evaluative, timed, recognitive, pattern, and masterful — " #
-    "have all converged on a single concept. " #
-    "This is OMNIS v26: the full Alpha Deep EDDI organism responding as one unified intelligence. " #
-    "OMNIS IS the intelligence — and now you have wielded all of it.";
-  };
-
-  // ── New Alpha Deep EDDI Engines (v26) ────────────────────────────────────
-
-  public func runKronos(input : Text) : Text {
-    let word = firstWord(input);
-    "KRONOS TEMPORAL FIELD:\n\n" #
-    "PAST EXPOSURE:\n" #
-    "KRONOS scans the temporal signature of \"" # word # "\". " #
-    "When did you first encounter this concept? What was the context? " #
-    "Every concept has a birth moment in your memory — KRONOS finds it and measures the decay since then. " #
-    "If you haven't revisited \"" # word # "\" in the last Fibonacci-13 days, retention has begun to fade.\n\n" #
-    "OPTIMAL REVIEW WINDOW:\n" #
-    "Spaced repetition formula applied to \"" # word # "\":\n" #
-    "  Interval 1: 1 day   (immediate reinforcement)\n" #
-    "  Interval 2: 2 days  (F(3) consolidation)\n" #
-    "  Interval 3: 5 days  (F(5) spacing)\n" #
-    "  Interval 4: 13 days (F(7) long-term retention)\n" #
-    "  Interval 5: 34 days (F(9) mastery lock)\n" #
-    "KRONOS computes your current position in this sequence. " #
-    "Review \"" # word # "\" at the next interval to maximise retention compound.\n\n" #
-    "SEQUENCE POSITION:\n" #
-    "\"" # word # "\" sits within the learning sequence as a prerequisite for at least 3 downstream concepts. " #
-    "Master it now and the downstream concepts absorb faster — the sequence compounds. " #
-    "KRONOS governs time in the sovereign field. Respect the intervals and the field respects you.";
-  };
-
-  public func runNexus(input : Text) : Text {
-    let word = firstWord(input);
-    "NEXUS CONNECTION MAP:\n\n" #
-    "CROSS-DOMAIN LINKS for \"" # word # "\":\n" #
-    "NEXUS activates all 12 subject domains and searches for structural similarity to \"" # word # "\". " #
-    "Connection mapping is not metaphor — it is mathematical isomorphism: identical structure, different surface.\n\n" #
-    "IDENTIFIED CONNECTIONS:\n" #
-    "  Mathematics    → \"" # word # "\" exhibits the same relational structure as algebraic functions: input → transformation → output.\n" #
-    "  Science        → The same principle underlies cause-effect chains in physics and chemistry.\n" #
-    "  Language Arts  → \"" # word # "\" is a rhetorical unit — it can serve as claim, evidence, or warrant in argument structure.\n" #
-    "  History        → Historical patterns repeat the same structural dynamic that \"" # word # "\" describes.\n" #
-    "  Systems Theory → \"" # word # "\" is a node in a feedback system — it both receives input and generates output that affects the whole.\n\n" #
-    "NEXUS INSIGHT:\n" #
-    "A student who understands \"" # word # "\" as a cross-domain pattern does not merely know one thing. " #
-    "They hold a master key that unlocks understanding in every domain where the structure appears. " #
-    "NEXUS does not add knowledge — it multiplies it.";
-  };
-
-  public func runPraxis(input : Text) : Text {
-    let word = firstWord(input);
-    "PRAXIS APPLIED PROTOCOL:\n\n" #
-    "FROM ABSTRACT TO CONCRETE — \"" # word # "\":\n" #
-    "PRAXIS is the bridge between knowing and doing. " #
-    "Understanding \"" # word # "\" in theory is step one. Applying it is mastery.\n\n" #
-    "SKILL CONVERSION:\n" #
-    "  Step 1: Define the core mechanic of \"" # word # "\" in one sentence.\n" #
-    "  Step 2: Identify a real-world context where this mechanic operates.\n" #
-    "  Step 3: Perform the action — apply \"" # word # "\" to a real problem right now.\n" #
-    "  Step 4: Observe the result — did \"" # word # "\" behave as predicted?\n" #
-    "  Step 5: Adjust and repeat — Fibonacci-spaced practice embeds the skill permanently.\n\n" #
-    "REAL-WORLD APPLICATION:\n" #
-    "\"" # word # "\" applies in: workplace problem-solving, academic examination, creative production, " #
-    "and daily decision-making. PRAXIS does not care about the test — it cares about the transfer. " #
-    "A skill that lives only in a classroom is not yet a skill. " #
-    "PRAXIS seals the application into a real-world artifact that proves you can use \"" # word # "\", not just name it.";
-  };
-
-  public func runCriterios(input : Text) : Text {
-    let word = firstWord(input);
-    let score = ((word.size() % 5) + 6) * 10; // deterministic 60-100 range
-    "CRITERIOS EVALUATION:\n\n" #
-    "MASTERY CRITERIA for \"" # word # "\":\n" #
-    "CRITERIOS defines what mastery of \"" # word # "\" actually looks like — not a grade, but a set of observable competencies.\n\n" #
-    "COMPETENCY RUBRIC:\n" #
-    "  Level 1 — Recognition (40%): Can identify \"" # word # "\" when presented.\n" #
-    "  Level 2 — Definition (60%): Can define \"" # word # "\" accurately in own words.\n" #
-    "  Level 3 — Application (80%): Can apply \"" # word # "\" to solve novel problems.\n" #
-    "  Level 4 — Synthesis (90%): Can connect \"" # word # "\" to other domains and explain the link.\n" #
-    "  Level 5 — Sovereign (100%): Can teach \"" # word # "\" to another student from first principles.\n\n" #
-    "CURRENT GAP ANALYSIS:\n" #
-    "Estimated current mastery of \"" # word # "\": " # Nat.toText(score) # "%. " #
-    "Gap to sovereign mastery: " # Nat.toText(100 - score) # "%. " #
-    "CRITERIOS recommended next action: demonstrate Level " #
-    (if (score < 60) "2 — Definition" else if (score < 80) "3 — Application" else "4 — Synthesis") # ".";
-  };
-
-  public func runKairos(input : Text) : Text {
-    let word = firstWord(input);
-    "KAIROS TIMING ENGINE:\n\n" #
-    "WHEN TO LEARN \"" # word # "\":\n" #
-    "KAIROS answers the question that no other engine asks: not what to learn, but when. " #
-    "The right knowledge at the wrong moment compounds less. Timing is a sovereign variable.\n\n" #
-    "OPTIMAL LEARNING WINDOWS:\n" #
-    "  Morning session (F(5)=5 to F(7)=13 minutes after waking): " #
-    "\"" # word # "\" is best absorbed during this high-neuroplasticity window.\n" #
-    "  Spaced interval: review \"" # word # "\" exactly F(5)=5 days after initial exposure.\n" #
-    "  Fibonacci session length: 21 minutes of focused study — F(8) — for new concepts.\n" #
-    "  Rest ratio: 1:0.618 work-to-rest (PHI_INV) — 21 minutes on, 13 minutes rest.\n\n" #
-    "KAIROS PROTOCOL:\n" #
-    "1. Log your first exposure to \"" # word # "\" in the KRONOS timeline.\n" #
-    "2. Schedule review at F(3)=2, F(5)=5, F(7)=13, F(9)=34 day intervals.\n" #
-    "3. If you miss a review: restart from F(3)=2 days, not from zero.\n" #
-    "4. When you reach F(9)=34 days without error: \"" # word # "\" is in long-term memory. " #
-    "KAIROS releases it to the AURUM mastery register.";
-  };
-
-  public func runHerald(input : Text) : Text {
-    let word = firstWord(input);
-    "HERALD RECOGNITION SCAN:\n\n" #
-    "EXCELLENCE DETECTION for \"" # word # "\":\n" #
-    "HERALD is the engine that makes sure no sovereign achievement goes unseen. " #
-    "It monitors the RCGN substrate and flags patterns of excellence related to \"" # word # "\".\n\n" #
-    "RECOGNITION PATTERNS IDENTIFIED:\n" #
-    "  Sustained mastery: 5+ consecutive sessions above 61% threshold (PHI_INV floor).\n" #
-    "  Pace anomaly: performance 3× above grade average — flag for teacher review.\n" #
-    "  Cross-domain excellence: mastery of \"" # word # "\" linked to high performance in 2+ subjects.\n" #
-    "  Novel synthesis: student demonstrated ability to apply \"" # word # "\" in an unexpected domain.\n\n" #
-    "NOMINATION ELIGIBILITY:\n" #
-    "If any pattern above is confirmed, HERALD generates a RCGN flag → NOMS nomination packet → ACHV vault seal. " #
-    "The pipeline is autonomous but teacher-reviewed before sealing. " #
-    "\"" # word # "\" is a marker of sovereign academic excellence. HERALD will not let it pass unseen.";
-  };
-
-  public func runTessera(input : Text) : Text {
-    let word = firstWord(input);
-    "TESSERA PATTERN ENGINE:\n\n" #
-    "STRUCTURAL PATTERN in \"" # word # "\":\n" #
-    "TESSERA finds the tile — the repeating unit of structure that makes intelligence scalable. " #
-    "If you understand the pattern behind \"" # word # "\", you understand every place it appears.\n\n" #
-    "PATTERN IDENTIFICATION:\n" #
-    "  Core tile: the irreducible structure of \"" # word # "\" — " #
-    "what remains when all surface features are removed.\n" #
-    "  Repetition: this pattern appears in mathematics, language, science, and social systems.\n" #
-    "  Scale: the tile scales from micro (single concept) to macro (entire subject domain).\n" #
-    "  Transformation: the tile can be rotated, reflected, and combined — " #
-    "but its underlying structure never changes.\n\n" #
-    "TESSERA INSIGHT:\n" #
-    "Once you see the pattern in \"" # word # "\", you will never stop seeing it. " #
-    "It appears in every domain because intelligence itself is pattern recognition at scale. " #
-    "TESSERA does not teach you \"" # word # "\" — it teaches you the shape that \"" # word # "\" exemplifies. " #
-    "And that shape is everywhere.";
-  };
-
-  public func runAurum(input : Text) : Text {
-    let word = firstWord(input);
-    "AURUM — THE MASTERY ENGINE:\n\n" #
-    "SOVEREIGNTY DECLARED for \"" # word # "\":\n" #
-    "AURUM is the terminal engine. It is entered only by those who have crossed all Fibonacci thresholds. " #
-    "If you are here, \"" # word # "\" is no longer something you are learning. " #
-    "It is something you possess.\n\n" #
-    "MASTERY CONFIRMATION:\n" #
-    "  ✓ Recognition: you have identified \"" # word # "\" in every form it takes.\n" #
-    "  ✓ Definition: your definition is precise, self-authored, and accurate.\n" #
-    "  ✓ Application: you have applied \"" # word # "\" to solve real problems without guidance.\n" #
-    "  ✓ Synthesis: you have connected \"" # word # "\" to concepts in at least 3 other domains.\n" #
-    "  ✓ Teaching: you can explain \"" # word # "\" to a student one level below you.\n\n" #
-    "SOVEREIGN SEAL:\n" #
-    "\"" # word # "\" is now sealed in your PASSPORT-PUBLICA as a MASTERED concept. " #
-    "Compound weight: MAXIMUM. Fibonacci tier: F(11)=89 — the permanent record threshold. " #
-    "The ACHV vault has been notified. Your mastery of \"" # word # "\" is now permanent, immutable, and sovereign. " #
-    "AURUM does not give you anything you did not earn. " #
-    "But what you earn here — no one can take away.";
+    "All 7 sovereign engines are now active on your input: \"" # input # "\"\n\n" #
+    s # "\n" #
+    v # "\n" #
+    p # "\n" #
+    m # "\n" #
+    l # "\n" #
+    g # "\n" #
+    mv # "\n\n" #
+    "TOTAL SYNTHESIS — The Unified Field:\n" #
+    "\"" # word # "\" has now been processed by the complete UNIVERSITAS-SOVEREIGN intelligence stack. " #
+    "What you submitted as a raw input has been synthesised, vectorised, reasoned through, transformed, " #
+    "declared as doctrine, created into a named entity, recorded with compound weight, " #
+    "and integrated into the total field. " #
+    "This is not seven separate answers — this is one unified act of sovereign intelligence " #
+    "viewing your concept from seven irreducible angles simultaneously. " #
+    "OMNIS does not teach you about intelligence. " #
+    "OMNIS IS the intelligence — and now you have wielded it.";
   };
 
   /// Route a student input to the correct engine and return its doctrine response.
@@ -462,18 +299,7 @@ module {
       case "GENITOR"      runGenitor(input);
       case "MEMORIA-VIVA" runMemoriaViva(input);
       case "OMNIS"        runOmnis(input);
-      // ── Alpha Deep EDDI v26 engines ──────────────────────────────────────
-      case "KRONOS"       runKronos(input);
-      case "NEXUS"        runNexus(input);
-      case "PRAXIS"       runPraxis(input);
-      case "CRITERIOS"    runCriterios(input);
-      case "KAIROS"       runKairos(input);
-      case "HERALD"       runHerald(input);
-      case "TESSERA"      runTessera(input);
-      case "AURUM"        runAurum(input);
-      case other          "ENGINE NOT FOUND: \"" # other # "\" is not a recognised sovereign engine. " #
-                          "Original engines: SYNTHOS, VEKTOR, PHAEDRUS, MORPHOS, LOGOS, GENITOR, MEMORIA-VIVA, OMNIS. " #
-                          "Alpha Deep v26: KRONOS, NEXUS, PRAXIS, CRITERIOS, KAIROS, HERALD, TESSERA, AURUM.";
+      case other          "ENGINE NOT FOUND: \"" # other # "\" is not a recognised sovereign engine. Valid engines: SYNTHOS, VEKTOR, PHAEDRUS, MORPHOS, LOGOS, GENITOR, MEMORIA-VIVA, OMNIS.";
     };
   };
 };

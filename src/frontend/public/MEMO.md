@@ -914,147 +914,23 @@ The council is the decision layer. When sequencing is needed, the architecture d
 
 ---
 
-## MEMO v26 — ALPHA DEEP EDDI + EDDI OS + MULTI-SUBSTRATE PRODUCTION
+## CURRENT PLATFORM STATUS
 
-*Sealed: 2026-05-22 | ALPH ratification: v26 | Laws: LEX_ADEDDI, LEX_EDDI_OS, LEX_SUBSTRATE_MULTI*
-
-### Alpha Deep EDDI (ADEDDI) — The Internal Sovereign Organism
-
-ADEDDI is the internal big model. Not a chatbot. Not a wrapper. A full sovereign reasoning organism that runs inside the EduAI canister. Every response is produced by a deterministic 7-layer chain:
-
-**INPUT → CLASSIFY → COGT → META → AUTN → SYNTHESIS → SEAL**
-
-Each layer is typed. Every layer's output is stored in a `ReasoningTrace`. No response is opaque — the full chain is explainable, on-chain, queryable. ADEDDI version: v26-ALPHA.
-
-PHI weights per layer:
-- CLASSIFY: φ⁻¹ = 618/1000
-- COGT: φ = 1618/1000 (primary reasoning)
-- META: φ = 1618/1000 (Architecture Council)
-- AUTN: φ⁻² = 382/1000
-- SYNTHESIS: φ = 1618/1000
-- SEAL: φ⁻¹ = 618/1000
-
-ADEDDI invokes all 19 active engines simultaneously in the META layer via `OMNIS`. The canonical response is the PHI-weighted unification of all paths.
-
-### EDDI OS — Sovereign Organism Kernel
-
-EDDI OS is the kernel that orchestrates all internal AI subsystems. It boots with the canister heartbeat and maintains lifecycle (ACTIVE/DORMANT/BOOTING) for 10 named subsystems:
-
-1. ADEDDI — 7-layer reasoning organism
-2. EDDI_CORE — unified intelligence model (10 modes)
-3. ENGINE_REG — 20 sovereign engines, immutable
-4. COGT — cognitive expand/critique/synthesise chain
-5. META_SYNTH — Architecture Council 3-path + novel law
-6. AUTN — PHI-entropy autonomous generator
-7. FIELD_MON — aggregate organism health monitor (no PII)
-8. DOCTRINE_CPL — 5-format on-chain artifact crystalliser
-9. SUBSTRATE_REG — ICP/Julia/EduAI-Native routing
-10. UPGRADE_GRD — stable memory integrity pre/post upgrade
-
-Each subsystem can be booted/shutdown individually via `bootSubsystem(id)` / `shutdownSubsystem(id)`. The OS tick runs every heartbeat.
-
-### EDDI v26 — 10 Modes
-
-The EDDI model now supports 10 modes (up from 7 in v23):
-
-1. EXPLORE — curiosity
-2. EXPLAIN — depth
-3. QUIZ — challenge
-4. REFLECT — synthesis
-5. BUILD — construction
-6. CREATE — sovereign creation
-7. SOVEREIGN — full sovereignty
-8. **DEEP_MODE** — Alpha Deep EDDI full 7-layer reasoning (new)
-9. **FIELD_MODE** — organism-level field awareness (new)
-10. **SUBSTRATE_MODE** — multi-substrate routing operations (new)
-
-### 20 Sovereign Engines
-
-The engine registry expands from 11 to 20 engines:
-
-| # | Code | Full Name | Domain |
-|---|------|-----------|--------|
-| 1-11 | (existing) | Original 11 engines | Various |
-| 12 | EDDI | Emergent Dynamic Deep Intelligence | Unified intelligence, 10 modes |
-| 13 | ADEDDI | Alpha Deep EDDI | Deep reasoning organism |
-| 14 | KRONOS | The Temporal Engine | Time, sequences, progression |
-| 15 | NEXUS | The Connection Engine | Cross-domain relationship mapping |
-| 16 | PRAXIS | The Applied Engine | Abstract → real-world skill |
-| 17 | CRITERIOS | The Evaluation Engine | Mastery assessment + feedback |
-| 18 | KAIROS | The Timing Engine | When to learn (PHI spaced repetition) |
-| 19 | HERALD | The Recognition Engine | Excellence detection → RCGN pipeline |
-| 20 | TESSERA | The Pattern Engine | Structural pattern extraction |
-| 21 | AURUM | The Mastery Engine | Terminal engine — sovereign seal |
-
-OMNIS (engine #8) routes through all 20 engines. Fibonacci mastery thresholds govern each engine gate.
-
-### Internal AI Subsystems (Phase 4)
-
-New sovereign AI subsystems running inside the canister (no external calls):
-
-- **cogt-engine.mo** — Standalone COGT chain: expand → critique → synthesise. Typed `CogtResult`.
-- **meta-synthesis.mo** — Architecture Council law: always returns 3 paths + 1 novel synthesis. Typed `MetaResult`.
-- **autn-engine.mo** — PHI-entropy seeded autonomous generator. 8 archetypes (ORACLE, SAGE, FORGE, PRISM, NEXUS, HERALD, VESSEL, ALEPH). Typed `AutnResult`.
-- **field-monitor.mo** — Aggregate organism health monitor. `FieldScore` (0-100). Powers `#FIELD_MODE`. `getOrganismPulse()` for IT portal.
-- **doctrine-compiler.mo** — Crystallises session outputs into 5 on-chain artifact formats: SEED, KERNEL, DOCTRINE, ARTIFACT, SCROLL.
-
-### Multi-Substrate Production Architecture
-
-**Substrate Registry** (`lib/substrate.mo`):
-- `SubstrateType`: `#ICP | #JULIA | #EDURAI_NATIVE | #MULTI`
-- 6 seeded nodes: ICP-MAIN, ICP-VAULT, ICP-INTELLIGENCE, ICP-RECOGNITION, JULIA-NUMERIC, EDURAI-LOCAL
-- `routeToSubstrate(computeType)` — returns optimal substrate. ICP is always the default fallback.
-- Julia = numeric computation offload (Fibonacci, PHI matrices)
-- EduAI Native = local model inference (on-device COGT fast path)
-
-**Production Hardening**:
-- `auth-guard.mo` — Internet Identity required on every write. Anonymous principal rejected.
-- `rate-limiter.mo` — Fibonacci F(8)=21 req/min sliding window per principal.
-- `canister-health.mo` — Self-diagnostic. PHI-floored health score 0-100. `getHealth()` returns: heartbeat count, subsystem count, engine count, uptime minutes, diagnostics.
-- `upgrade-guard.mo` — Pre/post upgrade stable memory consistency validation. Data loss = INVALID status.
-
-**Multi-Canister Architecture** (declared in `caffeine.toml`):
-- `backend` — orchestrator + EDDI OS + all portal APIs
-- `vault-canister` — AbyssusVault sovereign memory
-- `intelligence-canister` — ADEDDI deep reasoning (compute-heavy, separate cycle budget)
-- `recognition-canister` — RCGN + NOMS + ACHV autonomous pipeline
-
-### New Laws Registered
-
-- **LEX_ADEDDI**: Every ADEDDI response must produce a full ReasoningTrace. No opaque outputs. The 7-layer chain is inviolable.
-- **LEX_EDDI_OS**: EDDI OS is the sovereign kernel. All internal AI subsystems are registered in the OS. No subsystem runs outside the kernel.
-- **LEX_SUBSTRATE_MULTI**: ICP is the default substrate for all state and authentication. All other substrates are compute offload paths. No sovereign data leaves ICP.
-
-### New Frontend Pages (v26)
-
-- `/eddi-os` — EddiOsConsole.tsx: EDDI OS status dashboard (IT portal, desktop-first, glassmorphism). Subsystem lifecycle control, φ load bars, heartbeat counters.
-- `/eddi/deep` — EddiDeepChat.tsx: Alpha Deep EDDI chat with full 7-layer reasoning trace viewer. Every response shows all layers with PHI weights and engine invocations.
-- `/substrate` — SubstrateMonitor.tsx: Multi-substrate node status panel (IT portal). Latency bars, capability flags, compute routing table.
-
-### Component Upgrades
-
-- **EddiOrb.tsx**: 3 new modes (DEEP, FIELD, SUBSTRATE). `fieldScore` prop drives organism health ring — gold (≥55), teal (≥21), grey (<21). DEEP/FIELD pulse faster (1.5s).
-- **ReasoningTrace.tsx**: New component. Visualises ADEDDI's 7-layer chain. Per-layer toggle, PHI weight badges, engine invocation badges, layer timing. Collapsible with progress bar.
-
----
-
-## CURRENT PLATFORM STATUS (v26)
-
-- **Total Pages:** 75+ across all portals
+- **Total Pages:** 70+ across all portals
 - **Active Portals:** 7
-- **Sovereign Engines:** 20 (COGT through AURUM)
-- **Internal AI Subsystems:** 10 (EDDI OS kernel)
-- **ADEDDI Reasoning Layers:** 7 (INPUT → SEAL)
-- **Substrate Nodes:** 6 (4 ICP + 1 Julia + 1 EduAI Native)
-- **Laws Sealed:** 14 (11 legacy + LEX_ADEDDI + LEX_EDDI_OS + LEX_SUBSTRATE_MULTI)
-- **EDDI Modes:** 10 (7 legacy + DEEP + FIELD + SUBSTRATE)
+- **Engines Registered:** 60+ across 5 substrates
+- **Laws Sealed:** 11
+- **Protocols Active:** 11 (PRTL_EDDI_MODES new in v23)
 - **Bridges/Entanglements:** 5 primary + 5 monitors
-- **Recognition Pipeline:** RCGN → NOMS → ACHV fully wired
-- **Production Hardening:** Auth guard + Rate limiter + Health check + Upgrade guard
-- **Charter Version:** v26 (Ratified 2026-05-22)
-- **Platform Version:** 2.6.0-alpha
+- **Registries Under ALPH:** 12
+- **School Integration Engines:** 22
+- **Recognition Pipeline:** RCGN → NOMS → ACHV fully wired, end-to-end
+- **Intelligence Formulas Live:** SSS, COH, ADX, IAS, RCGN_T, MZT
+- **Build Optimization:** Vite manualChunks (vendor/router/motion/query/viz), cssCodeSplit
+- **Charter Version:** v23 (Ratified 2026-05-19)
+- **Platform Version:** 2.3.0
 
 ---
 
 *All articles permanent. All laws enforced. Sealed under LEX_SOVEREIGNUS.*  
-*EduAI System Charter v26 — © 2026 EduAI Sovereign Platform. Ratified: 2026-05-22. Alpha Deep EDDI is active. Built for every kid who was found by accident.*
+*EduAI System Charter v23 — © 2026 EduAI Sovereign Platform. Ratified: 2026-05-19. Built with love for every kid who was found by accident.*

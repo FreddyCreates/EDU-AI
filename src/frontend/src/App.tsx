@@ -44,15 +44,6 @@ const RecognitionTimelinePage = lazy(
 );
 
 const SelfStudyPage = lazy(() => import("@/pages/SelfStudy"));
-const ScaffoldSessionPage = lazy(
-  () => import("@/pages/student/ScaffoldSession"),
-);
-const FeedbackLoopTrackerPage = lazy(
-  () => import("@/pages/student/FeedbackLoopTracker"),
-);
-const ProtocolManagerPage = lazy(
-  () => import("@/pages/teacher/ProtocolManager"),
-);
 const AchievementTimelinePage = lazy(
   () => import("@/pages/AchievementTimeline"),
 );
@@ -326,10 +317,6 @@ const PrincipalGradeDrilldown = lazy(
 );
 const ITNetworkStatus = lazy(() => import("@/pages/ITNetworkStatus"));
 const ITAuditLog = lazy(() => import("@/pages/ITAuditLog"));
-// ADEDDI + EDDI OS + Substrate pages (v26)
-const EddiOsConsolePage    = lazy(() => import("@/pages/EddiOsConsole"));
-const EddiDeepChatPage     = lazy(() => import("@/pages/EddiDeepChat"));
-const SubstrateMonitorPage = lazy(() => import("@/pages/SubstrateMonitor"));
 
 const ArchCouncilMonitorPage = lazy(() => import("@/pages/ArchCouncilMonitor"));
 const ApiExplorerPage = lazy(() => import("@/pages/ApiExplorer"));
@@ -515,24 +502,6 @@ const studentSelfStudyRoute = createRoute({
   component: SelfStudyPage,
 });
 
-const studentScaffoldRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/student/scaffold",
-  component: ScaffoldSessionPage,
-});
-
-const studentFeedbackLoopsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/student/feedback-loops",
-  component: FeedbackLoopTrackerPage,
-});
-
-const teacherProtocolsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/teacher/protocols",
-  component: ProtocolManagerPage,
-});
-
 const achievementTimelineRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/achievement-timeline",
@@ -700,25 +669,6 @@ const itPortalRoute = createRoute({
   component: ITPortalPage,
 });
 
-// ADEDDI + EDDI OS + Substrate routes (v26)
-const eddiOsConsoleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/eddi-os",
-  component: EddiOsConsolePage,
-});
-
-const eddiDeepChatRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/eddi/deep",
-  component: EddiDeepChatPage,
-});
-
-const substrateMonitorRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/substrate",
-  component: SubstrateMonitorPage,
-});
-
 const routeTree = rootRoute.addChildren([
   indexRoute,
   visionRoute,
@@ -774,10 +724,6 @@ const routeTree = rootRoute.addChildren([
   itApixRoute,
   itEnginesRoute,
   itPortalRoute,
-  // ADEDDI + EDDI OS + Substrate (v26)
-  eddiOsConsoleRoute,
-  eddiDeepChatRoute,
-  substrateMonitorRoute,
   // Parent portal
   parentRoute,
   parentDashboardRoute,
@@ -814,10 +760,6 @@ const routeTree = rootRoute.addChildren([
   studentKnowledgeBrowserRoute,
   // Self-study
   studentSelfStudyRoute,
-  studentScaffoldRoute,
-  studentFeedbackLoopsRoute,
-  // Teacher protocols
-  teacherProtocolsRoute,
   // Achievement timeline
   achievementTimelineRoute,
 ]);

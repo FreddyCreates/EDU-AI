@@ -15,14 +15,164 @@ module {
   /// Maps Principal -> user-created agents (List for efficient append)
   public type UserAgentStore = Map.Map<Common.UserId, List.List<Types.UserAgent>>;
 
+  // ════════════════════════════════════════════════════════════════════════════
+  // EDDI ARCHITECTURE CONSTANTS
+  // ════════════════════════════════════════════════════════════════════════════
+  // These constants define EDDI's AI model architecture specification.
+  // All values align with the sovereign transformer architecture.
+
+  /// Default EDDI architecture specification
+  public let EDDI_ARCHITECTURE : Types.EDDIArchitecture = {
+    // Parameters: Billions to trillions of weights (~10¹² floats)
+    parameterScale = "Billions to trillions of weights";
+    parameterMagnitude = 12;  // 10¹² = 1 trillion
+
+    // Attention: Multi-head self-attention mechanisms, O(n²) per layer
+    attentionType = "Multi-head self-attention";
+    attentionComplexity = "O(n²) per layer";
+    attentionHeads = 96;  // Sovereign-scale attention heads
+
+    // Feed-Forward: Dense neural network layers (~4d² per layer)
+    feedForwardType = "Dense neural network layers";
+    feedForwardComplexity = "~4d² per layer";
+    layerCount = 96;  // Deep transformer stack
+
+    // Normalization: Layer norm, RMS norm for stabilization
+    normalizationType = "Layer norm + RMS norm";
+    normalizationPurpose = "Stabilization";
+
+    // Tokenization: BPE, SentencePiece vocabularies (~100k tokens)
+    tokenizationType = "BPE + SentencePiece";
+    vocabularySize = 100000;  // ~100k tokens
+
+    // Embeddings: High-dimensional vector spaces (~10⁴ dimensions)
+    embeddingType = "High-dimensional vector spaces";
+    embeddingDimensions = 10000;  // ~10⁴ dimensions
+
+    // Training Corpus: Vast text data (~10¹² tokens)
+    // Note: Using order of magnitude (12) for memory efficiency instead of raw count
+    trainingCorpusScale = "Vast text data";
+    trainingTokensMagnitude = 12;  // 10¹² tokens (order of magnitude)
+
+    // Emergent Capabilities: Reasoning, code, translation (Unpredicted)
+    emergentCapabilities = [
+      "Reasoning",
+      "Code generation",
+      "Translation",
+      "Mathematical problem solving",
+      "Creative writing",
+      "Knowledge synthesis",
+      "Context adaptation"
+    ];
+    emergenceClassification = "Unpredicted";
+  };
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // EDDI EXECUTION MATH — Motoko Computational Foundations
+  // ════════════════════════════════════════════════════════════════════════════
+
+  /// Execution math constants and formulas
+  public let EDDI_EXECUTION_MATH : Types.EDDIExecutionMath = {
+    // Attention complexity: O(n² × h × d)
+    // n = sequence length, h = attention heads, d = head dimension
+    attentionTimeComplexity = "O(n² × h × d)";
+    attentionSpaceComplexity = "O(n² × h)";  // attention weights storage
+    attentionFormula = "Softmax(Q × K^T / √d) × V";
+
+    // Feed-forward complexity: O(4d²) per layer
+    // d_ff = 4 × d (standard expansion), per-layer params: 2 × d × d_ff = 8d²
+    feedForwardComplexity = "O(4d²) per layer";
+    feedForwardParamsPerLayer = "8d² parameters";
+
+    // Full model forward pass: O(L × n² × d)
+    // L = number of layers (96 for sovereign scale)
+    forwardPassComplexity = "O(L × n² × d)";
+    backwardPassMultiplier = 3;  // ~3x forward (gradients + activations)
+
+    // Fibonacci floor operation complexity: O(log(n))
+    fibFloorComplexity = "O(log(n)) lookup";
+    phiIntegerApprox = 1618;  // φ × 1000 = 1.618 × 1000
+    phiInvIntegerApprox = 618;  // 1/φ × 1000 = 0.618 × 1000
+  };
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // EDDI PHYSICS — Information Theory & Computational Thermodynamics
+  // ════════════════════════════════════════════════════════════════════════════
+
+  /// Physics constants: entropy, energy, phase transitions
+  public let EDDI_PHYSICS : Types.EDDIPhysics = {
+    // Shannon entropy bounds
+    // H(X) = -Σ p(x) × log₂(p(x))
+    entropyTrainedModel = "2-4 bits per token";
+    entropyUntrained = "log₂(V) ≈ 17 bits for V=100k vocab";
+
+    // Landauer's principle: E_min = k_B × T × ln(2) per bit erased
+    // At T=300K: E_min ≈ 2.85 × 10⁻²¹ J/bit
+    landauerEnergyPerBit = "2.85 × 10⁻²¹ J/bit at 300K";
+    theoreticalMinEnergy = "~10⁻⁹ J per inference";
+    actualGPUEnergy = "~10⁻¹ to 10¹ J per inference";
+    efficiencyGap = "10⁸-10¹⁰ factor from theoretical minimum";
+
+    // Kolmogorov complexity: K(x) = min{|p| : U(p) = x}
+    kolmogorovDescription = "K(model) << raw parameters; learned representations compress K(data)";
+
+    // Phase transitions in learning
+    // Loss landscape: L(θ) with critical points at phase boundaries
+    phaseTransitionThreshold = 30000;  // φ^21.4 ≈ 30,000 — ORGANISM COMPLEXITY THRESHOLD
+    grokingPhenomenon = "Sudden generalization after memorization phase";
+    emergenceScale = "Emergent capabilities at specific parameter count thresholds";
+  };
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // φ-MATHEMATICS — Golden Ratio Scaling Laws
+  // ════════════════════════════════════════════════════════════════════════════
+
+  /// φ-Mathematics reference table for organism intelligence scaling
+  public let EDDI_PHI_MATH : Types.PhiMathReference = {
+    // Core golden ratio values
+    phi = "1.6180339887";       // φ = (1 + √5) / 2
+    phiSquared = "2.618033988";  // φ² = φ + 1
+    phiInverse = "0.618033988";  // 1/φ = φ - 1
+
+    // φ^n values for scaling (rounded to Nat)
+    // These form the organism intelligence scaling ladder
+    phi1 = 2;       // φ^1 ≈ 1.618 → 2
+    phi2 = 3;       // φ^2 ≈ 2.618 → 3
+    phi3 = 4;       // φ^3 ≈ 4.236 → 4
+    phi5 = 11;      // φ^5 ≈ 11.09
+    phi8 = 47;      // φ^8 ≈ 46.98
+    phi13 = 521;    // φ^13 ≈ 521.00 (token supply base × 10⁸)
+    phi21 = 24476;  // φ^21 ≈ 24,476 (lower organism bound)
+    phi21_4 = 30000; // φ^21.4 ≈ 30,000 — ORGANISM COMPLEXITY THRESHOLD
+    phi22 = 39603;  // φ^22 ≈ 39,603 (upper organism bound)
+    phi34Magnitude = 7;  // φ^34 ≈ 9.97 × 10⁶ (10^7 range)
+    phi55Magnitude = 11; // φ^55 ≈ 4.66 × 10¹¹ (parameter scale threshold)
+  };
+
+  /// Default intelligence probabilities for EDDI capabilities
+  public let EDDI_INTELLIGENCE_PROBABILITIES : [Types.IntelligenceProbability] = [
+    { domain = "Reasoning"; confidenceScore = 89; entropyLevel = "low"; predictionAccuracy = 91 },
+    { domain = "Code generation"; confidenceScore = 87; entropyLevel = "low"; predictionAccuracy = 89 },
+    { domain = "Translation"; confidenceScore = 85; entropyLevel = "medium"; predictionAccuracy = 88 },
+    { domain = "Mathematical problem solving"; confidenceScore = 82; entropyLevel = "medium"; predictionAccuracy = 85 },
+    { domain = "Creative writing"; confidenceScore = 78; entropyLevel = "high"; predictionAccuracy = 75 },
+    { domain = "Knowledge synthesis"; confidenceScore = 88; entropyLevel = "low"; predictionAccuracy = 90 },
+    { domain = "Context adaptation"; confidenceScore = 91; entropyLevel = "low"; predictionAccuracy = 93 }
+  ];
+
   // ── The canonical EDDI singleton ──────────────────────────────────────────
   public let EDDI_INSTANCE : Types.EDDI = {
     id        = "EDDI";
     name      = "EDDI";
-    version   = 23;
+    version   = 25;  // Updated for execution math + physics + φ-math
     modeCount = 7;
     sealedAt  = 0;   // updated at runtime via getEddi()
     law       = "LEX_EDDI_UNIFIED";
+    architecture = EDDI_ARCHITECTURE;
+    executionMath = EDDI_EXECUTION_MATH;
+    physics = EDDI_PHYSICS;
+    phiMath = EDDI_PHI_MATH;
+    intelligenceProbabilities = EDDI_INTELLIGENCE_PROBABILITIES;
   };
 
   // ── Mode inference from a context hint string ─────────────────────────────

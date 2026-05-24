@@ -1,0 +1,78 @@
+# PROTECTION SYSTEM - DEFEND DEPLOYED CODE
+# This workflow BLOCKS any PR that attempts to delete files from protected paths
+# Created because Copilot deleted 114,000+ lines from dist/ - NEVER AGAIN
+
+name: 🛡️ Protect Deployed Code
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'src/frontend/dist/**'
+      - 'dist/**'
+      - 'build/**'
+
+jobs:
+  protect-deployed:
+    name: 🚨 DEFEND DEPLOYED FILES
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Detect Deletions in Protected Paths
+        id: check-deletions
+        run: |
+          echo "============================================"
+          echo "🛡️ PROTECTION SYSTEM - CHECKING FOR VIOLATIONS"
+          echo "============================================"
+          
+          # Get the diff against the base branch
+          DELETED_FILES=$(git diff --name-status origin/${{ github.base_ref }}...HEAD | grep "^D" | grep -E "(src/frontend/dist/|dist/|build/)" || true)
+          DELETED_COUNT=$(echo "$DELETED_FILES" | grep -c "^D" || echo "0")
+          
+          if [ "$DELETED_COUNT" -gt 0 ]; then
+            echo "🚨🚨🚨 VIOLATION DETECTED 🚨🚨🚨"
+            echo ""
+            echo "The following PROTECTED files are being DELETED:"
+            echo "$DELETED_FILES"
+            echo ""
+            echo "deleted_count=$DELETED_COUNT" >> $GITHUB_OUTPUT
+            echo "violation=true" >> $GITHUB_OUTPUT
+          else
+            echo "✅ No protected files are being deleted"
+            echo "violation=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🚫 BLOCK - Deletions Not Allowed
+        if: steps.check-deletions.outputs.violation == 'true'
+        run: |
+          echo "============================================"
+          echo "🚫 PR BLOCKED - PROTECTED FILES DELETED"
+          echo "============================================"
+          echo ""
+          echo "THIS PR ATTEMPTED TO DELETE FILES FROM:"
+          echo "  - src/frontend/dist/"
+          echo "  - dist/"
+          echo "  - build/"
+          echo ""
+          echo "THESE PATHS CONTAIN DEPLOYED/BUILT CODE."
+          echo "DELETION IS NOT PERMITTED."
+          echo ""
+          echo "If you need to update these files:"
+          echo "  1. Run the build process locally"
+          echo "  2. Commit the NEW build output"
+          echo "  3. Do NOT delete without rebuilding"
+          echo ""
+          echo "============================================"
+          echo "🛡️ PROTECTION SYSTEM - BLOCKING MERGE"
+          echo "============================================"
+          exit 1
+
+      - name: ✅ Protection Check Passed
+        if: steps.check-deletions.outputs.violation == 'false'
+        run: |
+          echo "✅ No violations detected"
+          echo "This PR does not delete protected deployed files"

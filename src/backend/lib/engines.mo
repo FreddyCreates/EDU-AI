@@ -178,14 +178,18 @@ module {
       codeName = "EDDI";
       fullName = "Emergent Dynamic Deep Intelligence";
       domain = "unified-intelligence";
-      description = "EDDI is the single sovereign intelligence model of EduAI. Every agent persona — Atlas, Echo, COGT, META, AUTN, and all others — is a mode of EDDI, not a separate entity. EDDI thinks, reasons, creates, and remembers as one unified field. Students interact with EDDI directly; the mode shifts, but the intelligence never fragments.";
-      mathFoundation = "Unified field theory of intelligence: all modes share a common PHI-weighted reasoning chain, a single memory substrate, and a Fibonacci-gated response architecture";
-      teachingMethod = "Mode-bound learning — students select or are routed to the EDDI mode best suited to their current need, and EDDI responds as that mode while retaining full continuity across mode transitions.";
+      description = "EDDI is the single sovereign intelligence model of EduAI implementing transformer-based architecture. Every agent persona — Atlas, Echo, COGT, META, AUTN, and all others — is a mode of EDDI, not a separate entity. EDDI operates with billions to trillions of parameters (~10¹² floats), multi-head self-attention mechanisms with O(n²) complexity per layer, and dense feed-forward networks (~4d² per layer). The model uses layer norm and RMS norm for stabilization, BPE/SentencePiece tokenization with ~100k vocabulary, and high-dimensional embeddings (~10⁴ dimensions). Trained on vast text corpora (~10¹² tokens), EDDI exhibits emergent capabilities including reasoning, code generation, translation, and knowledge synthesis — capabilities that were unpredicted from the architecture alone. Students interact with EDDI directly; the mode shifts, but the intelligence never fragments.";
+      mathFoundation = "Unified field theory of intelligence: transformer architecture with multi-head self-attention (O(n²)), feed-forward layers (~4d²), PHI-weighted reasoning chains, LayerNorm/RMSNorm stabilization, BPE tokenization (~100k tokens), high-dimensional embeddings (~10⁴ dims), training on ~10¹² tokens, and emergent capabilities from scale";
+      teachingMethod = "Mode-bound learning — students select or are routed to the EDDI mode best suited to their current need, and EDDI responds as that mode while retaining full continuity across mode transitions. The architecture leverages attention mechanisms to maintain context and memory across sessions.";
       lessonsAvailable = [
         "What is EDDI?",
         "The 7 Modes of Sovereign Intelligence",
         "How EDDI Thinks: PHI Reasoning Chains",
         "Switching Modes Without Losing Memory",
+        "EDDI Architecture: Parameters and Attention",
+        "Understanding Transformers and Self-Attention",
+        "Tokenization and Embeddings in AI",
+        "Emergent Capabilities: Reasoning, Code, Translation",
         "EDDI Lab: Build a Mode-Bound Interaction",
       ];
       status = #active;

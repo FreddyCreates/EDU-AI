@@ -1,0 +1,12 @@
+# CODEOWNERS - Protection for deployed code
+# These paths require explicit owner approval before ANY changes
+# Copilot and automated tools CANNOT bypass this
+
+# PROTECTED: Production build files - NEVER DELETE
+/src/frontend/dist/ @FreddyCreates
+/dist/ @FreddyCreates
+/build/ @FreddyCreates
+
+# PROTECTED: Core configuration
+/package.json @FreddyCreates
+/pnpm-lock.yaml @FreddyCreates

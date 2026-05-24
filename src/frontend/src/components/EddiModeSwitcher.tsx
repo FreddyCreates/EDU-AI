@@ -16,12 +16,10 @@ import {
   Building2,
   Cpu,
   GraduationCap,
-  Search,
   Sparkles,
   Star,
   Users,
   Wrench,
-  Zap,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";

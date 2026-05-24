@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   ChevronLeft,
-  Home,
   Menu,
   Server,
   X,

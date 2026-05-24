@@ -109,8 +109,11 @@ import StmpLib "lib/stmp";
 import SelfStudyLib "lib/selfstudy";
 import FeedbackAILib "lib/feedbackai";
 import SelfStudyMixin "mixins/selfstudy-api";
-import FeedbackAIMixin "mixins/feedbackai-api";import CatalogVisionLib "lib/catalog-vision";
+import FeedbackAIMixin "mixins/feedbackai-api";
+import CatalogVisionLib "lib/catalog-vision";
 import CatalogVisionMixin "mixins/catalog-vision-api";
+import PndrLib "lib/pndr";
+import PndrMixin "mixins/pndr-api";
 
 
 
@@ -165,6 +168,14 @@ actor EduAI {
   // ── EDDI unified model state ─────────────────────────────────────────────
   let eddiModeStore  : EDDILib.ModeStore      = Map.empty();
   let eddiAgentStore : EDDILib.UserAgentStore = Map.empty();
+
+  // ── Pandoras Actor state — knowledge discovery engine ────────────────────
+  let pndrFragmentStore : PndrLib.FragmentStore = PndrLib.newFragmentStore();
+  let pndrVaultStore    : PndrLib.VaultStore    = PndrLib.newVaultStore();
+  let pndrEventStore    : PndrLib.EventStore    = PndrLib.newEventStore();
+  let pndrPathwayStore  : PndrLib.PathwayStore  = PndrLib.newPathwayStore();
+  let pndrCounter       : PndrLib.Counter       = PndrLib.newCounter();
+  do { PndrLib.seedFragments(pndrFragmentStore, pndrCounter) };
 
   // ── University sovereign course state ────────────────────────────────────
   let univCourseStore  : UnivLib.CourseStore      = Map.empty();
@@ -297,6 +308,7 @@ actor EduAI {
   include SelfStudyMixin(trackStore);
   include FeedbackAIMixin(feedbackStore);
   include CatalogVisionMixin(fundingStore, rcgnStore, nomStore, achvStore);
+  include PndrMixin(pndrFragmentStore, pndrVaultStore, pndrEventStore, pndrPathwayStore, pndrCounter);
 
   // ── Sovereign heartbeat — ticks allocator, routes vault payloads ─────────
   system func heartbeat() : async () {

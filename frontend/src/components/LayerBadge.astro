@@ -10,12 +10,13 @@ const layerClass = `layer-${layer.toLowerCase()}`;
 ---
 <div class={`glass-surface p-fib-lg border-l-2 ${layerClass} flex items-start gap-fib-lg`}>
   <div class="flex-shrink-0 flex flex-col items-center gap-fib-xs">
-    <span class={`text-[10px] font-mono font-bold ${layerClass}`}>#{index}</span>
-    <div class={`w-6 h-6 rounded-full border ${layerClass} flex items-center justify-center text-[9px] font-mono`}>{index}</div>
+    <span class={`text-[10px] font-mono font-bold ${layerClass}`}>L{index}</span>
+    <div class={`w-7 h-7 rounded-full border ${layerClass} flex items-center justify-center text-[10px] font-mono font-bold`}>{index}</div>
   </div>
   <div class="flex-1 min-w-0">
-    <div class="flex items-center gap-fib-md mb-fib-xs">
-      <span class={`text-[12px] font-display font-bold uppercase tracking-widest ${layerClass}`}>{layer}</span>
+    <div class="flex items-center gap-fib-md mb-fib-xs flex-wrap">
+      <span class={`text-[12px] font-mono font-bold uppercase tracking-widest ${layerClass}`}>{layer}</span>
+      <span class="text-[10px] font-mono px-fib-sm py-0.5 rounded" style="color: var(--text-disabled); background: rgba(255,255,255,0.05);">φ×{weight}</span>
     </div>
     <p class="text-[13px] leading-relaxed" style="color: var(--text-secondary);">{description}</p>
   </div>

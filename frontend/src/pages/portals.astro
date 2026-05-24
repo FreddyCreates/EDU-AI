@@ -4,74 +4,114 @@ import Nav from '../components/Nav.astro';
 import PortalCard from '../components/PortalCard.astro';
 import GlassCard from '../components/GlassCard.astro';
 
+const base = import.meta.env.BASE_URL || '/EDU-AI';
+
+// All 7 Portals
 const portals = [
   {
     name: 'Student Portal',
     role: 'For Students',
-    tagline: 'Your personal learning space. Chat with EDDI for homework help, take practice quizzes, track your progress across all subjects, and see how much you\'ve improved over time.',
+    tagline: 'Your personal learning space. Chat with EDDI for instant help, take adaptive quizzes, track your mastery, browse all subjects, and build your Learning Passport over time.',
     variant: 'teal' as const,
-    features: ['AI Tutor Chat', 'Homework Help', 'Practice Quizzes', 'Progress Dashboard', 'Subject Browser', 'Study Streaks'],
+    features: ['EDDI Chat', 'Adaptive Quizzes', 'Mastery Tracking', 'Learning Passport', 'Subject Browser', 'Study Streaks'],
   },
   {
     name: 'Teacher Portal',
     role: 'For Educators',
-    tagline: 'Powerful tools to help you teach smarter. Create lessons with AI assistance, grade assignments faster, track class performance, and provide personalized feedback to every student.',
+    tagline: 'Build lessons with SKAI_DOCENS, grade with AI assistance, monitor every student in real-time, create protocols, and deliver targeted feedback that actually helps.',
     variant: 'gold' as const,
-    features: ['Lesson Builder', 'AI Grading Assistant', 'Class Analytics', 'Student Progress', 'Feedback Tools', 'Standards Alignment'],
+    features: ['Lesson Builder', 'AI Grading', 'Class Analytics', 'Protocol Creator', 'Feedback Tools', 'Standards Alignment'],
   },
   {
     name: 'Principal Portal',
     role: 'For School Leaders',
-    tagline: 'See the big picture of your school\'s performance. Monitor achievement trends, recognize student milestones, manage curriculum alignment, and make data-driven decisions for your school.',
+    tagline: 'See your entire school at a glance. Performance heatmaps, recognition events, curriculum vision, funding intelligence, and data-driven insights for every decision.',
     variant: 'gold' as const,
-    features: ['School Dashboard', 'Achievement Tracking', 'Recognition Events', 'Curriculum Overview', 'Performance Reports', 'Goal Setting'],
+    features: ['School Heatmap', 'Recognition Events', 'Catalog Vision', 'Funding Intelligence', 'Staff Overview', 'Goal Tracking'],
   },
   {
     name: 'IT Portal',
-    role: 'For Administrators',
-    tagline: 'Keep everything running smoothly. Manage user accounts, monitor system health, configure school settings, handle integrations, and ensure student data stays private and secure.',
+    role: 'For System Admins',
+    tagline: 'Full control over EDU-AI infrastructure. EDDI OS console, system diagnostics, user management, privacy controls, audit logs, and integration management.',
     variant: 'teal' as const,
-    features: ['User Management', 'System Health', 'Privacy Controls', 'SSO Integration', 'Data Exports', 'Security Logs'],
+    features: ['EDDI OS Console', 'System Diagnostics', 'User Management', 'Privacy Controls', 'Audit Logs', 'Integrations'],
+  },
+  {
+    name: 'Parent Portal',
+    role: 'For Families',
+    tagline: 'Stay connected to your child\'s learning journey. See progress updates, mastery growth, teacher feedback, and upcoming assignments — all in one place.',
+    variant: 'teal' as const,
+    features: ['Progress Updates', 'Mastery View', 'Teacher Messages', 'Assignment Calendar', 'Recognition Alerts'],
+  },
+  {
+    name: 'Counselor Portal',
+    role: 'For Guidance',
+    tagline: 'Support student wellbeing and academic planning. Track IEPs, monitor mental health check-ins, manage caseloads, and coordinate with teachers and families.',
+    variant: 'teal' as const,
+    features: ['IEP Tracking', 'Wellness Check-ins', 'Caseload Manager', 'College Prep', 'Crisis Alerts'],
+  },
+  {
+    name: 'District Portal',
+    role: 'For District Leaders',
+    tagline: 'Oversee all schools in your district. Aggregate analytics, cross-school comparisons, curriculum standardization, budget tracking, and compliance reporting.',
+    variant: 'gold' as const,
+    features: ['District Dashboard', 'School Comparison', 'Curriculum Standards', 'Budget Tracking', 'Compliance Reports'],
   },
 ];
 ---
-<Base title="Portals" description="Choose your portal — Student, Teacher, Principal, or IT — and access the tools designed for your role.">
+<Base title="Portals — EDU-AI" description="7 dedicated portals for Students, Teachers, Principals, IT, Parents, Counselors, and Districts — all powered by EDDI.">
   <Nav />
   <main class="pt-[55px]">
 
     <section class="max-w-4xl mx-auto px-fib-2xl pt-fib-3xl pb-fib-2xl text-center">
-      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Choose Your Experience</span>
-      <h1 class="text-[44px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">
-        Your <span style="color: var(--color-teal);">Portal</span> Awaits
+      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">7 Portals · One Platform</span>
+      <h1 class="text-[40px] md:text-[52px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">
+        Choose Your <span style="color: var(--color-teal);">Portal</span>
       </h1>
       <p class="text-[16px] max-w-2xl mx-auto" style="color: var(--text-secondary);">
-        Every person in your school has a dedicated experience designed just for them. 
-        Students learn, teachers teach, principals lead, and IT keeps it all running — all in one platform.
+        Every person in your school ecosystem has a dedicated experience. Students learn, teachers teach, 
+        principals lead, IT keeps it running, parents stay informed, counselors support, and districts oversee — 
+        all powered by EDDI.
       </p>
     </section>
 
-    <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-fib-xl mb-fib-3xl">
-        {portals.map(p => <PortalCard {...p} />)}
+    <!-- Main 4 Portals -->
+    <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-fib-xl">
+        {portals.slice(0, 4).map(p => <PortalCard {...p} />)}
       </div>
+    </section>
 
+    <!-- Additional 3 Portals -->
+    <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
+      <div class="text-center mb-fib-xl">
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Extended Ecosystem</span>
+        <h2 class="text-[24px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">Plus 3 More Portals</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-fib-xl">
+        {portals.slice(4).map(p => <PortalCard {...p} />)}
+      </div>
+    </section>
+
+    <!-- Architecture Summary -->
+    <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
       <GlassCard variant="teal" class="text-center">
-        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">One Platform, Everyone Connected</span>
-        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">Built for How Schools Really Work</h2>
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">Sovereign Architecture</span>
+        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">All Portals, One Intelligence</h2>
         <p class="text-[14px] max-w-2xl mx-auto mb-fib-xl" style="color: var(--text-secondary);">
-          When a student completes an assignment, teachers see it instantly. When teachers update grades, 
-          students and parents are notified. When principals set goals, the whole school can track progress together. 
-          EDU-AI keeps everyone on the same page — securely and privately.
+          Every portal shares the same EDDI intelligence core. When a student learns, teachers see it. 
+          When teachers grade, parents are notified. When principals set goals, the whole school tracks progress. 
+          One platform, fully connected, completely private.
         </p>
         <div class="flex flex-wrap justify-center gap-fib-md">
-          {['Real-Time Updates', 'Secure & Private', 'Works on Any Device', 'No Training Needed', 'Free Support', 'COPPA Compliant'].map(tag => (
+          {['Real-Time Sync', 'Sovereign Data', 'No External AI', 'COPPA Compliant', 'FERPA Ready', 'Mobile + Desktop'].map(tag => (
             <span class="glass-surface px-fib-lg py-fib-md text-[11px] font-mono" style="color: var(--text-tertiary);">{tag}</span>
           ))}
         </div>
       </GlassCard>
     </section>
 
-    <!-- ── Grade Levels Section ──────────────────────────────────────────── -->
+    <!-- Grade Levels -->
     <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
       <div class="text-center mb-fib-2xl">
         <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">K-12 Coverage</span>
@@ -79,9 +119,9 @@ const portals = [
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-fib-lg">
         {[
-          { grades: 'K-2', label: 'Early Elementary', desc: 'Foundational skills in reading, writing, and math' },
-          { grades: '3-5', label: 'Upper Elementary', desc: 'Building knowledge across all core subjects' },
-          { grades: '6-8', label: 'Middle School', desc: 'Deeper learning and critical thinking skills' },
+          { grades: 'K-2', label: 'Early Elementary', desc: 'Foundational literacy, numeracy, and curiosity' },
+          { grades: '3-5', label: 'Upper Elementary', desc: 'Building knowledge across core subjects' },
+          { grades: '6-8', label: 'Middle School', desc: 'Critical thinking and deeper exploration' },
           { grades: '9-12', label: 'High School', desc: 'Advanced subjects and college prep' },
         ].map(g => (
           <div class="glass-grade-vault p-fib-xl text-center">
@@ -93,9 +133,20 @@ const portals = [
       </div>
     </section>
 
+    <!-- CTA -->
+    <section class="max-w-4xl mx-auto px-fib-2xl pb-fib-3xl text-center">
+      <h2 class="text-[28px] font-display font-bold mb-fib-lg" style="color: var(--text-primary);">Ready to Transform Your School?</h2>
+      <p class="text-[15px] mb-fib-2xl" style="color: var(--text-secondary);">
+        EDDI is waiting to meet your students, teachers, and staff. Let's get started.
+      </p>
+      <a href={`${base}/intelligence`} class="inline-block glass-grade-vault px-fib-2xl py-fib-lg text-[14px] font-semibold" style="color: var(--color-gold);">
+        See How EDDI Works →
+      </a>
+    </section>
+
     <footer class="border-t border-white/5 py-fib-3xl px-fib-2xl text-center">
       <p class="text-[12px] font-mono" style="color: var(--text-disabled);">
-        EDU-AI · AI-Powered Learning for K-12 Schools
+        EDU-AI · Educational Deep Dialogue Intelligence · 7 Portals, One EDDI
       </p>
     </footer>
   </main>

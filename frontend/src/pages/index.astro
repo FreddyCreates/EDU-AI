@@ -4,82 +4,102 @@ import Nav from '../components/Nav.astro';
 import GlassCard from '../components/GlassCard.astro';
 import PortalCard from '../components/PortalCard.astro';
 
+// 7 Portals - Full platform
 const portals = [
   {
     name: 'Student Portal',
     role: 'For Students',
-    tagline: 'Learn at your own pace with personalized AI tutoring, homework help, practice quizzes, and progress tracking across all your subjects.',
+    tagline: 'Chat with EDDI for personalized tutoring, get instant homework help, take adaptive quizzes, and track your mastery across all subjects.',
     variant: 'teal' as const,
-    features: ['AI Tutor Chat', 'Homework Help', 'Practice Quizzes', 'Progress Tracking'],
+    features: ['EDDI Chat', 'Homework Help', 'Adaptive Quizzes', 'Mastery Tracking'],
   },
   {
     name: 'Teacher Portal',
     role: 'For Educators',
-    tagline: 'Create lessons, grade assignments with AI assistance, track student progress, and provide personalized feedback to every learner.',
+    tagline: 'Build lessons with AI assistance, grade assignments smarter, monitor class progress in real-time, and provide targeted feedback.',
     variant: 'gold' as const,
     features: ['Lesson Builder', 'AI Grading', 'Class Analytics', 'Feedback Tools'],
   },
   {
     name: 'Principal Portal',
     role: 'For School Leaders',
-    tagline: 'Monitor school-wide performance, recognize student achievements, manage curriculum standards, and make data-driven decisions.',
+    tagline: 'See school-wide performance heatmaps, recognize student achievements, oversee curriculum alignment, and make data-driven decisions.',
     variant: 'gold' as const,
-    features: ['School Dashboard', 'Achievement Tracking', 'Curriculum Oversight', 'Reports'],
+    features: ['School Heatmap', 'Recognition Events', 'Curriculum Vision', 'Performance Reports'],
   },
   {
     name: 'IT Portal',
     role: 'For Administrators',
-    tagline: 'Manage user accounts, monitor system health, configure school settings, and ensure data privacy and security compliance.',
+    tagline: 'Monitor system health, manage user accounts, configure integrations, and ensure data privacy with full audit logs.',
     variant: 'teal' as const,
-    features: ['User Management', 'System Health', 'Privacy Controls', 'Integrations'],
+    features: ['System Console', 'User Management', 'Privacy Controls', 'Audit Logs'],
   },
 ];
 
 const stats = [
-  { value: 'K-12', label: 'Grade Levels' },
+  { value: 'K-12', label: 'All Grades' },
   { value: '100%', label: 'Data Privacy' },
-  { value: '24/7', label: 'AI Tutor Access' },
-  { value: 'All', label: 'Subjects Covered' },
+  { value: '24/7', label: 'EDDI Access' },
+  { value: '19', label: 'AI Engines' },
+];
+
+// Real platform engines
+const engines = [
+  'EDDI', 'COGT', 'META', 'AUTN', 'SYNTHOS', 'VEKTOR', 'PHAEDRUS', 
+  'GENITOR', 'MEMORIA-VIVA', 'NEXUS', 'SKAI_DOCENS', 'CRITERIOS',
+  'HERALD', 'KRONOS', 'PRAXIS', 'KAIROS', 'AURUM', 'TESSERA', 'OMNIS'
 ];
 ---
-<Base title="AI-Powered Learning Platform for Schools">
+<Base title="EDU-AI — AI-Powered Learning Platform for K-12">
   <Nav />
   <main class="pt-[55px]">
 
     <!-- ── Hero ─────────────────────────────────────────────────── -->
     <section class="min-h-screen flex flex-col items-center justify-center px-fib-2xl text-center relative overflow-hidden">
       <!-- Background radial glow -->
-      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 40%, oklch(0.76 0.18 84 / 0.06) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 50% 60%, oklch(0.72 0.17 155 / 0.05) 0%, transparent 70%);"></div>
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 40%, oklch(0.76 0.18 84 / 0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 50% 60%, oklch(0.72 0.17 155 / 0.06) 0%, transparent 70%);"></div>
 
       <!-- EDDI Orb with Orbit Ring -->
-      <div class="relative mb-fib-3xl">
-        <div class="w-32 h-32 rounded-full mx-auto relative eddi-orb" style="background: radial-gradient(circle at 35% 35%, oklch(0.76 0.18 84 / 0.9), oklch(0.72 0.17 155 / 0.7), oklch(0.07 0.01 260)); box-shadow: 0 0 55px oklch(0.76 0.18 84 / 0.3), 0 0 89px oklch(0.72 0.17 155 / 0.2), inset 0 1px 0 rgba(255,255,255,0.25);">
-          <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%);"></div>
+      <div class="relative mb-fib-2xl">
+        <div class="w-36 h-36 rounded-full mx-auto relative eddi-orb" style="background: radial-gradient(circle at 35% 35%, oklch(0.76 0.18 84 / 0.95), oklch(0.72 0.17 155 / 0.75), oklch(0.07 0.01 260)); box-shadow: 0 0 55px oklch(0.76 0.18 84 / 0.35), 0 0 89px oklch(0.72 0.17 155 / 0.25), inset 0 1px 0 rgba(255,255,255,0.3);">
+          <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 60%);"></div>
           <!-- Inner glow pulse -->
-          <div class="absolute inset-2 rounded-full animate-pulse" style="background: radial-gradient(circle, oklch(0.76 0.18 84 / 0.3), transparent 70%);"></div>
+          <div class="absolute inset-3 rounded-full animate-pulse" style="background: radial-gradient(circle, oklch(0.76 0.18 84 / 0.4), transparent 70%);"></div>
+          <!-- EDDI text inside orb -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-[18px] font-display font-bold" style="color: rgba(255,255,255,0.9); text-shadow: 0 0 13px oklch(0.76 0.18 84 / 0.8);">EDDI</span>
+          </div>
         </div>
-        <!-- Orbit ring -->
-        <div class="absolute inset-0 rounded-full border-2 orbit-ring" style="border-color: oklch(0.76 0.18 84 / 0.25); transform: scale(1.4);"></div>
-        <!-- Secondary orbit -->
-        <div class="absolute inset-0 rounded-full border orbit-ring-reverse" style="border-color: oklch(0.72 0.17 155 / 0.15); transform: scale(1.7);"></div>
+        <!-- Orbit ring 1 -->
+        <div class="absolute inset-0 rounded-full border-2 orbit-ring" style="border-color: oklch(0.76 0.18 84 / 0.3); transform: scale(1.5);"></div>
+        <!-- Orbit ring 2 -->
+        <div class="absolute inset-0 rounded-full border orbit-ring-reverse" style="border-color: oklch(0.72 0.17 155 / 0.2); transform: scale(1.9);"></div>
+        <!-- Orbit ring 3 -->
+        <div class="absolute inset-0 rounded-full border orbit-ring-slow" style="border-color: oklch(0.65 0.22 200 / 0.1); transform: scale(2.3);"></div>
       </div>
 
-      <h1 class="text-[44px] md:text-[68px] font-display font-bold leading-none tracking-tight mb-fib-xl" style="color: var(--text-primary);">
-        Learn Smarter with<br/>
-        <span style="color: var(--color-gold);">AI-Powered Education</span>
+      <!-- EDDI Full Name -->
+      <p class="text-[11px] font-mono uppercase tracking-[0.3em] mb-fib-md" style="color: var(--color-gold);">
+        Educational Deep Dialogue Intelligence
+      </p>
+
+      <h1 class="text-[40px] md:text-[64px] font-display font-bold leading-[1.05] tracking-tight mb-fib-lg" style="color: var(--text-primary);">
+        Meet <span style="color: var(--color-gold);">EDDI</span><br/>
+        <span class="text-[32px] md:text-[48px]" style="color: var(--text-secondary);">Your AI Learning Partner</span>
       </h1>
 
-      <p class="text-[17px] md:text-[20px] max-w-2xl mb-fib-2xl leading-relaxed" style="color: var(--text-secondary);">
-        EDU-AI is the complete learning platform for K-12 schools. Personalized tutoring, 
-        instant homework help, and smart progress tracking — all in one secure place.
+      <p class="text-[16px] md:text-[18px] max-w-2xl mb-fib-2xl leading-relaxed" style="color: var(--text-secondary);">
+        EDDI is the intelligent core of EDU-AI — a complete K-12 learning platform with 
+        personalized AI tutoring, adaptive assessments, and real-time progress tracking. 
+        Built for students, teachers, and schools who demand more.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-fib-lg">
-        <a href="/portals" class="glass-grade-vault px-fib-2xl py-fib-lg text-[15px] font-semibold transition-all hover:opacity-90" style="color: var(--color-gold);">
-          Get Started →
+        <a href="/EDU-AI/portals" class="glass-grade-vault px-fib-2xl py-fib-lg text-[15px] font-semibold transition-all hover:scale-[1.02]" style="color: var(--color-gold);">
+          Start Learning →
         </a>
-        <a href="/intelligence" class="glass-knowledge-surface px-fib-2xl py-fib-lg text-[15px] font-semibold transition-all hover:opacity-90" style="color: var(--color-teal);">
-          How It Works
+        <a href="/EDU-AI/intelligence" class="glass-knowledge-surface px-fib-2xl py-fib-lg text-[15px] font-semibold transition-all hover:scale-[1.02]" style="color: var(--color-teal);">
+          See How EDDI Works
         </a>
       </div>
 
@@ -87,9 +107,55 @@ const stats = [
       <div class="flex flex-wrap justify-center gap-fib-lg mt-fib-3xl">
         {stats.map(stat => (
           <div class="glass-surface px-fib-xl py-fib-lg text-center min-w-[100px]">
-            <p class="text-[24px] font-display font-bold" style="color: var(--color-gold);">{stat.value}</p>
-            <p class="text-[11px] font-mono uppercase tracking-wide" style="color: var(--text-tertiary);">{stat.label}</p>
+            <p class="text-[26px] font-display font-bold" style="color: var(--color-gold);">{stat.value}</p>
+            <p class="text-[10px] font-mono uppercase tracking-wide" style="color: var(--text-tertiary);">{stat.label}</p>
           </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── What EDDI Can Do ──────────────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-fib-2xl py-fib-3xl">
+      <div class="text-center mb-fib-3xl">
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Powered by 19 AI Engines</span>
+        <h2 class="text-[32px] md:text-[40px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">EDDI Understands Learning</h2>
+        <p class="text-[15px] mt-fib-lg max-w-xl mx-auto" style="color: var(--text-secondary);">
+          Not just another chatbot. EDDI uses a 7-layer reasoning chain and 19 specialized engines 
+          to actually understand what you're learning and how to help you succeed.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-fib-xl mb-fib-3xl">
+        <GlassCard variant="gold">
+          <div class="text-[32px] mb-fib-md">💬</div>
+          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-gold);">Deep Dialogue</h3>
+          <p class="text-[14px]" style="color: var(--text-secondary);">
+            Ask EDDI anything. It explains concepts at your level, walks through problems step-by-step, 
+            and adapts to how you learn best.
+          </p>
+        </GlassCard>
+        <GlassCard variant="gold">
+          <div class="text-[32px] mb-fib-md">🧠</div>
+          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-gold);">7-Layer Reasoning</h3>
+          <p class="text-[14px]" style="color: var(--text-secondary);">
+            Every answer goes through INPUT → CLASSIFY → COGT → META → AUTN → SYNTHESIS → SEAL. 
+            Real reasoning, not pattern matching.
+          </p>
+        </GlassCard>
+        <GlassCard variant="gold">
+          <div class="text-[32px] mb-fib-md">📈</div>
+          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-gold);">Adaptive Learning</h3>
+          <p class="text-[14px]" style="color: var(--text-secondary);">
+            EDDI tracks your mastery across subjects and adjusts difficulty automatically. 
+            Always challenging, never overwhelming.
+          </p>
+        </GlassCard>
+      </div>
+
+      <!-- Engine badges -->
+      <div class="flex flex-wrap justify-center gap-fib-sm">
+        {engines.map(engine => (
+          <span class="glass-surface px-fib-md py-fib-xs text-[9px] font-mono" style="color: var(--text-tertiary);">{engine}</span>
         ))}
       </div>
     </section>
@@ -97,10 +163,11 @@ const stats = [
     <!-- ── 4-Portal Grid ──────────────────────────────────────────── -->
     <section class="max-w-6xl mx-auto px-fib-2xl py-fib-3xl">
       <div class="text-center mb-fib-3xl">
-        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">One Platform for Everyone</span>
-        <h2 class="text-[36px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">Built for Your School</h2>
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">7 Portals · One Platform</span>
+        <h2 class="text-[32px] md:text-[40px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">Built for Your School</h2>
         <p class="text-[15px] mt-fib-lg max-w-xl mx-auto" style="color: var(--text-secondary);">
-          Whether you're a student, teacher, principal, or IT administrator — EDU-AI has a dedicated experience designed just for you.
+          Students, Teachers, Principals, IT, Parents, Counselors, District — everyone gets a dedicated 
+          experience powered by EDDI.
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-fib-xl">
@@ -108,69 +175,100 @@ const stats = [
           <PortalCard name={p.name} role={p.role} tagline={p.tagline} variant={p.variant} features={p.features} />
         ))}
       </div>
+      <p class="text-center text-[12px] mt-fib-xl" style="color: var(--text-tertiary);">
+        + Parent Portal · Counselor Portal · District Portal
+      </p>
     </section>
 
-    <!-- ── ADEDDI Teaser CTA ──────────────────────────────────────────── -->
+    <!-- ── ADEDDI Deep Intelligence ──────────────────────────────────────────── -->
     <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
       <GlassCard variant="gold" class="text-center">
-        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Meet EDDI</span>
-        <h2 class="text-[28px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">Your Personal AI Learning Assistant</h2>
-        <p class="text-[15px] max-w-2xl mx-auto mb-fib-2xl" style="color: var(--text-secondary);">
-          EDDI understands how you learn best. It adapts to your grade level, explains concepts step-by-step, 
-          and never judges — just helps you understand. Available 24/7 for homework help, test prep, and curiosity.
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Alpha Deep EDDI · ADEDDI</span>
+        <h2 class="text-[28px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">The Intelligence Behind EDDI</h2>
+        <p class="text-[15px] max-w-2xl mx-auto mb-fib-xl" style="color: var(--text-secondary);">
+          ADEDDI is the deep reasoning engine that powers EDDI. Every question you ask runs through 
+          a 7-layer chain: understanding your intent, classifying the subject, expanding ideas, 
+          synthesizing multiple perspectives, and delivering a personalized answer.
         </p>
-        <a href="/intelligence" class="inline-block glass-grade-vault px-fib-2xl py-fib-lg text-[14px] font-semibold" style="color: var(--color-gold);">
-          Learn How EDDI Helps You →
+        <div class="flex flex-wrap justify-center gap-fib-sm mb-fib-2xl">
+          {['INPUT', 'CLASSIFY', 'COGT', 'META', 'AUTN', 'SYNTHESIS', 'SEAL'].map((layer, i) => (
+            <div class="glass-surface px-fib-lg py-fib-md">
+              <span class="text-[10px] font-mono" style="color: var(--color-gold);">L{i+1}</span>
+              <p class="text-[11px] font-mono font-bold" style="color: var(--text-primary);">{layer}</p>
+            </div>
+          ))}
+        </div>
+        <a href="/EDU-AI/intelligence" class="inline-block glass-grade-vault px-fib-2xl py-fib-lg text-[14px] font-semibold" style="color: var(--color-gold);">
+          Explore ADEDDI Intelligence →
         </a>
       </GlassCard>
     </section>
 
-    <!-- ── Features Section ──────────────────────────────────────────── -->
+    <!-- ── Platform Features ──────────────────────────────────────────── -->
     <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-fib-xl">
         <GlassCard variant="teal">
+          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">🔒 Sovereign Data</h3>
+          <p class="text-[14px]" style="color: var(--text-secondary);">
+            No external AI APIs. No data leaves your school. Everything runs on secure infrastructure 
+            with full privacy compliance.
+          </p>
+        </GlassCard>
+        <GlassCard variant="teal">
           <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">📚 All Subjects</h3>
           <p class="text-[14px]" style="color: var(--text-secondary);">
-            Math, Science, English, History, and more. EDDI knows your curriculum and helps with every subject you study.
+            Math, Science, English, History, Languages, Arts, Computer Science — EDDI knows 
+            your curriculum and adapts to your standards.
           </p>
         </GlassCard>
         <GlassCard variant="teal">
-          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">🔒 100% Private</h3>
+          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">🏆 Recognition System</h3>
           <p class="text-[14px]" style="color: var(--text-secondary);">
-            Your data stays safe. No selling to advertisers, no sharing with third parties. Built for schools who care about privacy.
-          </p>
-        </GlassCard>
-        <GlassCard variant="teal">
-          <h3 class="text-[18px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">📊 Track Progress</h3>
-          <p class="text-[14px]" style="color: var(--text-secondary);">
-            See exactly where you're improving and where you need more practice. Celebrate your wins and crush your goals.
+            Automatic achievement tracking, nomination workflows, and recognition events. 
+            Celebrate growth at every level.
           </p>
         </GlassCard>
       </div>
     </section>
 
     <!-- ── Footer ──────────────────────────────────────────────────── -->
-    <footer class="border-t border-white/5 py-fib-3xl px-fib-2xl text-center">
-      <p class="text-[12px] font-mono" style="color: var(--text-disabled);">
-        EDU-AI · AI-Powered Learning for K-12 Schools
-      </p>
+    <footer class="border-t border-white/5 py-fib-3xl px-fib-2xl">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-fib-xl">
+        <div class="flex items-center gap-fib-md">
+          <div class="w-8 h-8 rounded-full" style="background: radial-gradient(circle at 35% 35%, oklch(0.76 0.18 84), oklch(0.72 0.17 155)); box-shadow: 0 0 13px oklch(0.76 0.18 84 / 0.5);"></div>
+          <div>
+            <p class="font-display font-semibold text-[14px]" style="color: var(--text-primary);">EDU-AI</p>
+            <p class="text-[10px] font-mono" style="color: var(--text-tertiary);">Educational Deep Dialogue Intelligence</p>
+          </div>
+        </div>
+        <p class="text-[11px] font-mono" style="color: var(--text-disabled);">
+          Sovereign K-12 Learning Platform · Powered by EDDI
+        </p>
+      </div>
     </footer>
   </main>
 
   <style>
     @keyframes orbit {
-      from { transform: scale(1.4) rotate(0deg); }
-      to   { transform: scale(1.4) rotate(360deg); }
+      from { transform: scale(1.5) rotate(0deg); }
+      to   { transform: scale(1.5) rotate(360deg); }
     }
     @keyframes orbit-reverse {
-      from { transform: scale(1.7) rotate(360deg); }
-      to   { transform: scale(1.7) rotate(0deg); }
+      from { transform: scale(1.9) rotate(360deg); }
+      to   { transform: scale(1.9) rotate(0deg); }
+    }
+    @keyframes orbit-slow {
+      from { transform: scale(2.3) rotate(0deg); }
+      to   { transform: scale(2.3) rotate(360deg); }
     }
     .orbit-ring {
       animation: orbit 20s linear infinite;
     }
     .orbit-ring-reverse {
       animation: orbit-reverse 30s linear infinite;
+    }
+    .orbit-ring-slow {
+      animation: orbit-slow 45s linear infinite;
     }
   </style>
 </Base>

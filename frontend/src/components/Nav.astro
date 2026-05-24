@@ -1,27 +1,33 @@
 ---
+const base = import.meta.env.BASE_URL || '/EDU-AI';
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/intelligence', label: 'How EDDI Works' },
-  { href: '/portals', label: 'Portals' },
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/intelligence`, label: 'How EDDI Works' },
+  { href: `${base}/portals`, label: 'Portals' },
 ];
 const currentPath = Astro.url.pathname;
 ---
 <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
   <div class="max-w-6xl mx-auto px-fib-2xl h-[55px] flex items-center justify-between">
-    <a href="/" class="flex items-center gap-fib-md">
-      <div class="w-8 h-8 rounded-full" style="background: radial-gradient(circle at 35% 35%, oklch(0.76 0.18 84), oklch(0.72 0.17 155)); box-shadow: 0 0 13px oklch(0.76 0.18 84 / 0.5);"></div>
-      <span class="font-display font-semibold text-[17px]" style="color: var(--text-primary);">EDU-AI</span>
+    <a href={`${base}/`} class="flex items-center gap-fib-md">
+      <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: radial-gradient(circle at 35% 35%, oklch(0.76 0.18 84), oklch(0.72 0.17 155)); box-shadow: 0 0 13px oklch(0.76 0.18 84 / 0.5);">
+        <span class="text-[8px] font-bold" style="color: rgba(255,255,255,0.9);">E</span>
+      </div>
+      <div>
+        <span class="font-display font-semibold text-[17px]" style="color: var(--text-primary);">EDU-AI</span>
+        <span class="hidden sm:inline text-[9px] font-mono ml-fib-sm" style="color: var(--text-tertiary);">powered by EDDI</span>
+      </div>
     </a>
     <div class="hidden md:flex items-center gap-fib-xl">
       {links.map(link => (
         <a
           href={link.href}
           class={`text-[14px] font-medium transition-colors ${
-            currentPath === link.href
+            currentPath.endsWith(link.href.replace(base, '')) || (link.href.endsWith('/') && currentPath === base + '/')
               ? 'text-gold'
               : 'hover:text-gold'
           }`}
-          style={currentPath === link.href
+          style={currentPath.endsWith(link.href.replace(base, '')) || (link.href.endsWith('/') && currentPath === base + '/')
             ? 'color: var(--color-gold);'
             : 'color: var(--text-secondary);'}
         >
@@ -30,11 +36,11 @@ const currentPath = Astro.url.pathname;
       ))}
     </div>
     <a
-      href="/portals"
-      class="glass-grade-vault px-fib-lg py-fib-md text-[13px] font-semibold transition-all hover:opacity-90"
+      href={`${base}/portals`}
+      class="glass-grade-vault px-fib-lg py-fib-md text-[13px] font-semibold transition-all hover:scale-[1.02]"
       style="color: var(--color-gold);"
     >
-      Get Started →
+      Start Learning →
     </a>
   </div>
 </nav>

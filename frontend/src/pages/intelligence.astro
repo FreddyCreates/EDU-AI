@@ -4,106 +4,157 @@ import Nav from '../components/Nav.astro';
 import GlassCard from '../components/GlassCard.astro';
 import LayerBadge from '../components/LayerBadge.astro';
 
-const howEddiHelps = [
-  { step: 'UNDERSTAND', index: 1, weight: '1.000', description: 'EDDI reads your question carefully, figuring out what subject you\'re asking about and what kind of help you need — whether it\'s explaining a concept, solving a problem, or checking your work.' },
-  { step: 'ASSESS', index: 2, weight: '0.618', description: 'Based on your grade level and what you\'ve learned before, EDDI picks the best way to explain things to you. A 3rd grader gets different help than a 10th grader!' },
-  { step: 'THINK', index: 3, weight: '1.618', description: 'EDDI\'s brain goes to work — breaking down the problem, considering multiple approaches, and building a clear explanation that matches how you learn best.' },
-  { step: 'EXPLORE', index: 4, weight: '1.000', description: 'EDDI looks at your question from different angles: What if we try it this way? What about that way? This helps find the explanation that clicks for you.' },
-  { step: 'CREATE', index: 5, weight: '0.382', description: 'Sometimes EDDI comes up with creative new ways to explain tough concepts — using analogies, stories, or examples from things you already know.' },
-  { step: 'COMBINE', index: 6, weight: '1.618', description: 'All those ideas get blended together into one clear, helpful answer. No confusing jargon — just the help you need to understand.' },
-  { step: 'DELIVER', index: 7, weight: '0.618', description: 'Your answer is ready! EDDI formats it in a way that\'s easy to read, with step-by-step explanations if you need them.' },
+// ADEDDI 7-layer reasoning chain with PHI weights
+const layers = [
+  { layer: 'INPUT' as const,     index: 1, weight: '1.000', description: 'Intent classification — EDDI reads your question and determines what kind of help you need: explanation, problem-solving, practice, or exploration. Sets up the entire reasoning chain.' },
+  { layer: 'CLASSIFY' as const,  index: 2, weight: '0.618', description: 'Subject routing — Maps your question to one of 19 specialized engines. Math goes to PHAEDRUS, science to LOGOS, language to HERALD, memory to MEMORIA-VIVA, and so on.' },
+  { layer: 'COGT' as const,      index: 3, weight: '1.618', description: 'Cognitive expansion — The main thinking layer. Expands your question, critiques multiple approaches, then synthesizes the best explanation. Adapts to your grade level (K-2, 3-5, 6-8, 9-12).' },
+  { layer: 'META' as const,      index: 4, weight: '1.000', description: 'Meta-synthesis — The Architecture Council produces 3 parallel reasoning paths (deductive, structural, novel) plus a 4th autonomous insight. Multiple perspectives, one unified answer.' },
+  { layer: 'AUTN' as const,      index: 5, weight: '0.382', description: 'Autonomous insight — Selects from 8 archetype patterns and generates a novel connection that hasn\'t been made before in this session. Pure creativity, seeded by PHI-entropy.' },
+  { layer: 'SYNTHESIS' as const, index: 6, weight: '1.618', description: 'PHI-weighted merge — Combines COGT (primary), META (secondary), and AUTN (tertiary) outputs using the golden ratio. The result is a balanced, authoritative answer.' },
+  { layer: 'SEAL' as const,      index: 7, weight: '0.618', description: 'Doctrine crystallization — Formats the final answer in the best format for you: quick hint, step-by-step walkthrough, deep explanation, or practice problems. Seals to your learning passport.' },
 ];
 
-const subjects = [
-  { id: 'Math', domain: 'Algebra, geometry, calculus & more', color: 'gold' },
-  { id: 'Science', domain: 'Biology, chemistry, physics, earth science', color: 'teal' },
-  { id: 'English', domain: 'Reading, writing, grammar, literature', color: 'teal' },
-  { id: 'History', domain: 'World history, US history, civics', color: 'gold' },
-  { id: 'Languages', domain: 'Spanish, French, and more', color: 'teal' },
-  { id: 'Art', domain: 'Visual arts, music, drama', color: 'gold' },
-  { id: 'Computer Science', domain: 'Coding, digital literacy', color: 'teal' },
-  { id: 'Health', domain: 'Physical education, wellness', color: 'gold' },
+// 19 sovereign engines
+const engines = [
+  { id: 'EDDI',           domain: 'Unified user model',       color: 'gold',  desc: 'The central intelligence that coordinates all other engines and adapts to each user.' },
+  { id: 'COGT',           domain: 'Cognitive reasoning',      color: 'gold',  desc: 'Expand → Critique → Synthesize chain for deep thinking.' },
+  { id: 'META',           domain: 'Architecture Council',     color: 'gold',  desc: 'Multi-path reasoning with deductive, structural, and novel approaches.' },
+  { id: 'AUTN',           domain: 'Autonomous insight',       color: 'gold',  desc: 'PHI-entropy seeded novelty generation.' },
+  { id: 'SYNTHOS',        domain: 'General synthesis',        color: 'teal',  desc: 'Combines information from multiple sources into coherent answers.' },
+  { id: 'VEKTOR',         domain: 'Pattern recognition',      color: 'teal',  desc: 'Identifies patterns, similarities, and relationships in learning content.' },
+  { id: 'PHAEDRUS',       domain: 'Logic & mathematics',      color: 'gold',  desc: 'Mathematical reasoning, proofs, problem-solving, and formula derivation.' },
+  { id: 'MORPHOS',        domain: 'Adaptive transformation',  color: 'teal',  desc: 'Transforms explanations to match different learning styles.' },
+  { id: 'LOGOS',          domain: 'Science & evidence',       color: 'teal',  desc: 'Scientific reasoning, hypothesis testing, and evidence evaluation.' },
+  { id: 'GENITOR',        domain: 'Creation & generation',    color: 'gold',  desc: 'Generates examples, practice problems, and creative content.' },
+  { id: 'MEMORIA-VIVA',   domain: 'Memory & recall',          color: 'teal',  desc: 'Tracks what you\'ve learned and surfaces relevant past knowledge.' },
+  { id: 'OMNIS',          domain: 'Unified field merge',      color: 'gold',  desc: 'Integrates insights across all subject domains.' },
+  { id: 'SKAI_DOCENS',    domain: 'Teaching intelligence',    color: 'gold',  desc: 'Pedagogical strategies and scaffolding for educators.' },
+  { id: 'SCRIPTORIUM-REX',domain: 'Doctrine crystallization', color: 'gold',  desc: 'Formats and seals knowledge into reusable artifacts.' },
+  { id: 'KRONOS',         domain: 'Time & scheduling',        color: 'teal',  desc: 'Time-aware learning recommendations and study scheduling.' },
+  { id: 'NEXUS',          domain: 'Connection mapping',       color: 'teal',  desc: 'Links concepts across subjects and reveals hidden relationships.' },
+  { id: 'PRAXIS',         domain: 'Applied practice',         color: 'gold',  desc: 'Generates hands-on exercises and real-world applications.' },
+  { id: 'CRITERIOS',      domain: 'Assessment & rubrics',     color: 'gold',  desc: 'Evaluates work against standards and provides feedback.' },
+  { id: 'HERALD',         domain: 'Language & communication', color: 'teal',  desc: 'Reading, writing, grammar, and communication skills.' },
 ];
 
-const helpTypes = [
-  { type: 'Quick Answer', desc: 'Fast help when you just need a hint' },
-  { type: 'Step-by-Step', desc: 'Detailed walkthrough of how to solve it' },
-  { type: 'Concept Explanation', desc: 'Deep dive into understanding why' },
-  { type: 'Practice Problems', desc: 'More examples to build your skills' },
-  { type: 'Study Guide', desc: 'Summary notes for test prep' },
+const artifactFormats = [
+  { type: 'SEED',     desc: 'One-line concept identifier — the compressed essence of a learning.' },
+  { type: 'KERNEL',   desc: 'Three-sentence summary — enough to recall the core idea.' },
+  { type: 'DOCTRINE', desc: 'Full structured explanation — complete understanding captured.' },
+  { type: 'ARTIFACT', desc: 'Named, bounded entity — a discrete piece of mastered knowledge.' },
+  { type: 'SCROLL',   desc: 'Complete session record — everything learned in one session.' },
 ];
 ---
-<Base title="How EDDI Helps You Learn" description="Learn how EDDI, your AI learning assistant, helps you understand any subject and succeed in school.">
+<Base title="ADEDDI Intelligence — How EDDI Thinks" description="Explore the 7-layer reasoning chain and 19 AI engines that power EDDI, the Educational Deep Dialogue Intelligence.">
   <Nav />
   <main class="pt-[55px]">
 
     <!-- ── Hero ─────────────────────────────────────────────────── -->
     <section class="max-w-4xl mx-auto px-fib-2xl pt-fib-3xl pb-fib-2xl text-center">
-      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Your AI Learning Assistant</span>
-      <h1 class="text-[44px] md:text-[56px] font-display font-bold mt-fib-md mb-fib-lg leading-none" style="color: var(--text-primary);">
-        Meet <span style="color: var(--color-gold);">EDDI</span>
+      <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Alpha Deep EDDI · ADEDDI</span>
+      <h1 class="text-[40px] md:text-[56px] font-display font-bold mt-fib-md mb-fib-lg leading-none" style="color: var(--text-primary);">
+        How <span style="color: var(--color-gold);">EDDI</span> Thinks
       </h1>
       <p class="text-[16px] max-w-2xl mx-auto" style="color: var(--text-secondary);">
-        EDDI is like having a patient, knowledgeable tutor available 24/7. Ask any question, 
-        get help with homework, or explore topics you're curious about — EDDI adapts to your 
-        grade level and learning style.
+        EDDI isn't just a chatbot — it's a 7-layer reasoning engine with 19 specialized AI modules. 
+        Every question you ask runs through a full cognitive chain, producing answers that are 
+        thoughtful, adaptive, and personalized to how you learn.
       </p>
     </section>
 
-    <!-- ── 7-Layer Visualization (How EDDI Thinks) ─────────────────────────────────────────── -->
-    <section class="max-w-4xl mx-auto px-fib-2xl pb-fib-3xl">
-      <div class="glass-surface p-fib-2xl mb-fib-2xl">
-        <div class="flex items-center gap-fib-md mb-fib-xl">
-          <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--text-tertiary);">How EDDI Helps You</span>
-          <div class="flex-1 h-px" style="background: rgba(255,255,255,0.08);"></div>
-          <span class="text-[10px] font-mono" style="color: var(--text-disabled);">7 Steps to Understanding</span>
+    <!-- ── EDDI Full Name ─────────────────────────────────────────── -->
+    <section class="max-w-4xl mx-auto px-fib-2xl pb-fib-2xl">
+      <GlassCard variant="gold" class="text-center">
+        <div class="flex items-center justify-center gap-fib-lg mb-fib-lg">
+          <div class="w-16 h-16 rounded-full" style="background: radial-gradient(circle at 35% 35%, oklch(0.76 0.18 84 / 0.95), oklch(0.72 0.17 155 / 0.75), oklch(0.07 0.01 260)); box-shadow: 0 0 34px oklch(0.76 0.18 84 / 0.4);"></div>
         </div>
-        <div class="flex flex-col gap-fib-md">
-          {howEddiHelps.map(l => <LayerBadge layer={l.step as any} index={l.index} weight={l.weight} description={l.description} />)}
-        </div>
-      </div>
-
-      <!-- PHI weights explanation (simplified for students) -->
-      <GlassCard variant="teal" class="mb-fib-2xl">
-        <h3 class="text-[16px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">Why EDDI Gives Great Answers</h3>
-        <p class="text-[14px] leading-relaxed" style="color: var(--text-secondary);">
-          EDDI doesn't just search for answers — it actually thinks through your question using a special 
-          process inspired by how the best teachers explain things. Some steps focus more on understanding (like THINK), 
-          while others focus on creativity (like CREATE). This balance is what makes EDDI's help feel natural and useful.
+        <p class="text-[12px] font-mono uppercase tracking-[0.25em] mb-fib-sm" style="color: var(--color-gold);">
+          Educational Deep Dialogue Intelligence
+        </p>
+        <h2 class="text-[28px] font-display font-bold" style="color: var(--text-primary);">EDDI</h2>
+        <p class="text-[14px] mt-fib-md max-w-xl mx-auto" style="color: var(--text-secondary);">
+          The unified AI learning partner that adapts to every student, every subject, every grade level. 
+          Powered by ADEDDI — Alpha Deep EDDI — the reasoning engine that makes it all work.
         </p>
       </GlassCard>
     </section>
 
-    <!-- ── Subjects Grid (19 engines → 8 subjects) ──────────────────────────────────────── -->
+    <!-- ── 7-Layer Chain ─────────────────────────────────────────── -->
+    <section class="max-w-4xl mx-auto px-fib-2xl pb-fib-3xl">
+      <div class="text-center mb-fib-2xl">
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">The Reasoning Chain</span>
+        <h2 class="text-[28px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">7 Layers of Thinking</h2>
+      </div>
+      
+      <div class="glass-surface p-fib-2xl mb-fib-2xl">
+        <div class="flex items-center gap-fib-md mb-fib-xl">
+          <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--text-tertiary);">ADEDDI Chain</span>
+          <div class="flex-1 h-px" style="background: rgba(255,255,255,0.08);"></div>
+          <span class="text-[10px] font-mono" style="color: var(--text-disabled);">INPUT → CLASSIFY → COGT → META → AUTN → SYNTHESIS → SEAL</span>
+        </div>
+        <div class="flex flex-col gap-fib-md">
+          {layers.map(l => <LayerBadge layer={l.layer} index={l.index} weight={l.weight} description={l.description} />)}
+        </div>
+      </div>
+
+      <!-- PHI weights explanation -->
+      <GlassCard variant="teal">
+        <h3 class="text-[16px] font-display font-semibold mb-fib-md" style="color: var(--color-teal);">PHI-Weighted Computation</h3>
+        <p class="text-[14px] leading-relaxed" style="color: var(--text-secondary);">
+          Each layer carries a weight based on the golden ratio (φ = 1.618). The COGT and SYNTHESIS layers 
+          have the highest weight (1.618) because they do the heavy cognitive lifting. AUTN has the lowest 
+          weight (0.382) because it's pure novelty — creative but not authoritative. This balance ensures 
+          answers are both rigorous and creative.
+        </p>
+        <div class="flex flex-wrap gap-fib-sm mt-fib-lg">
+          <span class="glass-surface px-fib-md py-fib-xs text-[10px] font-mono" style="color: var(--color-gold);">φ = 1.618</span>
+          <span class="glass-surface px-fib-md py-fib-xs text-[10px] font-mono" style="color: var(--text-tertiary);">φ⁻¹ = 0.618</span>
+          <span class="glass-surface px-fib-md py-fib-xs text-[10px] font-mono" style="color: var(--text-tertiary);">φ⁻² = 0.382</span>
+        </div>
+      </GlassCard>
+    </section>
+
+    <!-- ── 19 Engines Grid ──────────────────────────────────────── -->
     <section class="max-w-6xl mx-auto px-fib-2xl pb-fib-3xl">
       <div class="text-center mb-fib-2xl">
-        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-teal);">All Your Subjects</span>
-        <h2 class="text-[28px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">EDDI Knows What You're Learning</h2>
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Specialized Intelligence</span>
+        <h2 class="text-[28px] font-display font-bold mt-fib-md" style="color: var(--text-primary);">19 AI Engines</h2>
+        <p class="text-[14px] mt-fib-md max-w-xl mx-auto" style="color: var(--text-secondary);">
+          Each engine is a specialized module that handles a specific type of reasoning or subject domain.
+        </p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-fib-md">
-        {subjects.map(s => (
-          <div class={s.color === 'gold' ? 'glass-grade-vault' : 'glass-knowledge-surface'} style="padding: 21px;">
-            <p class="text-[14px] font-display font-bold mb-fib-xs" style={`color: ${s.color === 'gold' ? 'var(--color-gold)' : 'var(--color-teal)'};`}>{s.id}</p>
-            <p class="text-[12px]" style="color: var(--text-tertiary);">{s.domain}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-fib-lg">
+        {engines.map(e => (
+          <div class={e.color === 'gold' ? 'glass-grade-vault' : 'glass-knowledge-surface'} style="padding: 21px;">
+            <p class="text-[13px] font-mono font-bold mb-fib-xs" style={`color: ${e.color === 'gold' ? 'var(--color-gold)' : 'var(--color-teal)'};`}>{e.id}</p>
+            <p class="text-[11px] font-semibold mb-fib-sm" style="color: var(--text-primary);">{e.domain}</p>
+            <p class="text-[12px]" style="color: var(--text-tertiary);">{e.desc}</p>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- ── 5 Artifact Formats (Help Types) ────────────────────────────────────── -->
+    <!-- ── Artifact Formats ────────────────────────────────────── -->
     <section class="max-w-4xl mx-auto px-fib-2xl pb-fib-3xl">
       <GlassCard variant="gold">
-        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Types of Help</span>
-        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">5 Ways EDDI Can Help You</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-fib-md">
-          {helpTypes.map(h => (
+        <span class="text-[11px] font-mono uppercase tracking-widest" style="color: var(--color-gold);">Knowledge Crystallization</span>
+        <h2 class="text-[24px] font-display font-bold mt-fib-md mb-fib-lg" style="color: var(--text-primary);">5 Learning Formats</h2>
+        <p class="text-[14px] mb-fib-xl" style="color: var(--text-secondary);">
+          Every answer EDDI gives can be crystallized into one of 5 formats, from a one-line seed to a complete scroll. 
+          These artifacts are stored in your Learning Passport and compound over time.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-fib-md">
+          {artifactFormats.map(a => (
             <div class="glass-surface p-fib-lg">
-              <p class="text-[13px] font-display font-bold mb-fib-xs" style="color: var(--color-gold);">{h.type}</p>
-              <p class="text-[12px]" style="color: var(--text-secondary);">{h.desc}</p>
+              <p class="text-[12px] font-mono font-bold mb-fib-xs" style="color: var(--color-gold);">{a.type}</p>
+              <p class="text-[12px]" style="color: var(--text-secondary);">{a.desc}</p>
             </div>
           ))}
           <div class="glass-surface p-fib-lg flex items-center justify-center">
-            <p class="text-[11px] font-mono text-center" style="color: var(--text-tertiary);">Just ask!<br/>EDDI figures out what you need</p>
+            <p class="text-[11px] font-mono text-center" style="color: var(--text-tertiary);">
+              Artifacts compound in your<br/>Learning Passport over time
+            </p>
           </div>
         </div>
       </GlassCard>
@@ -111,18 +162,18 @@ const helpTypes = [
 
     <!-- ── CTA ────────────────────────────────────────────────────────────── -->
     <section class="max-w-4xl mx-auto px-fib-2xl pb-fib-3xl text-center">
-      <h2 class="text-[28px] font-display font-bold mb-fib-lg" style="color: var(--text-primary);">Ready to Try EDDI?</h2>
+      <h2 class="text-[28px] font-display font-bold mb-fib-lg" style="color: var(--text-primary);">Ready to Learn with EDDI?</h2>
       <p class="text-[15px] mb-fib-2xl" style="color: var(--text-secondary);">
-        Start learning smarter today. Ask EDDI anything about your homework or studies.
+        Choose your portal and start your learning journey. EDDI adapts to you.
       </p>
-      <a href="/portals" class="inline-block glass-grade-vault px-fib-2xl py-fib-lg text-[14px] font-semibold" style="color: var(--color-gold);">
+      <a href="/EDU-AI/portals" class="inline-block glass-grade-vault px-fib-2xl py-fib-lg text-[14px] font-semibold" style="color: var(--color-gold);">
         Choose Your Portal →
       </a>
     </section>
 
     <footer class="border-t border-white/5 py-fib-3xl px-fib-2xl text-center">
       <p class="text-[12px] font-mono" style="color: var(--text-disabled);">
-        EDU-AI · AI-Powered Learning for K-12 Schools
+        EDU-AI · Educational Deep Dialogue Intelligence · ADEDDI v26
       </p>
     </footer>
   </main>

@@ -358,6 +358,25 @@ const ITApixGatewayPage = lazy(() => import("@/pages/ITApixGateway"));
 const ITEngineMonitorPage = lazy(() => import("@/pages/ITEngineMonitor"));
 const ITPortalPage = lazy(() => import("@/pages/ITPortal"));
 
+// New feature pages - Phase 1 & 2
+// Student features
+const StudentHomeworkTracker = lazy(() => import("@/pages/student/HomeworkTracker"));
+const StudentStudyPlanner = lazy(() => import("@/pages/student/StudyPlanner"));
+const StudentPeerCollaboration = lazy(() => import("@/pages/student/PeerCollaboration"));
+const StudentProgressJournal = lazy(() => import("@/pages/student/ProgressJournal"));
+
+// Teacher features
+const TeacherGradebook = lazy(() => import("@/pages/teacher/Gradebook"));
+const TeacherAttendanceTracker = lazy(() => import("@/pages/teacher/AttendanceTracker"));
+const TeacherCommunicationCenter = lazy(() => import("@/pages/teacher/CommunicationCenter"));
+const TeacherResourceLibrary = lazy(() => import("@/pages/teacher/ResourceLibrary"));
+
+// IT features
+const ITUserManagement = lazy(() => import("@/pages/it/UserManagement"));
+const ITSystemAlerts = lazy(() => import("@/pages/it/SystemAlerts"));
+const ITDataBackup = lazy(() => import("@/pages/it/DataBackup"));
+const ITIntegrationHub = lazy(() => import("@/pages/it/IntegrationHub"));
+
 // Parent portal routes
 const parentRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -707,6 +726,81 @@ const itPortalRoute = createRoute({
   component: ITPortalPage,
 });
 
+// New student feature routes - Phase 1 & 2
+const studentHomeworkRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/homework",
+  component: StudentHomeworkTracker,
+});
+
+const studentPlannerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/planner",
+  component: StudentStudyPlanner,
+});
+
+const studentCollaborationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/collaboration",
+  component: StudentPeerCollaboration,
+});
+
+const studentJournalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/student/journal",
+  component: StudentProgressJournal,
+});
+
+// New teacher feature routes - Phase 1 & 2
+const teacherGradebookRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/gradebook",
+  component: TeacherGradebook,
+});
+
+const teacherAttendanceRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/attendance",
+  component: TeacherAttendanceTracker,
+});
+
+const teacherMessagesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/messages",
+  component: TeacherCommunicationCenter,
+});
+
+const teacherResourcesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/teacher/resources",
+  component: TeacherResourceLibrary,
+});
+
+// New IT feature routes - Phase 1 & 2
+const itUsersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/users",
+  component: ITUserManagement,
+});
+
+const itAlertsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/alerts",
+  component: ITSystemAlerts,
+});
+
+const itBackupRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/backup",
+  component: ITDataBackup,
+});
+
+const itIntegrationsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/it/integrations",
+  component: ITIntegrationHub,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   visionRoute,
@@ -806,6 +900,22 @@ const routeTree = rootRoute.addChildren([
   staffTerminalRoute,
   adminTerminalRoute,
   externalTerminalRoute,
+  // New feature routes - Phase 1 & 2
+  // Student features
+  studentHomeworkRoute,
+  studentPlannerRoute,
+  studentCollaborationRoute,
+  studentJournalRoute,
+  // Teacher features
+  teacherGradebookRoute,
+  teacherAttendanceRoute,
+  teacherMessagesRoute,
+  teacherResourcesRoute,
+  // IT features
+  itUsersRoute,
+  itAlertsRoute,
+  itBackupRoute,
+  itIntegrationsRoute,
 ]);
 
 const router = createRouter({ routeTree });

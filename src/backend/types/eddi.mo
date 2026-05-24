@@ -59,8 +59,9 @@ module {
     embeddingDimensions : Nat;
 
     /// Training corpus: vast text data (~10¹² tokens)
+    /// Note: trainingTokensMagnitude represents order of magnitude (12 = 10¹²)
     trainingCorpusScale : Text;
-    trainingTokens : Nat;
+    trainingTokensMagnitude : Nat;  // Order of magnitude for memory efficiency
 
     /// Emergent capabilities: reasoning, code, translation (unpredicted)
     emergentCapabilities : [Text];

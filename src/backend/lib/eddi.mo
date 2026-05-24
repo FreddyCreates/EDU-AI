@@ -50,8 +50,9 @@ module {
     embeddingDimensions = 10000;  // ~10⁴ dimensions
 
     // Training Corpus: Vast text data (~10¹² tokens)
+    // Note: Using order of magnitude (12) for memory efficiency instead of raw count
     trainingCorpusScale = "Vast text data";
-    trainingTokens = 1000000000000;  // ~10¹² tokens (1 trillion)
+    trainingTokensMagnitude = 12;  // 10¹² tokens (order of magnitude)
 
     // Emergent Capabilities: Reasoning, code, translation (Unpredicted)
     emergentCapabilities = [

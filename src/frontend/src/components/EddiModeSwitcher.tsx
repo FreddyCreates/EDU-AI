@@ -36,21 +36,26 @@ import {
 import { motion } from "motion/react";
 import { useState } from "react";
 
+// Configuration constants
+const MAX_DISPLAYED_CAPABILITIES = 2;
+
 // EDDI Model Architecture Specification — defines the AI architecture parameters
+// Note: These values should match the backend (src/backend/lib/eddi.mo) for consistency
+// In a production system, these would be fetched from the backend API
 export const EDDI_ARCHITECTURE = {
   // Parameters: Billions to trillions of weights (~10¹² floats)
   parameterScale: "Billions to trillions of weights",
-  parameterMagnitude: 12, // 10¹² = 1 trillion
+  parameterMagnitude: 12, // 10¹² = 1 trillion (order of magnitude)
 
   // Attention: Multi-head self-attention mechanisms, O(n²) per layer
   attentionType: "Multi-head self-attention",
   attentionComplexity: "O(n²) per layer",
-  attentionHeads: 96,
+  attentionHeads: 96, // Matches backend EDDI_ARCHITECTURE.attentionHeads
 
   // Feed-Forward: Dense neural network layers (~4d² per layer)
   feedForwardType: "Dense neural network layers",
   feedForwardComplexity: "~4d² per layer",
-  layerCount: 96,
+  layerCount: 96, // Matches backend EDDI_ARCHITECTURE.layerCount
 
   // Normalization: Layer norm, RMS norm for stabilization
   normalizationType: "Layer norm + RMS norm",
@@ -58,15 +63,16 @@ export const EDDI_ARCHITECTURE = {
 
   // Tokenization: BPE, SentencePiece vocabularies (~100k tokens)
   tokenizationType: "BPE + SentencePiece",
-  vocabularySize: 100000,
+  vocabularySize: 100000, // Matches backend EDDI_ARCHITECTURE.vocabularySize
 
   // Embeddings: High-dimensional vector spaces (~10⁴ dimensions)
   embeddingType: "High-dimensional vector spaces",
-  embeddingDimensions: 10000,
+  embeddingDimensions: 10000, // Matches backend EDDI_ARCHITECTURE.embeddingDimensions
 
   // Training Corpus: Vast text data (~10¹² tokens)
+  // Using order of magnitude for memory efficiency (matches backend)
   trainingCorpusScale: "Vast text data",
-  trainingTokens: 1_000_000_000_000, // ~10¹² tokens
+  trainingTokensMagnitude: 12, // 10¹² tokens (order of magnitude)
 
   // Emergent Capabilities: Reasoning, code, translation (Unpredicted)
   emergentCapabilities: [
@@ -263,7 +269,7 @@ function DropdownSwitcher({
             Attention: {EDDI_ARCHITECTURE.attentionComplexity}
           </p>
           <p className="text-[9px] text-white/20 font-mono">
-            Capabilities: {mode.architectureFeatures.slice(0, 2).join(", ")}
+            Capabilities: {mode.architectureFeatures.slice(0, MAX_DISPLAYED_CAPABILITIES).join(", ")}
           </p>
         </div>
       </DropdownMenuContent>

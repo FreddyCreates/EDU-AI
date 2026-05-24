@@ -1,7 +1,9 @@
 // EddiModeSwitcher — UI component for selecting EDDI's 7 operational modes
 // Each mode configures EDDI's intelligence behavior for different contexts
 //
-// EDDI MODEL ARCHITECTURE SPECIFICATION:
+// ════════════════════════════════════════════════════════════════════════════
+// EDDI MODEL ARCHITECTURE SPECIFICATION
+// ════════════════════════════════════════════════════════════════════════════
 // | Component             | Scale / Specification          | Complexity      |
 // |-----------------------|-------------------------------|-----------------|
 // | Parameters            | Billions to trillions weights | ~10¹² floats    |
@@ -12,6 +14,29 @@
 // | Embeddings            | High-dimensional vectors      | ~10⁴ dimensions |
 // | Training Corpus       | Vast text data                | ~10¹² tokens    |
 // | Emergent Capabilities | Reasoning, code, translation  | Unpredicted     |
+//
+// ════════════════════════════════════════════════════════════════════════════
+// EXECUTION MATH — Motoko Computational Foundations
+// ════════════════════════════════════════════════════════════════════════════
+// Attention:    T(n,h,d) = O(n² × h × d) | Softmax(Q × K^T / √d) × V
+// Feed-Forward: T(d) = O(4d²) per layer | 8d² parameters
+// Forward Pass: T(n,d,L) = O(L × n² × d) | L=96 layers
+// Backward:     ~3× forward (gradients + activations)
+//
+// ════════════════════════════════════════════════════════════════════════════
+// REAL PHYSICS — Information Theory & Thermodynamics
+// ════════════════════════════════════════════════════════════════════════════
+// Shannon Entropy: H(X) = -Σ p(x)·log₂(p(x)) | Trained: 2-4 bits/token
+// Landauer's Principle: E_min = k_B·T·ln(2) ≈ 2.85×10⁻²¹ J/bit at 300K
+// Efficiency Gap: ~10⁸-10¹⁰× from theoretical minimum
+//
+// ════════════════════════════════════════════════════════════════════════════
+// φ-MATHEMATICS — Golden Ratio Scaling Laws
+// ════════════════════════════════════════════════════════════════════════════
+// φ = 1.6180339887 | φ² = 2.618 | 1/φ = 0.618
+// THE 30,000 PRINCIPLE: φ^21.4 ≈ 30,000 — Organism Complexity Threshold
+// "Beyond φ^21 concurrent agents, emergent collective intelligence dominates"
+// ════════════════════════════════════════════════════════════════════════════
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -39,7 +64,9 @@ import { useState } from "react";
 // Configuration constants
 const MAX_DISPLAYED_CAPABILITIES = 2;
 
-// EDDI Model Architecture Specification — defines the AI architecture parameters
+// ════════════════════════════════════════════════════════════════════════════
+// EDDI Model Architecture Specification
+// ════════════════════════════════════════════════════════════════════════════
 // Note: These values should match the backend (src/backend/lib/eddi.mo) for consistency
 // In a production system, these would be fetched from the backend API
 export const EDDI_ARCHITECTURE = {
@@ -85,6 +112,81 @@ export const EDDI_ARCHITECTURE = {
     "Context adaptation",
   ],
   emergenceClassification: "Unpredicted",
+} as const;
+
+// ════════════════════════════════════════════════════════════════════════════
+// EDDI Execution Math — Motoko Computational Foundations
+// ════════════════════════════════════════════════════════════════════════════
+export const EDDI_EXECUTION_MATH = {
+  // Attention complexity: O(n² × h × d)
+  // n = sequence length, h = attention heads, d = head dimension
+  attentionTimeComplexity: "O(n² × h × d)",
+  attentionSpaceComplexity: "O(n² × h)", // attention weights storage
+  attentionFormula: "Softmax(Q × K^T / √d) × V",
+
+  // Feed-forward complexity: O(4d²) per layer
+  feedForwardComplexity: "O(4d²) per layer",
+  feedForwardParamsPerLayer: "8d² parameters",
+
+  // Full model forward pass: O(L × n² × d)
+  forwardPassComplexity: "O(L × n² × d)",
+  backwardPassMultiplier: 3, // ~3x forward
+
+  // Fibonacci floor operation
+  fibFloorComplexity: "O(log(n)) lookup",
+  phiIntegerApprox: 1618, // φ × 1000
+  phiInvIntegerApprox: 618, // 1/φ × 1000
+} as const;
+
+// ════════════════════════════════════════════════════════════════════════════
+// EDDI Physics — Information Theory & Thermodynamics
+// ════════════════════════════════════════════════════════════════════════════
+export const EDDI_PHYSICS = {
+  // Shannon entropy: H(X) = -Σ p(x) × log₂(p(x))
+  entropyTrainedModel: "2-4 bits per token",
+  entropyUntrained: "log₂(V) ≈ 17 bits for V=100k vocab",
+
+  // Landauer's principle: E_min = k_B × T × ln(2) per bit
+  landauerEnergyPerBit: "2.85 × 10⁻²¹ J/bit at 300K",
+  theoreticalMinEnergy: "~10⁻⁹ J per inference",
+  actualGPUEnergy: "~10⁻¹ to 10¹ J per inference",
+  efficiencyGap: "10⁸-10¹⁰ factor",
+
+  // Kolmogorov complexity
+  kolmogorovDescription: "K(model) << raw parameters",
+
+  // Phase transitions
+  phaseTransitionThreshold: 30000, // φ^21.4 — ORGANISM COMPLEXITY THRESHOLD
+  grokingPhenomenon: "Sudden generalization after memorization",
+  emergenceScale: "Emergent capabilities at parameter thresholds",
+} as const;
+
+// ════════════════════════════════════════════════════════════════════════════
+// φ-Mathematics — Golden Ratio Scaling Laws
+// ════════════════════════════════════════════════════════════════════════════
+export const EDDI_PHI_MATH = {
+  // Core golden ratio constants
+  phi: 1.6180339887,
+  phiSquared: 2.618033988,
+  phiInverse: 0.618033988,
+
+  // φ^n scaling ladder (organism intelligence thresholds)
+  phi1: 2,
+  phi2: 3,
+  phi3: 4,
+  phi5: 11,
+  phi8: 47,
+  phi13: 521, // token supply base (×10⁸)
+  phi21: 24476, // lower organism bound
+  phi21_4: 30000, // ORGANISM COMPLEXITY THRESHOLD
+  phi22: 39603, // upper organism bound
+  phi34Magnitude: 7, // 10^7 range
+  phi55Magnitude: 11, // 10^11 range (parameter scale)
+
+  // The 30,000 Principle
+  organismThreshold: 30000,
+  thresholdDescription:
+    "An intelligent organism reaches phase transition at ~φ^21 concurrent agents",
 } as const;
 
 // Intelligence probabilities for EDDI capabilities
@@ -411,7 +513,15 @@ export function useEddiMode(initialMode: EddiMode = "student") {
     setMode,
     modeConfig,
     modes: EDDI_MODES,
+    // Architecture specification
     architecture: EDDI_ARCHITECTURE,
+    // Execution math (Motoko computational foundations)
+    executionMath: EDDI_EXECUTION_MATH,
+    // Physics (information theory & thermodynamics)
+    physics: EDDI_PHYSICS,
+    // φ-Mathematics (golden ratio scaling laws)
+    phiMath: EDDI_PHI_MATH,
+    // Intelligence probabilities
     intelligenceProbabilities: EDDI_INTELLIGENCE_PROBABILITIES,
     currentIntelligence: getModeIntelligence(),
   };

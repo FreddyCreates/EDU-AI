@@ -29,6 +29,9 @@ args = [
   "-A=M0198"
 ]
 
+[test]
+include = "src/backend/tests"
+
 [dependencies]
 core = "2.5.0"
 openai-client = "0.2.3"

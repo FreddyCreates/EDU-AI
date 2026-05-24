@@ -15,14 +15,78 @@ module {
   /// Maps Principal -> user-created agents (List for efficient append)
   public type UserAgentStore = Map.Map<Common.UserId, List.List<Types.UserAgent>>;
 
+  // ────────────────────────────────────────────────────────────────────────────
+  // EDDI ARCHITECTURE CONSTANTS
+  // ────────────────────────────────────────────────────────────────────────────
+  // These constants define EDDI's AI model architecture specification.
+  // All values align with the sovereign transformer architecture.
+
+  /// Default EDDI architecture specification
+  public let EDDI_ARCHITECTURE : Types.EDDIArchitecture = {
+    // Parameters: Billions to trillions of weights (~10¹² floats)
+    parameterScale = "Billions to trillions of weights";
+    parameterMagnitude = 12;  // 10¹² = 1 trillion
+
+    // Attention: Multi-head self-attention mechanisms, O(n²) per layer
+    attentionType = "Multi-head self-attention";
+    attentionComplexity = "O(n²) per layer";
+    attentionHeads = 96;  // Sovereign-scale attention heads
+
+    // Feed-Forward: Dense neural network layers (~4d² per layer)
+    feedForwardType = "Dense neural network layers";
+    feedForwardComplexity = "~4d² per layer";
+    layerCount = 96;  // Deep transformer stack
+
+    // Normalization: Layer norm, RMS norm for stabilization
+    normalizationType = "Layer norm + RMS norm";
+    normalizationPurpose = "Stabilization";
+
+    // Tokenization: BPE, SentencePiece vocabularies (~100k tokens)
+    tokenizationType = "BPE + SentencePiece";
+    vocabularySize = 100000;  // ~100k tokens
+
+    // Embeddings: High-dimensional vector spaces (~10⁴ dimensions)
+    embeddingType = "High-dimensional vector spaces";
+    embeddingDimensions = 10000;  // ~10⁴ dimensions
+
+    // Training Corpus: Vast text data (~10¹² tokens)
+    trainingCorpusScale = "Vast text data";
+    trainingTokens = 1000000000000;  // ~10¹² tokens (1 trillion)
+
+    // Emergent Capabilities: Reasoning, code, translation (Unpredicted)
+    emergentCapabilities = [
+      "Reasoning",
+      "Code generation",
+      "Translation",
+      "Mathematical problem solving",
+      "Creative writing",
+      "Knowledge synthesis",
+      "Context adaptation"
+    ];
+    emergenceClassification = "Unpredicted";
+  };
+
+  /// Default intelligence probabilities for EDDI capabilities
+  public let EDDI_INTELLIGENCE_PROBABILITIES : [Types.IntelligenceProbability] = [
+    { domain = "Reasoning"; confidenceScore = 89; entropyLevel = "low"; predictionAccuracy = 91 },
+    { domain = "Code generation"; confidenceScore = 87; entropyLevel = "low"; predictionAccuracy = 89 },
+    { domain = "Translation"; confidenceScore = 85; entropyLevel = "medium"; predictionAccuracy = 88 },
+    { domain = "Mathematical problem solving"; confidenceScore = 82; entropyLevel = "medium"; predictionAccuracy = 85 },
+    { domain = "Creative writing"; confidenceScore = 78; entropyLevel = "high"; predictionAccuracy = 75 },
+    { domain = "Knowledge synthesis"; confidenceScore = 88; entropyLevel = "low"; predictionAccuracy = 90 },
+    { domain = "Context adaptation"; confidenceScore = 91; entropyLevel = "low"; predictionAccuracy = 93 }
+  ];
+
   // ── The canonical EDDI singleton ──────────────────────────────────────────
   public let EDDI_INSTANCE : Types.EDDI = {
     id        = "EDDI";
     name      = "EDDI";
-    version   = 23;
+    version   = 24;  // Updated for architecture spec
     modeCount = 7;
     sealedAt  = 0;   // updated at runtime via getEddi()
     law       = "LEX_EDDI_UNIFIED";
+    architecture = EDDI_ARCHITECTURE;
+    intelligenceProbabilities = EDDI_INTELLIGENCE_PROBABILITIES;
   };
 
   // ── Mode inference from a context hint string ─────────────────────────────

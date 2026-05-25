@@ -1,0 +1,21 @@
+{
+  "canisters": {
+    "backend": {
+      "type": "motoko",
+      "main": "src/backend/main.mo",
+      "args": "--default-persistent-actors --actor-idl=src/backend/system-idl --implicit-package=core -no-check-ir -E=M0236,M0235,M0223,M0237 -A=M0198"
+    },
+    "frontend": {
+      "type": "assets",
+      "source": ["src/frontend/dist"],
+      "dependencies": ["backend"]
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "mops sources"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

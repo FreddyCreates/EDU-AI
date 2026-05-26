@@ -512,7 +512,10 @@ function saveHistory(history: DeploymentHistory) {
 }
 
 function generateDeploymentId(): string {
-  return `deploy-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  // Use cryptographically secure random bytes for deployment IDs
+  const crypto = require('crypto');
+  const randomBytes = crypto.randomBytes(8).toString('hex');
+  return `deploy-${Date.now()}-${randomBytes}`;
 }
 
 async function cmdHistory() {
@@ -667,14 +670,13 @@ async function sendWebhook(
   const body = JSON.stringify(payload);
   
   try {
-    // Simple HTTP POST using fetch or curl
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       'User-Agent': 'Nova-Forge/1.0',
     };
     
     if (secret) {
-      // Generate simple signature
+      // Generate HMAC signature
       const crypto = require('crypto');
       const signature = crypto
         .createHmac('sha256', secret)
@@ -683,16 +685,33 @@ async function sendWebhook(
       headers['X-Nova-Signature'] = `sha256=${signature}`;
     }
     
-    // Use curl for broader compatibility
-    const headerFlags = Object.entries(headers)
-      .map(([k, v]) => `-H "${k}: ${v}"`)
-      .join(' ');
+    // Use Node.js https module for safer HTTP requests (no shell injection risk)
+    const https = require('https');
+    const http = require('http');
+    const urlObj = new URL(url);
+    const client = urlObj.protocol === 'https:' ? https : http;
     
-    execSync(`curl -s -X POST ${headerFlags} -d '${body.replace(/'/g, "\\'")}' "${url}"`, {
-      timeout: 10000,
+    return new Promise((resolve) => {
+      const req = client.request(urlObj, {
+        method: 'POST',
+        headers: {
+          ...headers,
+          'Content-Length': Buffer.byteLength(body),
+        },
+        timeout: 10000,
+      }, (res: any) => {
+        resolve(res.statusCode >= 200 && res.statusCode < 300);
+      });
+      
+      req.on('error', () => resolve(false));
+      req.on('timeout', () => {
+        req.destroy();
+        resolve(false);
+      });
+      
+      req.write(body);
+      req.end();
     });
-    
-    return true;
   } catch (e) {
     warn(`Webhook delivery failed: ${e}`);
     return false;

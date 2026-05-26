@@ -213,21 +213,28 @@ module {
     result;
   };
 
-  /// Generate HMAC signature for webhook (simplified)
+  /// Generate HMAC signature for webhook
+  /// NOTE: This is a placeholder implementation. In production, integrate with
+  /// a proper cryptographic library like mo:crypto for HMAC-SHA256 signatures.
+  /// The current implementation is NOT cryptographically secure.
   public func generateSignature(
     payload : Text,
     secret : Text
   ) : Text {
-    // In production, use proper HMAC-SHA256
-    // This is a simplified version for demonstration
-    var hash : Nat = 0;
+    // TODO: Replace with proper HMAC-SHA256 implementation
+    // Requires: import Crypto "mo:crypto";
+    // Implementation: Crypto.hmacSha256(secret, payload)
+    // 
+    // Current placeholder uses a simple hash for development only.
+    // DO NOT use in production without proper HMAC implementation.
+    var hash : Nat = 5381;  // DJB2 hash seed
     for (c in payload.chars()) {
-      hash := hash * 31 + Nat32.toNat(Char.toNat32(c));
+      hash := ((hash * 33) + Nat32.toNat(Char.toNat32(c))) % 2147483647;
     };
     for (c in secret.chars()) {
-      hash := hash * 17 + Nat32.toNat(Char.toNat32(c));
+      hash := ((hash * 33) + Nat32.toNat(Char.toNat32(c))) % 2147483647;
     };
-    "sha256=" # Nat.toText(hash);
+    "sha256=" # Nat.toText(hash) # "-dev-only";
   };
 
   /// Create webhook log entry
@@ -297,8 +304,9 @@ module {
           pending.config.url == url) {
         found := true;
         if (pending.attempts < MAX_RETRIES) {
-          // Exponential backoff
-          let delay = RETRY_DELAY_NS * (2 ** pending.attempts);
+          // Exponential backoff using manual power calculation
+          let multiplier = Nat.pow(2, pending.attempts);
+          let delay = RETRY_DELAY_NS * multiplier;
           updated.add({
             pending with
             attempts = pending.attempts + 1;

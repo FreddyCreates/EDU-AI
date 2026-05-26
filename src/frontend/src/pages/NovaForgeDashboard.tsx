@@ -37,7 +37,15 @@ const PURPLE = "oklch(0.68 0.18 280)";
 const CYAN = "oklch(0.65 0.22 200)";
 const RED = "oklch(0.65 0.25 25)";
 
-// Static deployment data for demo
+// TODO: Replace static data with backend API calls
+// Use: useQuery({ queryKey: ['nova-forge-dashboard'], queryFn: () => backend.getDashboard() })
+// Backend API endpoints are defined in src/backend/mixins/nova-forge-api.mo:
+// - getDashboard() - Get full dashboard data
+// - getDeploymentHistory(filter) - Get paginated deployment history
+// - getDeployment(id) - Get single deployment details
+// - novaForgeHealthCheck() - Check Nova Forge health status
+
+// Static deployment data for demo (replace with API calls in production)
 const DEPLOYMENT_HISTORY = [
   {
     id: "deploy-1716678432-abc123",

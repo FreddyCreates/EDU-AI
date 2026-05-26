@@ -131,6 +131,7 @@ module {
     };
 
     // If auto-deploy is enabled and only one approver required
+    // Note: This should only be used for development/staging environments
     if (state.selfDeploy.autoDeployEnabled and state.selfDeploy.requiredApprovers <= 1) {
       // Start deployment immediately
       let deployment = HistoryLib.startDeployment(
@@ -143,10 +144,12 @@ module {
     };
 
     // Create approval request
+    // Note: Requester does NOT count as an approval to prevent self-approval attacks
+    // At least one additional approver is always required for production deployments
     let requestId = "req-" # Int.toText(Time.now());
     let auth : DeployTypes.SelfDeployAuth = {
-      requiredApprovals = state.selfDeploy.requiredApprovers;
-      currentApprovals = [caller];  // Requester counts as first approval
+      requiredApprovals = Nat.max(2, state.selfDeploy.requiredApprovers);  // Minimum 2 approvers for security
+      currentApprovals = [];  // Requester must get approval from others
       expiresAt = Time.now() + 86_400_000_000_000;  // 24 hours
       requestedBy = caller;
     };
@@ -154,7 +157,7 @@ module {
     ignore Map.put(state.selfDeploy.approvals, Map.thash, requestId, auth);
     state.selfDeploy.pendingRequests.add(request);
 
-    if (auth.currentApprovals.size() >= state.selfDeploy.requiredApprovers) {
+    if (auth.currentApprovals.size() >= auth.requiredApprovals) {
       // Enough approvals, start deployment
       let deployment = HistoryLib.startDeployment(
         state.history,

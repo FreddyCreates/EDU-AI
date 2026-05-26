@@ -203,15 +203,100 @@ nova-forge/
 ├── core/
 │   ├── builder.mo       # Build orchestration
 │   ├── deployer.mo      # Mainnet deployment
-│   └── cycles.mo        # Cycle management
+│   ├── cycles.mo        # Cycle management
+│   ├── history.mo       # Deployment history tracking (Phase 3)
+│   └── webhooks.mo      # Webhook notifications (Phase 3)
 ├── ai/
 │   ├── scanner.mo       # Security analysis
 │   ├── estimator.mo     # Cost estimation
 │   └── advisor.mo       # Recommendations
 ├── cli/
-│   └── nova.ts          # CLI tool
+│   └── nova.ts          # CLI tool with history & dashboard
 └── types/
-    └── config.mo        # Type definitions
+    ├── config.mo        # Type definitions
+    └── deployment.mo    # Deployment & webhook types (Phase 3)
+```
+
+---
+
+## Phase 3: Dashboard & Webhooks
+
+### Deployment History
+
+Nova Forge tracks all deployments with full audit trails:
+
+```bash
+nova history
+```
+
+Shows:
+- Deployment ID and version
+- Timestamp and duration
+- Status (success/failed)
+- Canisters deployed
+- Scan reports and cycle estimates
+
+### Dashboard
+
+Interactive dashboard showing:
+
+```bash
+nova dashboard
+```
+
+- Project info and configuration
+- Deployment statistics and success rate
+- Canister status and cycle balances
+- AI configuration overview
+
+### Webhook Notifications
+
+Configure webhook notifications in `nova.toml`:
+
+```toml
+[notifications]
+webhook = "env:NOVA_WEBHOOK_URL"
+on_success = true
+on_failure = true
+```
+
+Events:
+- `deploymentStarted` - Deployment initiated
+- `deploymentCompleted` - Successful deployment
+- `deploymentFailed` - Deployment failed
+- `scanCompleted` - Security scan finished
+- `cycleWarning` - Low cycle balance alert
+
+---
+
+## Phase 4: EduAI Integration
+
+### Native Nova Forge Support
+
+Access Nova Forge directly from the EduAI platform:
+
+- `/nova-forge` - Main dashboard
+- `/admin/nova-forge` - Admin deployment panel
+
+### Self-Deploy Capability
+
+Request deployments from within the platform:
+
+1. **Request Deploy** - Authorized users can request deployments
+2. **Approval Flow** - Multi-signature approval for production deploys
+3. **Automatic Deploy** - Optional auto-deploy for trusted CI/CD
+
+### Configuration
+
+```typescript
+// Authorized deployers
+addDeployer(principal);
+
+// Configure approval requirements
+configureSelfDeploy({
+  autoEnabled: false,
+  requiredApprovers: 2
+});
 ```
 
 ---

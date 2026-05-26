@@ -377,6 +377,9 @@ const ITSystemAlerts = lazy(() => import("@/pages/it/SystemAlerts"));
 const ITDataBackup = lazy(() => import("@/pages/it/DataBackup"));
 const ITIntegrationHub = lazy(() => import("@/pages/it/IntegrationHub"));
 
+// Nova Forge - Phase 3-4
+const NovaForgeDashboard = lazy(() => import("@/pages/NovaForgeDashboard"));
+
 // Parent portal routes
 const parentRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -801,6 +804,19 @@ const itIntegrationsRoute = createRoute({
   component: ITIntegrationHub,
 });
 
+// Nova Forge routes - Phase 3-4
+const novaForgeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/nova-forge",
+  component: NovaForgeDashboard,
+});
+
+const novaForgeDashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/nova-forge",
+  component: NovaForgeDashboard,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   visionRoute,
@@ -916,6 +932,9 @@ const routeTree = rootRoute.addChildren([
   itAlertsRoute,
   itBackupRoute,
   itIntegrationsRoute,
+  // Nova Forge - Phase 3-4
+  novaForgeRoute,
+  novaForgeDashboardRoute,
 ]);
 
 const router = createRouter({ routeTree });

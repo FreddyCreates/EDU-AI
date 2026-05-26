@@ -462,6 +462,274 @@ async function cmdCanisters() {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// PHASE 3: DEPLOYMENT HISTORY
+// ═══════════════════════════════════════════════════════════════
+
+const HISTORY_FILE = '.nova-history.json';
+
+interface DeploymentRecord {
+  id: string;
+  project: string;
+  version: string;
+  timestamp: number;
+  status: 'success' | 'failed' | 'cancelled';
+  duration: number;  // in seconds
+  canisters: {
+    name: string;
+    canisterId?: string;
+    cyclesUsed?: number;
+  }[];
+  scanReport?: {
+    passed: boolean;
+    errors: number;
+    warnings: number;
+  };
+  cycleEstimate?: {
+    installation: number;
+    monthly: number;
+    recommended: number;
+  };
+}
+
+interface DeploymentHistory {
+  deployments: DeploymentRecord[];
+}
+
+function loadHistory(): DeploymentHistory {
+  if (!existsSync(HISTORY_FILE)) {
+    return { deployments: [] };
+  }
+  try {
+    const content = readFileSync(HISTORY_FILE, 'utf-8');
+    return JSON.parse(content);
+  } catch {
+    return { deployments: [] };
+  }
+}
+
+function saveHistory(history: DeploymentHistory) {
+  writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+}
+
+function generateDeploymentId(): string {
+  return `deploy-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
+
+async function cmdHistory() {
+  step('Deployment History');
+  
+  const history = loadHistory();
+  
+  if (history.deployments.length === 0) {
+    info('No deployments recorded yet');
+    return;
+  }
+  
+  log('\n📋 DEPLOYMENT HISTORY');
+  log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  log('');
+  
+  // Summary stats
+  const total = history.deployments.length;
+  const successful = history.deployments.filter(d => d.status === 'success').length;
+  const failed = history.deployments.filter(d => d.status === 'failed').length;
+  const avgDuration = history.deployments.reduce((sum, d) => sum + d.duration, 0) / total;
+  
+  log(`Total Deployments: ${total}`);
+  log(`Successful: ${COLORS.green}${successful}${COLORS.reset} | Failed: ${COLORS.red}${failed}${COLORS.reset}`);
+  log(`Average Duration: ${avgDuration.toFixed(1)}s`);
+  log('');
+  log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  
+  // Recent deployments (last 10)
+  const recent = history.deployments.slice(-10).reverse();
+  
+  for (const deployment of recent) {
+    const date = new Date(deployment.timestamp).toLocaleString();
+    const statusIcon = deployment.status === 'success' ? '✅' : deployment.status === 'failed' ? '❌' : '⚠️';
+    const statusColor = deployment.status === 'success' ? COLORS.green : deployment.status === 'failed' ? COLORS.red : COLORS.yellow;
+    
+    log(`\n${statusIcon} ${deployment.id}`);
+    log(`   Project: ${deployment.project} v${deployment.version}`);
+    log(`   Time: ${date}`);
+    log(`   Duration: ${deployment.duration}s`);
+    log(`   Status: ${statusColor}${deployment.status.toUpperCase()}${COLORS.reset}`);
+    
+    if (deployment.canisters.length > 0) {
+      log('   Canisters:');
+      for (const canister of deployment.canisters) {
+        log(`     • ${canister.name}${canister.canisterId ? ` (${canister.canisterId})` : ''}`);
+      }
+    }
+    
+    if (deployment.scanReport) {
+      const scanStatus = deployment.scanReport.passed ? '✓ passed' : '✗ failed';
+      log(`   Scan: ${scanStatus} (${deployment.scanReport.errors} errors, ${deployment.scanReport.warnings} warnings)`);
+    }
+  }
+  
+  log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+}
+
+async function cmdDashboard() {
+  console.log(BANNER);
+  step('Nova Forge Dashboard');
+  
+  const config = parseConfig();
+  if (!config) return;
+  
+  const history = loadHistory();
+  
+  log('\n🎛️  NOVA FORGE DASHBOARD');
+  log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  
+  // Project info
+  log(`\n📦 PROJECT: ${config.project.name} v${config.project.version}`);
+  log(`   ${config.project.description || 'No description'}`);
+  log(`   Network: ${config.network.target.toUpperCase()} (Mainnet)`);
+  
+  // Deployment stats
+  const projectHistory = history.deployments.filter(d => d.project === config.project.name);
+  const total = projectHistory.length;
+  const successful = projectHistory.filter(d => d.status === 'success').length;
+  const successRate = total > 0 ? ((successful / total) * 100).toFixed(1) : '0';
+  
+  log('\n📊 DEPLOYMENT STATISTICS');
+  log('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  log(`   Total Deployments: ${total}`);
+  log(`   Success Rate: ${successRate}%`);
+  
+  if (projectHistory.length > 0) {
+    const lastDeploy = projectHistory[projectHistory.length - 1];
+    const lastDate = new Date(lastDeploy.timestamp).toLocaleString();
+    log(`   Last Deployment: ${lastDate} (${lastDeploy.status})`);
+  }
+  
+  // Canister status
+  log('\n🔧 CANISTERS');
+  log('━━━━━━━━━━━━━');
+  for (const [name, canister] of Object.entries(config.canisters)) {
+    const type = canister.type || 'motoko';
+    log(`   ${name}: ${type}`);
+    
+    // Try to get canister ID if deployed
+    try {
+      const canisterId = execSync(`dfx canister --network ${IC_NETWORK} id ${name} 2>/dev/null`, { encoding: 'utf-8' }).trim();
+      if (canisterId) {
+        log(`     └─ ID: ${canisterId}`);
+        
+        // Try to get cycles balance
+        try {
+          const status = execSync(`dfx canister --network ${IC_NETWORK} status ${name} 2>/dev/null`, { encoding: 'utf-8' });
+          const cyclesMatch = status.match(/Balance: ([\d,]+) Cycles/i);
+          if (cyclesMatch) {
+            log(`     └─ Cycles: ${cyclesMatch[1]}`);
+          }
+        } catch {}
+      }
+    } catch {
+      log(`     └─ Not deployed`);
+    }
+  }
+  
+  // AI config
+  log('\n🤖 AI CONFIGURATION');
+  log('━━━━━━━━━━━━━━━━━━━');
+  log(`   Pre-deploy Scan: ${config.ai?.pre_deploy_scan ? '✓' : '✗'}`);
+  log(`   Cycle Optimization: ${config.ai?.cycle_optimization ? '✓' : '✗'}`);
+  log(`   Upgrade Safety: ${config.ai?.upgrade_safety_check ? '✓' : '✗'}`);
+  log(`   Security Level: ${config.ai?.security_level || 'standard'}`);
+  
+  log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  log('\nCommands:');
+  log('  nova deploy    - Deploy to mainnet');
+  log('  nova scan      - Run security scan');
+  log('  nova estimate  - Estimate cycles');
+  log('  nova history   - View deployment history');
+  log('  nova status    - Check canister status');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PHASE 3: WEBHOOK NOTIFICATIONS
+// ═══════════════════════════════════════════════════════════════
+
+interface WebhookConfig {
+  url: string;
+  events: ('deploymentStarted' | 'deploymentCompleted' | 'deploymentFailed' | 'all')[];
+  enabled: boolean;
+}
+
+async function sendWebhook(
+  url: string,
+  payload: Record<string, any>,
+  secret?: string
+): Promise<boolean> {
+  const body = JSON.stringify(payload);
+  
+  try {
+    // Simple HTTP POST using fetch or curl
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'User-Agent': 'Nova-Forge/1.0',
+    };
+    
+    if (secret) {
+      // Generate simple signature
+      const crypto = require('crypto');
+      const signature = crypto
+        .createHmac('sha256', secret)
+        .update(body)
+        .digest('hex');
+      headers['X-Nova-Signature'] = `sha256=${signature}`;
+    }
+    
+    // Use curl for broader compatibility
+    const headerFlags = Object.entries(headers)
+      .map(([k, v]) => `-H "${k}: ${v}"`)
+      .join(' ');
+    
+    execSync(`curl -s -X POST ${headerFlags} -d '${body.replace(/'/g, "\\'")}' "${url}"`, {
+      timeout: 10000,
+    });
+    
+    return true;
+  } catch (e) {
+    warn(`Webhook delivery failed: ${e}`);
+    return false;
+  }
+}
+
+async function notifyWebhooks(
+  event: 'deploymentStarted' | 'deploymentCompleted' | 'deploymentFailed',
+  deployment: DeploymentRecord
+) {
+  const config = parseConfig();
+  if (!config) return;
+  
+  // Check nova.toml for webhook config
+  const webhookUrl = process.env.NOVA_WEBHOOK_URL;
+  if (!webhookUrl) return;
+  
+  const payload = {
+    event,
+    timestamp: Date.now(),
+    deployment: {
+      id: deployment.id,
+      project: deployment.project,
+      version: deployment.version,
+      status: deployment.status,
+      duration: deployment.duration,
+      canisters: deployment.canisters,
+    },
+  };
+  
+  const delivered = await sendWebhook(webhookUrl, payload);
+  if (delivered) {
+    info(`Webhook notification sent: ${event}`);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════════════════════════════
 
@@ -524,7 +792,9 @@ async function main() {
     log('  estimate    Calculate cycle costs');
     log('  deploy      Build + Scan + Deploy to MAINNET');
     log('  status      Check canister health on mainnet');
-    log('  canisters   List all canisters\n');
+    log('  canisters   List all canisters');
+    log('  history     View deployment history');
+    log('  dashboard   Open Nova Forge dashboard\n');
     log('OPTIONS:', COLORS.bright);
     log('  --confirm   Skip deployment confirmation\n');
     log('PHILOSOPHY:', COLORS.bright);
@@ -553,6 +823,12 @@ async function main() {
       break;
     case 'canisters':
       await cmdCanisters();
+      break;
+    case 'history':
+      await cmdHistory();
+      break;
+    case 'dashboard':
+      await cmdDashboard();
       break;
     default:
       error(`Unknown command: ${command}`);

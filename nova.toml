@@ -1,4 +1,4 @@
-# 🚀 Nova Forge Configuration
+# 🧠 Nova Forge Configuration — AI-Native Agentic Deployment
 # Sovereign ICP Mainnet Build & Deploy System
 # "If it's not on mainnet, it doesn't exist."
 
@@ -30,10 +30,14 @@ moc_args = [
 ]
 
 [ai]
-pre_deploy_scan = true
-cycle_optimization = true
-upgrade_safety_check = true
-security_level = "strict"  # strict | standard | minimal
+pre_deploy_scan = true              # 🛡️ SecurityAgent: deep vulnerability analysis
+cycle_optimization = true           # 💰 CostAgent: ML-powered cost prediction
+upgrade_safety_check = true         # ✅ SafetyAgent: stable memory validation
+security_level = "strict"           # strict | standard | minimal
+agent_verbose = false               # Show agent reasoning traces
+reasoning_depth = "standard"        # minimal | standard | deep
+learn_from_history = true           # Agents learn from past deployments
+compound_threat_detection = true    # Cross-reference findings for combined risks
 
 [identity]
 # Stored securely via environment variables - NEVER commit secrets

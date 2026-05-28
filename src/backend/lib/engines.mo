@@ -19,6 +19,7 @@ module {
         "Synthesis Lab: Write with an Engine",
       ];
       status = #active;
+      platformRole = "Powers the platform's natural language understanding pipeline — tokenizes all student inputs, generates lesson summaries, drives the chat interface response synthesis, and provides the NLU backbone for EDDI's text generation across all user-facing chat and content surfaces.";
     },
     {
       id = 2;
@@ -36,6 +37,7 @@ module {
         "Vektor Lab: Map Your Knowledge",
       ];
       status = #active;
+      platformRole = "Drives semantic search across all curriculum content, powers the 'related topics' recommendations, enables concept-map proximity calculations, and provides embedding-based similarity matching for the adaptive learning pathways and knowledge graph navigation.";
     },
     {
       id = 3;
@@ -53,6 +55,7 @@ module {
         "Phaedrus Lab: Build a Decision Tree",
       ];
       status = #active;
+      platformRole = "Powers the platform's decision logic for adaptive quiz generation, drives the inference engine behind mastery assessments, determines prerequisite chains for curriculum sequencing, and provides reasoning validation for student proof-based answers.";
     },
     {
       id = 4;
@@ -70,6 +73,7 @@ module {
         "Morphos Lab: Transform Your Input",
       ];
       status = #active;
+      platformRole = "Handles all data transformation pipelines across the platform — converts raw session data into structured KERNEL_SEEDs, transforms curriculum standards into lesson formats, powers the content adaptation layer that reshapes materials for different grade levels and learning modes.";
     },
     {
       id = 5;
@@ -87,6 +91,7 @@ module {
         "Logos Lab: Give Your AI a Voice",
       ];
       status = #active;
+      platformRole = "Generates all platform text output — lesson explanations, feedback messages, recognition citations, report narratives, and doctrine documents. Powers the voice-to-text input system, drives the text-to-speech output for accessibility, and produces all AI-written content students and teachers see.";
     },
     {
       id = 6;
@@ -104,6 +109,7 @@ module {
         "Genitor Lab: Build Your First AI",
       ];
       status = #active;
+      platformRole = "Powers the platform's generative content creation systems — auto-generates quiz questions from lesson content, creates personalized practice problems, spawns new curriculum modules from seed topics, and drives the user-agent creation pipeline where students build their own AI assistants.";
     },
     {
       id = 7;
@@ -121,6 +127,7 @@ module {
         "Memoria Lab: Watch Your AI Remember",
       ];
       status = #active;
+      platformRole = "Manages all platform memory systems — the sovereign passport KERNEL_SEED store, session history compounding, spaced-repetition scheduling, student knowledge state persistence, and the compound-score calculations that determine mastery progression across the entire learning lifecycle.";
     },
     {
       id = 8;
@@ -138,6 +145,7 @@ module {
         "Omnis Lab: Wire All Engines",
       ];
       status = #active;
+      platformRole = "Orchestrates cross-engine coordination — routes multi-step tasks across SYNTHOS, VEKTOR, PHAEDRUS, and other engines in parallel, manages the engine dependency graph, handles failover and load balancing between ML subsystems, and provides the unified API surface that all frontend features call through.";
     },
     {
       id = 9;
@@ -155,6 +163,7 @@ module {
         "Skai Docens Lab: Route Your Own Lesson",
       ];
       status = #active;
+      platformRole = "The platform's primary intent router — classifies every student message to determine which engine handles the request, manages session context switching, powers the 'what do you want to learn?' onboarding flow, and provides the intelligent dispatch layer between user input and backend ML systems.";
     },
     {
       id = 10;
@@ -172,6 +181,7 @@ module {
         "Scriptorium Lab: Crystallize Your Session",
       ];
       status = #active;
+      platformRole = "Powers the platform's knowledge persistence layer — compresses session transcripts into storable artifacts, generates the 5-format output pipeline (seed/kernel/doctrine/artifact/scroll), manages the sovereign memory vault ingestion, and ensures zero knowledge loss across student sessions.";
     },
     {
       id = 11;
@@ -193,6 +203,7 @@ module {
         "EDDI Lab: Build a Mode-Bound Interaction",
       ];
       status = #active;
+      platformRole = "The central AI model powering every user interaction on the platform — all chat responses, lesson generation, adaptive feedback, recognition logic, and intelligent routing flow through EDDI. It is the single unified model behind every persona (Atlas, Echo, COGT, META, AUTN) and every mode (Student, Teacher, Principal, Builder, Memory, Recognition, Architect).";
     },
     {
       id = 12;
@@ -210,6 +221,7 @@ module {
         "Percept Lab: Train Your AI to See",
       ];
       status = #active;
+      platformRole = "Powers the platform's visual processing pipeline — handles image-based content recognition for uploaded worksheets and documents, drives the diagram analysis system for STEM subjects, enables visual quiz formats, and provides the computer vision backbone for document scanning and handwriting recognition features.";
     },
     {
       id = 13;
@@ -227,6 +239,7 @@ module {
         "Auris Lab: Teach Your AI to Listen",
       ];
       status = #active;
+      platformRole = "Drives the platform's audio intelligence layer — powers voice-input for hands-free learning sessions, enables pronunciation assessment for language courses, processes audio uploads for music and language lessons, and provides real-time speech-to-text transcription for accessibility across all user interfaces.";
     },
     {
       id = 14;
@@ -244,6 +257,7 @@ module {
         "Nexus Lab: Build a Knowledge Graph",
       ];
       status = #active;
+      platformRole = "Powers the platform's knowledge graph and concept map systems — computes prerequisite relationships between curriculum topics, drives the social learning connections between students, enables the entanglement system linking related concepts across subjects, and provides the graph-based reasoning behind learning pathway recommendations.";
     },
     {
       id = 15;
@@ -261,6 +275,7 @@ module {
         "Tempus Lab: Forecast a Sequence",
       ];
       status = #active;
+      platformRole = "Drives all time-based intelligence on the platform — predicts optimal study session timing via spaced-repetition scheduling, forecasts student performance trajectories for teacher dashboards, powers the attendance pattern detection system, and provides temporal analytics for principal and district reporting on learning trends.";
     },
     {
       id = 16;
@@ -278,6 +293,7 @@ module {
         "Ethica Lab: Audit a Model for Bias",
       ];
       status = #active;
+      platformRole = "The platform's fairness and safety guardian — continuously audits all AI-generated content for bias, ensures equitable treatment across demographic groups in adaptive learning, monitors assessment fairness, enforces content safety policies, and provides the ethical reasoning layer that prevents harmful or biased outputs from reaching students.";
     },
     {
       id = 17;
@@ -295,6 +311,7 @@ module {
         "Adversa Lab: Build a GAN",
       ];
       status = #active;
+      platformRole = "Powers the platform's quality assurance and robustness systems — generates adversarial test cases for quiz validation, stress-tests content generation for edge cases, drives the anti-cheating detection system by modeling adversarial student behavior, and hardens all ML outputs against manipulation or gaming.";
     },
     {
       id = 18;
@@ -312,6 +329,7 @@ module {
         "Reinfora Lab: Train an Agent to Play",
       ];
       status = #active;
+      platformRole = "Drives the platform's adaptive optimization systems — tunes the difficulty curve of lesson sequences based on student reward signals (engagement, completion, mastery), optimizes the notification and engagement timing policies, powers the gamification reward loops, and continuously improves platform UX through behavioral feedback optimization.";
     },
     {
       id = 19;
@@ -329,6 +347,25 @@ module {
         "Diffusa Lab: Generate from Noise",
       ];
       status = #active;
+      platformRole = "Powers the platform's generative media systems — creates custom illustrations for lessons, generates visual aids and diagrams on-demand, produces unique reward imagery for the recognition system, and provides the creative generation backbone for all visual content that students and teachers interact with.";
+    },
+    {
+      id = 20;
+      codeName = "CLASSIFICO";
+      fullName = "The Classification Engine";
+      domain = "How AI categorizes, labels, and sorts information through supervised learning and pattern recognition";
+      description = "CLASSIFICO is the engine of order. It takes the raw chaos of unstructured data and assigns it meaning through labels, categories, and taxonomies. Students learn that classification is the first act of intelligence — before you can reason about something, you must know what it is. CLASSIFICO teaches the mathematics of boundaries, separations, and confident decisions under uncertainty.";
+      mathFoundation = "Softmax probability distributions + cross-entropy loss + support vector margins + decision boundaries in feature space + Bayesian posterior inference";
+      teachingMethod = "Boundary drawing — students define categories, label examples, train classifiers from scratch, and observe how decision boundaries form and shift as more data arrives, building intuition for confidence, uncertainty, and the cost of misclassification.";
+      lessonsAvailable = [
+        "What is Classification?",
+        "Labels, Categories, and Taxonomies",
+        "How AI Draws Decision Boundaries",
+        "Confidence and Uncertainty in Predictions",
+        "Classifico Lab: Train Your Own Classifier",
+      ];
+      status = #active;
+      platformRole = "The platform's universal classification backbone — categorizes student submissions by subject and topic, labels learning content by difficulty and standard alignment, powers the automated grading rubric system, classifies student questions for intent routing, drives the content moderation pipeline, and provides multi-label tagging for the entire curriculum library.";
     },
   ];
 

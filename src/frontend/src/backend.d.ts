@@ -1197,6 +1197,7 @@ export interface SovereignEngine {
     mathFoundation: string;
     teachingMethod: string;
     lessonsAvailable: Array<string>;
+    platformRole: string;
 }
 export interface GradeCount {
     grade: bigint;

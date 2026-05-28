@@ -842,6 +842,7 @@ export const SovereignEngine = IDL.Record({
   'mathFoundation' : IDL.Text,
   'teachingMethod' : IDL.Text,
   'lessonsAvailable' : IDL.Vec(IDL.Text),
+  'platformRole' : IDL.Text,
 });
 export const EnrolledCourse = IDL.Record({
   'completedModules' : IDL.Vec(IDL.Nat),
@@ -3441,6 +3442,7 @@ export const idlFactory = ({ IDL }) => {
     'mathFoundation' : IDL.Text,
     'teachingMethod' : IDL.Text,
     'lessonsAvailable' : IDL.Vec(IDL.Text),
+    'platformRole' : IDL.Text,
   });
   const EnrolledCourse = IDL.Record({
     'completedModules' : IDL.Vec(IDL.Nat),

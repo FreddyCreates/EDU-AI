@@ -11,5 +11,6 @@ module {
     teachingMethod : Text;
     lessonsAvailable : [Text];
     status : EngineStatus;
+    platformRole : Text;  // Internal platform system role — how this engine powers user-facing features
   };
 };

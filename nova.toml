@@ -1,0 +1,55 @@
+# 🧠 Nova Forge Configuration — AI-Native Agentic Deployment
+# Sovereign ICP Mainnet Build & Deploy System
+# "If it's not on mainnet, it doesn't exist."
+
+[project]
+name = "edu-ai"
+version = "1.0.0"
+description = "EduAI - Sovereign K-12 Intelligence Platform"
+
+[network]
+target = "ic"  # ALWAYS mainnet - no testnets, no local replicas
+
+[canisters.backend]
+main = "src/backend/main.mo"
+cycles = "auto"  # AI estimates optimal cycles
+stable_check = ".old/src/backend/dist/backend.most"
+
+[canisters.frontend]
+type = "assets"
+source = "src/frontend/dist"
+dependencies = ["backend"]
+
+[build]
+output_dir = "src/backend/dist"
+moc_args = [
+  "--default-persistent-actors",
+  "--actor-idl=src/backend/system-idl",
+  "--implicit-package=core",
+  "-no-check-ir"
+]
+
+[ai]
+pre_deploy_scan = true              # 🛡️ SecurityAgent: deep vulnerability analysis
+cycle_optimization = true           # 💰 CostAgent: ML-powered cost prediction
+upgrade_safety_check = true         # ✅ SafetyAgent: stable memory validation
+security_level = "strict"           # strict | standard | minimal
+agent_verbose = false               # Show agent reasoning traces
+reasoning_depth = "standard"        # minimal | standard | deep
+learn_from_history = true           # Agents learn from past deployments
+compound_threat_detection = true    # Cross-reference findings for combined risks
+
+[identity]
+# Stored securely via environment variables - NEVER commit secrets
+wallet = "env:NOVA_WALLET"
+principal = "env:NOVA_PRINCIPAL"
+
+[deploy]
+confirm_required = true
+auto_top_up = false
+min_cycles = 1_000_000_000_000  # 1T cycles minimum
+
+[notifications]
+webhook = "env:NOVA_WEBHOOK_URL"
+on_success = true
+on_failure = true

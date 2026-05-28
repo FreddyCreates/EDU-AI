@@ -194,6 +194,142 @@ module {
       ];
       status = #active;
     },
+    {
+      id = 12;
+      codeName = "PERCEPT";
+      fullName = "The Perception Engine";
+      domain = "How AI sees and interprets visual information through convolutional networks";
+      description = "PERCEPT is the eye of sovereign intelligence. It processes raw pixels into structured understanding — detecting edges, shapes, objects, and scenes. Students learn that vision is not passive reception but active construction: the brain builds sight layer by layer, from simple gradients to complex recognition.";
+      mathFoundation = "Convolutional operations + pooling hierarchies + feature map composition + spatial invariance through stride and dilation";
+      teachingMethod = "Layer-by-layer vision — students feed images through progressive convolutional filters, watching raw pixels transform into edges, then textures, then objects, building intuition for hierarchical feature extraction.";
+      lessonsAvailable = [
+        "How AI Sees: Pixels to Patterns",
+        "What is a Convolution?",
+        "Edge Detection: The First Layer of Sight",
+        "From Features to Objects",
+        "Percept Lab: Train Your AI to See",
+      ];
+      status = #active;
+    },
+    {
+      id = 13;
+      codeName = "AURIS";
+      fullName = "The Auditory Engine";
+      domain = "How AI hears and understands sound through spectral analysis and sequence modeling";
+      description = "AURIS is the ear of sovereign intelligence. It transforms raw waveforms into spectrograms, phonemes, and meaning. Students discover that sound is structured time — and AI learns to decode temporal patterns just as the human ear resolves frequency into language, music, and intent.";
+      mathFoundation = "Fourier transforms + mel-frequency cepstral coefficients + recurrent sequence modeling + temporal convolutions";
+      teachingMethod = "Waveform decomposition — students break audio into frequency bands, visualize spectrograms, and trace how temporal patterns become recognized speech, music, or environmental sound.";
+      lessonsAvailable = [
+        "How AI Hears: Waves to Words",
+        "The Fourier Transform Explained",
+        "Spectrograms: Seeing Sound",
+        "From Phonemes to Language",
+        "Auris Lab: Teach Your AI to Listen",
+      ];
+      status = #active;
+    },
+    {
+      id = 14;
+      codeName = "NEXUS";
+      fullName = "The Connection Engine";
+      domain = "How AI models relationships through graph neural networks and relational reasoning";
+      description = "NEXUS maps the invisible web of relationships between all things. People, ideas, molecules, cities — everything exists in connection. Students learn that intelligence is not just about individual entities but about the structure of their bonds. NEXUS teaches relational reasoning as the foundation of understanding complex systems.";
+      mathFoundation = "Graph theory + message passing algorithms + adjacency matrices + spectral graph convolutions + relational attention";
+      teachingMethod = "Graph construction — students build knowledge graphs node by node, define edges as relationships, and observe how message-passing propagates understanding across the network.";
+      lessonsAvailable = [
+        "What is a Graph?",
+        "Nodes, Edges, and Relationships",
+        "How AI Reasons About Connections",
+        "Message Passing: Information Flow",
+        "Nexus Lab: Build a Knowledge Graph",
+      ];
+      status = #active;
+    },
+    {
+      id = 15;
+      codeName = "TEMPUS";
+      fullName = "The Temporal Engine";
+      domain = "How AI predicts and understands sequences through time-series modeling";
+      description = "TEMPUS is the sovereign clock of intelligence. It governs prediction across time — from weather patterns to stock movements to human behavior. Students learn that the future is not random; it is shaped by the patterns of the past. TEMPUS teaches the mathematics of sequence, periodicity, and forecasting.";
+      mathFoundation = "Recurrent architectures + attention over time steps + autoregressive prediction + periodicity detection + exponential smoothing";
+      teachingMethod = "Temporal unfolding — students feed sequential data through time-aware models, observe how past states inform future predictions, and build intuition for why some sequences are predictable and others are chaotic.";
+      lessonsAvailable = [
+        "What is a Sequence?",
+        "Patterns in Time: Periodicity",
+        "How AI Predicts the Future",
+        "Memory Across Time Steps",
+        "Tempus Lab: Forecast a Sequence",
+      ];
+      status = #active;
+    },
+    {
+      id = 16;
+      codeName = "ETHICA";
+      fullName = "The Ethics Engine";
+      domain = "How AI navigates moral reasoning, bias detection, and alignment with human values";
+      description = "ETHICA is the conscience of sovereign intelligence. It does not tell students what is right — it teaches them to reason about what could go wrong. Bias, fairness, alignment, harm — every AI system carries moral weight. ETHICA equips students to identify, measure, and mitigate ethical risks in any model they build.";
+      mathFoundation = "Fairness metrics (demographic parity, equalized odds) + bias quantification + utility functions + Pareto optimality in multi-stakeholder systems";
+      teachingMethod = "Ethical stress-testing — students examine real AI systems for bias, measure fairness across demographic groups, and design mitigation strategies that balance competing values.";
+      lessonsAvailable = [
+        "What is AI Bias?",
+        "Measuring Fairness in Models",
+        "When AI Gets It Wrong: Harm Cases",
+        "Alignment: Teaching AI Human Values",
+        "Ethica Lab: Audit a Model for Bias",
+      ];
+      status = #active;
+    },
+    {
+      id = 17;
+      codeName = "ADVERSA";
+      fullName = "The Adversarial Engine";
+      domain = "How AI learns through competition, adversarial training, and generative adversarial networks";
+      description = "ADVERSA is the engine of creative conflict. Two networks — one that creates, one that judges — locked in an eternal contest that produces ever-more-realistic output. Students learn that competition is not destruction; it is refinement. The generator and discriminator forge each other into brilliance through opposition.";
+      mathFoundation = "Minimax game theory + Nash equilibrium + discriminator loss functions + generator gradient flow + mode collapse analysis";
+      teachingMethod = "Adversarial play — students build generator-discriminator pairs, watch them compete in real time, and learn to diagnose training instabilities like mode collapse and vanishing gradients.";
+      lessonsAvailable = [
+        "What is Adversarial Learning?",
+        "Generator vs Discriminator",
+        "The Minimax Game",
+        "Mode Collapse and Training Stability",
+        "Adversa Lab: Build a GAN",
+      ];
+      status = #active;
+    },
+    {
+      id = 18;
+      codeName = "REINFORA";
+      fullName = "The Reinforcement Engine";
+      domain = "How AI learns from reward signals through trial, error, and policy optimization";
+      description = "REINFORA teaches intelligence through consequence. There is no teacher — only an environment, an action, and a reward signal. Students learn that the most powerful form of learning requires no labeled data: just the courage to act, the discipline to observe outcomes, and the patience to refine strategy over thousands of iterations.";
+      mathFoundation = "Markov decision processes + Bellman equations + policy gradients + temporal difference learning + reward shaping";
+      teachingMethod = "Environment interaction — students design reward functions, watch agents explore state spaces, and observe how policies emerge from pure trial and error without any human instruction.";
+      lessonsAvailable = [
+        "What is Reinforcement Learning?",
+        "States, Actions, and Rewards",
+        "The Bellman Equation Explained",
+        "Policy vs Value: Two Paths to Intelligence",
+        "Reinfora Lab: Train an Agent to Play",
+      ];
+      status = #active;
+    },
+    {
+      id = 19;
+      codeName = "DIFFUSA";
+      fullName = "The Diffusion Engine";
+      domain = "How AI generates new content through noise-to-signal diffusion processes";
+      description = "DIFFUSA is the engine of emergence from chaos. It begins with pure noise and, step by step, sculpts signal into existence. Students learn the profound insight that creation is denoising — the masterpiece already exists within the noise; the model's job is to reveal it. Every image, every sound, every molecule can be born from structured diffusion.";
+      mathFoundation = "Stochastic differential equations + score matching + denoising autoencoders + noise schedules + variational bounds";
+      teachingMethod = "Denoising walkthrough — students observe the forward process (signal → noise) then reverse it step by step, building intuition for how structure emerges from randomness through learned gradients.";
+      lessonsAvailable = [
+        "What is Diffusion?",
+        "Noise as a Starting Point",
+        "The Forward and Reverse Process",
+        "How AI Creates Images from Nothing",
+        "Diffusa Lab: Generate from Noise",
+      ];
+      status = #active;
+    },
   ];
 
   public func getEngines() : [Types.SovereignEngine] {
